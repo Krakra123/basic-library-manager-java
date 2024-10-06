@@ -1,7 +1,7 @@
-module project {
+module app {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens project to javafx.fxml;
-    exports project;
+    opens app to javafx.fxml;
+    exports app;
 }
