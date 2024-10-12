@@ -3,9 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <SplitPane dividerPositions="0.25, 0.75" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainPaneController">
@@ -28,18 +27,10 @@
           </VBox>
          </children>
       </VBox>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-padding: 10;">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0">
-               <children>
-               <Label text="Select a menu item to display content" />
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
+      <StackPane fx:id="contentPane" prefHeight="150.0" prefWidth="200.0" />
     
     <!-- Right Pane: Details Area -->
-    <VBox prefHeight="398.0" prefWidth="286.0" spacing="10.0" style="-fx-padding: 10;">
+    <VBox fx:id="detailsPane" prefHeight="398.0" prefWidth="286.0" spacing="10.0" style="-fx-padding: 10;">
       <Label text="Details" />
     </VBox>
   </items>

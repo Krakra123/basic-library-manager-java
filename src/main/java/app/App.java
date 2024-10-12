@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(@SuppressWarnings("exports") Stage stage) throws IOException {
         Parent root = loadFXML("MainPane");
         Scene scene = new Scene(root, 800,600);
 
