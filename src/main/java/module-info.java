@@ -1,8 +1,12 @@
 module app {
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.graphics;
+
+    exports app;
+    exports app.util;
+    exports app.controller;
 
     opens app to javafx.fxml;
-    exports app;
+    opens app.controller to javafx.fxml;
+    opens app.util to javafx.fxml;
 }

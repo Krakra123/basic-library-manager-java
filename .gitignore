@@ -2,3 +2,6 @@
 .vs
 target
 .idea
+.classpath
+.project
+.settings
