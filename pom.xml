@@ -21,7 +21,6 @@
             <version>23</version>
         </dependency>
         
-        
         <!-- TestFX dependencies for UI testing -->
         <dependency>
             <groupId>org.testfx</groupId>
@@ -44,7 +43,8 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-	    <build>
+
+	<build>
 	    <plugins>
 	        <plugin>	
 	            <groupId>org.apache.maven.plugins</groupId>

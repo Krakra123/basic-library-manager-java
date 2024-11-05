@@ -10,9 +10,11 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
+	private Stage primaryStage;
+
     @Override
     public void start(Stage stage) throws IOException {
-        Utilities.loadWindow("MainMenuPane", "LibraryManager", stage);
+        Utilities.loadWindow("MainMenuPane", "LibraryManager", stage, primaryStage);
 
         BookDatabase database = new BookDatabase("E:/Hoc/oop-btl-1/src/main/resources/data/test-database.txt");
         Book book = database.GetBook(2);

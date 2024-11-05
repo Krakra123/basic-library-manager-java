@@ -1,4 +1,4 @@
-package user_account;
+package app.user_account;
 
 public class UserAccount {
 

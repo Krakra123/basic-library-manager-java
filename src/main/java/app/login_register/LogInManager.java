@@ -1,19 +1,14 @@
-package login_register;
+package app.login_register;
 
-import user_account.UserAccount;
+import app.user_account.UserAccount;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LogInManager {
 
-	
-	private static UserAccount noAccount = new UserAccount("siuuuuuuuuuu", "KieuVanTuyen");
+	private static UserAccount noAccount = new UserAccount("siuuuuuuuuuu", "KieuVanTuyen"); // TODO remove hard-code
 	private static List<UserAccount> accountList = new ArrayList<UserAccount>();
-	
-	public LogInManager() {
-		
-	}
 	
 	public static UserAccount getAccount(String username) {
 		UserAccount returnAccount = noAccount;

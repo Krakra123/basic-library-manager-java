@@ -22,24 +22,24 @@ public class Utilities {
         stage.getIcons().add(new Image(ICON_IMAGE_DIR));
     }
     
-    public static Object loadWindow(String fxml, String title, Stage parentStage) {
+    public static Object loadWindow(String fxml, String title, Stage parentStage, Stage outStage) {
         Object controller = null;
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
             Parent parent = loader.load();
             controller = loader.getController();
-            Stage stage = null;
             if (parentStage != null) {
-                stage = parentStage;
+                outStage = parentStage;
             } else {
-                stage = new Stage(StageStyle.DECORATED);
+                outStage = new Stage(StageStyle.DECORATED);
             }
-            stage.setTitle(title);
-            stage.setScene(new Scene(parent));
-            stage.show();
+            outStage.setTitle(title);
+            outStage.setScene(new Scene(parent));
+            outStage.show();
             // setStageIcon(stage);
         } catch (IOException ex) {
             System.err.println("Failed to load Window.");
+            ex.printStackTrace();
         }
         return controller;
     }
