@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.25, 0.75" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.25, 0.75" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.MainPaneController">
    <items>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="5.0" prefWidth="147.0" spacing="10" style="-fx-padding: 10;" VBox.vgrow="ALWAYS">
                <children>
-                  <Button maxWidth="Infinity" text="Menu" />
-                  <Button maxWidth="Infinity" text="Library" />
+                  <Button fx:id="handleMenuButton" maxWidth="Infinity" text="Menu" />
+                  <Button fx:id="handleLibraryButton" maxWidth="Infinity" text="Library" />
                </children>
             </VBox>
             <VBox alignment="BOTTOM_CENTER" prefHeight="5.0" prefWidth="147.0" spacing="10" style="-fx-padding: 10;">
@@ -22,13 +22,14 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <Button maxWidth="Infinity" text="Setting" />
-                  <Button maxWidth="Infinity" text="Infomations" />
+                  <Button fx:id="handleSettingButton" maxWidth="Infinity" text="Setting" />
+                  <Button fx:id="handleInfoButton" maxWidth="Infinity" text="Infomations" />
                </children>
             </VBox>
          </children>
       </VBox>
-      <StackPane prefHeight="150.0" prefWidth="200.0" />
+      <VBox fx:id="contentPane" prefHeight="150.0" prefWidth="200.0"> 
+      </VBox>
       <VBox prefHeight="398.0" prefWidth="286.0" spacing="10.0" style="-fx-padding: 10;">
          <children>
             <Label text="Details" />

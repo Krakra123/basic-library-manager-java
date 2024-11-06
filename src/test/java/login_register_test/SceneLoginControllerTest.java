@@ -24,7 +24,7 @@ public class SceneLoginControllerTest extends ApplicationTest {
 	
 	@Override
     public void start(Stage stage) throws IOException {
-        Utilities.loadWindow("LogIn_page", "Login", stage, testStage);
+        Utilities.loadWindow("LogInPage", "Login", stage, testStage);
     }
 	
     @Test
@@ -39,7 +39,6 @@ public class SceneLoginControllerTest extends ApplicationTest {
         try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         // Verify that the main menu is shown by checking the stage title

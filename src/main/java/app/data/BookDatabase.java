@@ -29,7 +29,7 @@ public class BookDatabase {
             if (line.startsWith("*")) {
                 String[] parts = line.substring(1).split("-");
                 if (parts.length == 2) {
-                    Book book = new Book();
+                    Book book = new Book("", "");
                     book.name = parts[0];
                     book.publisher = parts[1];
                     books.add(book);

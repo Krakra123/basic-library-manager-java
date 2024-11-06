@@ -1,12 +1,15 @@
-package app.data;
+package app.library;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookContainer  {
+import app.data.Book;
+
+public class BookCollection {
+    
     private List<Book> bookList;
 
-    public BookContainer() {
+    public BookCollection() {
         bookList = new ArrayList<>();
     }
 
