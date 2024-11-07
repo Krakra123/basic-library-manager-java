@@ -4,6 +4,7 @@ module app {
 
     opens app to javafx.fxml;
     opens app.controller to javafx.fxml;
+    opens app.managers to javafx.fxml;
     opens app.util to javafx.fxml;
     
     exports app;

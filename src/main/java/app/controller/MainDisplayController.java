@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 public class MainDisplayController {
     
     @FXML
-    private VBox contentPane;
+    public VBox contentPane;
 
     @FXML
     private void handleMenuButton() {
@@ -32,21 +32,5 @@ public class MainDisplayController {
     @FXML
     private void handleInfoButton() {
 
-    }
-
-    public void loadCollection(BookCollection collection) {
-        Utilities.FXMLData collectionFXML = Utilities.loadFXML("CollectionItems");
-        if (collectionFXML.root instanceof VBox root) {
-            contentPane.getChildren().clear();
-            contentPane.getChildren().add(root);
-        } else {
-            throw new RuntimeException("CollectionItems's root must be a VBox");
-        }
-
-        if (collectionFXML.controller instanceof CollectionItemsController controller) {
-            controller.update(collection);
-        } else {
-            throw new RuntimeException("CollectionItems has wrong controller");
-        }
     }
 }

@@ -10,10 +10,11 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import app.controller.CollectionItemsController;
+import app.controller.BookCollectionController;
 import app.controller.MainDisplayController;
 import app.data.Book;
 import app.data.BookCollection;
+import app.managers.MainDisplayManager;
 import app.util.Utilities;
 import javafx.stage.Stage;
 
@@ -21,11 +22,12 @@ public class LibraryDisplayTest extends ApplicationTest {
     
     private Stage testStage;
 
-	@Override
+    private MainDisplayManager mainDisplayManager;
+
+    @Override
     public void start(Stage stage) throws IOException {
-        System.out.println("dsaaaaaADASDASDAS");
-        Utilities.FXMLData data = Utilities.loadWindow("MainDisplay", "Library", stage, testStage);
-    
+        mainDisplayManager = new MainDisplayManager(Utilities.loadWindow("MainDisplay", "LibraryManager", stage, testStage));
+
         BookCollection collection = new BookCollection();
         collection.add(new Book("a", "b"));
         collection.add(new Book("e", "f"));
@@ -34,9 +36,8 @@ public class LibraryDisplayTest extends ApplicationTest {
         collection.add(new Book("u", "v"));
         collection.add(new Book("u", "v"));
 
-        if (data.controller instanceof MainDisplayController controller) {
-            controller.loadCollection(collection);
-        }
+        mainDisplayManager.loadUserLibrary();
+        mainDisplayManager.getBookCollectionManager().updateCollection(collection);
     }
 
     @Test
