@@ -2,7 +2,7 @@ package app.controller;
 
 import java.io.IOException;
 
-import app.login_register.LogInManager;
+import app.managers.LogInManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

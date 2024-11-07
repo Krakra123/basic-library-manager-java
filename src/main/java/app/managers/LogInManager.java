@@ -1,9 +1,9 @@
-package app.login_register;
-
-import app.user_account.UserAccount;
+package app.managers;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import app.data.UserAccount;
 
 public class LogInManager {
 
@@ -28,5 +28,4 @@ public class LogInManager {
 	public static void addNewAccount(UserAccount newAccount) {
 		accountList.add(newAccount);
 	}
-	
 }

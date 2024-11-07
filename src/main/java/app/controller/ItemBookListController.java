@@ -4,7 +4,7 @@ import app.data.Book;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class BookDisplayOnCollectionController {
+public class ItemBookListController {
     
     @FXML
     private Label name;

@@ -10,25 +10,23 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import app.controller.BookCollectionController;
-import app.controller.MainPaneController;
+import app.controller.CollectionItemsController;
+import app.controller.MainDisplayController;
 import app.data.Book;
-import app.library.BookCollection;
+import app.data.BookCollection;
 import app.util.Utilities;
 import javafx.stage.Stage;
 
 public class LibraryDisplayTest extends ApplicationTest {
     
     private Stage testStage;
-    private MainPaneController mainPaneController;
 
-    private BookCollection collection = new BookCollection();
-	
 	@Override
     public void start(Stage stage) throws IOException {
-        Object o = Utilities.loadWindow("MainMenuPane", "Menu", stage, testStage);
-        mainPaneController = (MainPaneController)o;
+        System.out.println("dsaaaaaADASDASDAS");
+        Utilities.FXMLData data = Utilities.loadWindow("MainDisplay", "Library", stage, testStage);
     
+        BookCollection collection = new BookCollection();
         collection.add(new Book("a", "b"));
         collection.add(new Book("e", "f"));
         collection.add(new Book("u", "v"));
@@ -36,16 +34,13 @@ public class LibraryDisplayTest extends ApplicationTest {
         collection.add(new Book("u", "v"));
         collection.add(new Book("u", "v"));
 
-        try {
-            mainPaneController.loadCollection(collection);
-        } catch (Exception e) {
-            e.getStackTrace();
+        if (data.controller instanceof MainDisplayController controller) {
+            controller.loadCollection(collection);
         }
     }
 
     @Test
     public void RunFor10sec() {
-
         try {
             Thread.sleep(10000);
         } catch (Exception e) {

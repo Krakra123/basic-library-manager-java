@@ -1,9 +1,7 @@
-package app.library;
+package app.data;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import app.data.Book;
 
 public class BookCollection {
     

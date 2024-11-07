@@ -1,4 +1,4 @@
-package app.user_account;
+package app.data;
 
 public class UserAccount {
 
@@ -31,7 +31,6 @@ public class UserAccount {
 
 
 	public boolean checkPassword(String password) {
-		if (this.password.equals(password)) return true;
-		return false;
+		return this.password.equals(password);
 	}
 }
