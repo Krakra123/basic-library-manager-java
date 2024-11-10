@@ -37,7 +37,7 @@ public class SceneLoginControllerTest extends ApplicationTest {
         // clickOn("#loginButton");
 
         try {
-			Thread.sleep(10000);
+			Thread.sleep(15000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

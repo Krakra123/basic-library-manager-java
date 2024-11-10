@@ -33,7 +33,7 @@ public class SceneLoginController {
 			System.out.println("username or password not true");
 		} else {
 			// TODO use general scene util load
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainMenuPane.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainDisplay.fxml"));
 			root = loader.load();
 			
 			//homepageController scene2Controller = loader.getController();
@@ -46,8 +46,16 @@ public class SceneLoginController {
 			stage.setTitle("LibraryManager");
 			stage.show();	
 		}
-		
-		
+	
 	}
 	
+	public void register(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/RegisterPage.fxml"));
+		root = loader.load();
+		stage = (Stage) ( (Node) event.getSource() ).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.setTitle("Register");
+		stage.show();
+	}
 }

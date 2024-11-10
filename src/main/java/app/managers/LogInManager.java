@@ -28,4 +28,13 @@ public class LogInManager {
 	public static void addNewAccount(UserAccount newAccount) {
 		accountList.add(newAccount);
 	}
+	
+	public static boolean isUsernameExisted(String username) {
+		for (UserAccount account : accountList) {
+			if (account.getUsername().equals(username)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
