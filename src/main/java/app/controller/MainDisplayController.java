@@ -1,12 +1,6 @@
 package app.controller;
 
-import java.io.IOException;
-
-import app.data.BookCollection;
-import app.util.Utilities;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 
 public class MainDisplayController {
@@ -15,12 +9,17 @@ public class MainDisplayController {
     public VBox contentPane;
 
     @FXML
-    private void handleMenuButton() {
+    private void handleHomeButton() {
 
     }
 
     @FXML
     private void handleLibraryButton() {
+
+    }
+
+    @FXML
+    private void handleDashboardsButton() {
 
     }
 

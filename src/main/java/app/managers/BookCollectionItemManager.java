@@ -8,12 +8,11 @@ import app.data.BookCollection;
 import app.util.Utilities;
 import javafx.scene.layout.VBox;
 
-public class BookCollectionItemManager {
+public class BookCollectionItemManager extends LoadableContentManager {
     
-    private final String COLLECTION_FXML = "BookCollection";
+    // private final String COLLECTION_FXML = "BookCollection";
     private final String ITEM_BOOK_FXML = "ItemBookList"; // FIXME Change to genral type of book
     
-    private Utilities.FXMLData collectionFXML;
     private VBox collectionRoot;
     private BookCollectionController collectionController;
     private VBox targetRoot;
@@ -21,14 +20,15 @@ public class BookCollectionItemManager {
     private BookCollection collectionData;
 
     public BookCollectionItemManager() {
-        collectionFXML = Utilities.loadFXML(COLLECTION_FXML);
-        if (collectionFXML.controller instanceof BookCollectionController c) {
+        super("BookCollection");
+
+        if (fxmlData.controller instanceof BookCollectionController c) {
             collectionController = c;
         } else {
             throw new RuntimeException("BookCollection has wrong controller");
         }
 
-        if (collectionFXML.root instanceof VBox r) {
+        if (fxmlData.root instanceof VBox r) {
             collectionRoot = r;
         } else {
             throw new RuntimeException("BookCollection's root must be a VBox");
@@ -38,8 +38,8 @@ public class BookCollectionItemManager {
     public void loadOnParent(VBox target) {
         targetRoot = target;
         targetRoot.getChildren().clear();
-        targetRoot.getChildren().add(collectionFXML.root);
-        System.out.println(targetRoot + " " + collectionFXML.root);
+        targetRoot.getChildren().add(fxmlData.root);
+        System.out.println(targetRoot + " " + fxmlData.root);
     }
 
     // TODO add more method to optimize the updating
