@@ -3,6 +3,7 @@ package app.managers;
 import app.controller.MainDisplayController;
 import app.util.Utilities;
 import javafx.scene.Parent;
+import javafx.stage.Stage;
 
 public class MainDisplayManager {
     
@@ -14,8 +15,8 @@ public class MainDisplayManager {
 
     private BookCollectionItemManager bookCollectionManager;
 
-    public MainDisplayManager(Utilities.FXMLData data) {
-        mainDisplayFXML = data;
+    public MainDisplayManager(Stage stage) {
+        mainDisplayFXML = Utilities.loadWindow(MAIN_DISPLAY_FXML, "LibraryManager", stage, null);
         if (mainDisplayFXML.controller instanceof MainDisplayController c) {
             mainDisplayController = c;
         } else {
