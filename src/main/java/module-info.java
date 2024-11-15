@@ -1,6 +1,11 @@
 module app {
     requires javafx.controls;
     requires javafx.fxml;
+	requires spring.context;
+	requires spring.web;
+	requires java.base;
+	requires spring.boot;
+	requires spring.boot.autoconfigure;
 
     opens app to javafx.fxml;
     opens app.controller to javafx.fxml;

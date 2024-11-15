@@ -37,4 +37,17 @@ public class LogInManager {
 		}
 		return false;
 	}
+	
+	public static UserAccount getUserAccount(String username) {
+		for (UserAccount account : accountList) {
+			if (account.getUsername().equals(username)) {
+				return account;
+			}
+		}
+		return null;
+	}
+	
+	public static void changePassword(UserAccount account, String password) {
+		account.setPassword(password);
+	}
 }
