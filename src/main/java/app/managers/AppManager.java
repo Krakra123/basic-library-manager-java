@@ -5,24 +5,20 @@ import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+@SuppressWarnings({"FieldMayBeFinal", "exports"})
 public class AppManager {
     
     private static final String WINDOW_FXML = "Blank";
     private static final String TITLE = "Library Manager";
 
-    @SuppressWarnings("FieldMayBeFinal")
     private Utilities.FXMLData windowData;
-    @SuppressWarnings("FieldMayBeFinal")
     private VBox windowRootVBox;
 
     private LoadableFXMLContentManager curContent;
 
-    @SuppressWarnings("FieldMayBeFinal")
     private MainDisplayManager mainDisplayManager;
-    @SuppressWarnings("FieldMayBeFinal")
     private LogInManager loginManager;
 
-    @SuppressWarnings("exports")
     public AppManager(Stage stage) {
         mainDisplayManager = new MainDisplayManager(this);
         loginManager = new LogInManager(this);
@@ -31,7 +27,6 @@ public class AppManager {
         windowRootVBox =  windowData.getRoot(VBox.class);
     }
 
-    @SuppressWarnings("exports")
     public final Parent getRoot() {
         return windowData.root;
     }

@@ -7,15 +7,13 @@ import app.controller.LoginPageController;
 import app.data.UserAccount;
 import app.util.Utilities;
 
+@SuppressWarnings({"FieldMayBeFinal"})
 public class LogInManager extends LoadableFXMLContentManager {
 
-	@SuppressWarnings("FieldMayBeFinal")
 	private AppManager appManager;
 
-	@SuppressWarnings("FieldMayBeFinal")
     private LoginPageController loginPageController;
 
-	@SuppressWarnings("FieldMayBeFinal")
 	private List<UserAccount> accountList;
 
 	public LogInManager(AppManager manager) {
@@ -24,7 +22,6 @@ public class LogInManager extends LoadableFXMLContentManager {
 		accountList = new ArrayList<>();
 
 		loginPageController = fxmlData.getController(LoginPageController.class);
-		loginPageController.setManager(this);
 	}
 
 	public void addAccount(UserAccount account) {
@@ -51,7 +48,7 @@ public class LogInManager extends LoadableFXMLContentManager {
 
 	@Override
 	public void onEnable() {
-
+		loginPageController.setManager(this);
 	}
 
 	@Override

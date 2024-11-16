@@ -13,9 +13,9 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+@SuppressWarnings({"exports"})
 public class Utilities {
 
-    @SuppressWarnings("exports")
     public static class FXMLData {
         
         public Parent root;
@@ -69,7 +69,6 @@ public class Utilities {
         return data;
     }
     
-    @SuppressWarnings("exports")
     public static FXMLData loadFXMLWindow(String fxml, String title, Stage stage) {
         FXMLData data = new FXMLData();
         try {
@@ -88,7 +87,6 @@ public class Utilities {
         return data;
     }
 
-    @SuppressWarnings("exports")
     public static void setStageIcon(Stage stage, String iconDir) {
         stage.getIcons().add(new Image(iconDir));
     }

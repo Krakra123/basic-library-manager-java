@@ -2,9 +2,9 @@ package app.managers;
 
 import app.controller.MainDisplayController;
 
+@SuppressWarnings({"FieldMayBeFinal"})
 public class MainDisplayManager extends LoadableFXMLContentManager {
     
-    @SuppressWarnings("FieldMayBeFinal")
     private AppManager appManager;
 
     @SuppressWarnings({"unused", "FieldMayBeFinal"})
