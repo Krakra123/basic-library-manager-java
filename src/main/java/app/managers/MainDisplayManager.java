@@ -5,9 +5,11 @@ import app.controller.MainDisplayController;
 @SuppressWarnings({"FieldMayBeFinal"})
 public class MainDisplayManager extends LoadableFXMLContentManager {
     
+    private static final int WINDOW_WIDTH = 800;
+    private static final int WINDOW_HEIGHT = 600;
+
     private AppManager appManager;
 
-    @SuppressWarnings({"unused", "FieldMayBeFinal"})
     private MainDisplayController mainDisplayController;
 
     public MainDisplayManager(AppManager manager) {
@@ -19,7 +21,9 @@ public class MainDisplayManager extends LoadableFXMLContentManager {
     
     @Override
 	public void onEnable() {
-
+        appManager.getStage().setWidth(WINDOW_WIDTH);
+        appManager.getStage().setHeight(WINDOW_HEIGHT);
+        appManager.getStage().centerOnScreen();
 	}
 
 	@Override

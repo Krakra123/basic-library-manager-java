@@ -11,6 +11,8 @@ public class AppManager {
     private static final String WINDOW_FXML = "Blank";
     private static final String TITLE = "Library Manager";
 
+    private Stage curStage;
+
     private Utilities.FXMLData windowData;
     private VBox windowRootVBox;
 
@@ -20,11 +22,16 @@ public class AppManager {
     private LogInManager loginManager;
 
     public AppManager(Stage stage) {
+        curStage = stage;
         mainDisplayManager = new MainDisplayManager(this);
         loginManager = new LogInManager(this);
 
         windowData = Utilities.loadFXMLWindow(WINDOW_FXML, TITLE, stage);
         windowRootVBox =  windowData.getRoot(VBox.class);
+    }
+
+    public final Stage getStage() {
+        return curStage;
     }
 
     public final Parent getRoot() {
@@ -40,12 +47,11 @@ public class AppManager {
     }
 
     public final void loadContent(LoadableFXMLContentManager content) {
-        if (curContent != null) curContent.onDisable();
+        if (curContent != null) curContent.remove();
         clearWindow();
 
         curContent = content;
-        windowRootVBox.getChildren().add(content.getFXMLData().root);
-        content.onEnable();
+        content.loadOn(windowRootVBox);
     }
 
     private void clearWindow() {
