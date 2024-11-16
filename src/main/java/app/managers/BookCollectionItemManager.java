@@ -8,7 +8,7 @@ import app.data.BookCollection;
 import app.util.Utilities;
 import javafx.scene.layout.VBox;
 
-public class BookCollectionItemManager extends LoadableContentManager {
+public class BookCollectionItemManager extends LoadableFXMLContentManager {
     
     // private final String COLLECTION_FXML = "BookCollection";
     private final String ITEM_BOOK_FXML = "ItemBookList"; // FIXME Change to genral type of book
@@ -72,5 +72,17 @@ public class BookCollectionItemManager extends LoadableContentManager {
 
     private void clearCollectionDisplay() {
         collectionController.clearViews();
+    }
+
+    @Override
+    public void onEnable() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onEnable'");
+    }
+
+    @Override
+    public void onDisable() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onDisable'");
     }
 }

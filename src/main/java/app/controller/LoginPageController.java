@@ -2,35 +2,32 @@ package app.controller;
 
 import java.io.IOException;
 
-import app.managers.ButtonHandler;
+import app.managers.LogInManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-public class SceneLoginController {
+@SuppressWarnings("exports")
+public class LoginPageController {
 	
+	private LogInManager manager;
+
 	@FXML
 	public TextField usernameTextField;
 	
 	@FXML
 	public TextField passwordTextField;
 
-	private ButtonHandler loginButtonHandler;
-	private ButtonHandler registerButtonHandler;
-
-	public void setLoginButtonHandler(ButtonHandler loginButtonHandler) {
-		this.loginButtonHandler = loginButtonHandler;
-	}
-	public void setRegisterButtonHandler(ButtonHandler registerButtonHandler) {
-		this.registerButtonHandler = registerButtonHandler;
+	public void setManager(LogInManager manager) {
+		this.manager = manager;
 	}
 
 	public void login(ActionEvent event) throws IOException {
-		loginButtonHandler.Call();
+		manager.tryLogin(usernameTextField.getText(), passwordTextField.getText());
 	}
 
 	public void register(ActionEvent event) throws IOException {
-		registerButtonHandler.Call();
+		
 	}
 
 	// public void login(ActionEvent event) throws IOException {

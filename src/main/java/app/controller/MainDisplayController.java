@@ -3,6 +3,7 @@ package app.controller;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
+@SuppressWarnings("exports")
 public class MainDisplayController {
     
     @FXML

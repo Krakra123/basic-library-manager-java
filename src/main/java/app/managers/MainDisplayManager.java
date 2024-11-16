@@ -1,38 +1,29 @@
 package app.managers;
 
 import app.controller.MainDisplayController;
-import app.util.Utilities;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
 
-public class MainDisplayManager {
+public class MainDisplayManager extends LoadableFXMLContentManager {
     
-    private final String MAIN_DISPLAY_FXML = "MainDisplay";
+    @SuppressWarnings("FieldMayBeFinal")
+    private AppManager appManager;
 
-    private Utilities.FXMLData mainDisplayFXML;
-    private Parent mainDisplayRoot;
+    @SuppressWarnings({"unused", "FieldMayBeFinal"})
     private MainDisplayController mainDisplayController;
 
-    private BookCollectionItemManager bookCollectionManager;
+    public MainDisplayManager(AppManager manager) {
+        super("MainDisplay");
+        appManager = manager;
 
-    public MainDisplayManager(Stage stage) {
-        mainDisplayFXML = Utilities.loadWindow(MAIN_DISPLAY_FXML, "LibraryManager", stage, null);
-        if (mainDisplayFXML.controller instanceof MainDisplayController c) {
-            mainDisplayController = c;
-        } else {
-            throw new RuntimeException("MainDisplay has wrong controller");
-        }
-
-        mainDisplayRoot = mainDisplayFXML.root;
-
-        bookCollectionManager = new BookCollectionItemManager();
+        mainDisplayController = fxmlData.getController(MainDisplayController.class);
     }
+    
+    @Override
+	public void onEnable() {
 
-    public BookCollectionItemManager getBookCollectionManager() {
-        return bookCollectionManager;
-    }
+	}
 
-    public void loadUserLibrary() {
-        bookCollectionManager.loadOnParent(mainDisplayController.contentPane);
-    }
+	@Override
+	public void onDisable() {
+
+	}
 }
