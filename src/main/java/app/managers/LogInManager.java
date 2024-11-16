@@ -76,6 +76,6 @@ public class LogInManager {
 	}
 
 	private void onRegisterPageEnable() {
-		// registerPageController.setManager(this);
+		registerPageController.setManager(this);
 	}
 }
