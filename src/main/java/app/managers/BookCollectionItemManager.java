@@ -8,7 +8,7 @@ import app.data.BookCollection;
 import app.util.Utilities;
 import javafx.scene.layout.VBox;
 
-public class BookCollectionItemManager extends LoadableFXMLContentManager {
+public class BookCollectionItemManager {
     
     // private final String COLLECTION_FXML = "BookCollection";
     private final String ITEM_BOOK_FXML = "ItemBookList"; // FIXME Change to genral type of book

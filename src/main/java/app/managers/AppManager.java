@@ -2,7 +2,7 @@ package app.managers;
 
 import app.util.Utilities;
 import javafx.scene.Parent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 @SuppressWarnings({"FieldMayBeFinal", "exports"})
@@ -14,9 +14,9 @@ public class AppManager {
     private Stage curStage;
 
     private Utilities.FXMLData windowData;
-    private VBox windowRootVBox;
+    private StackPane windowRootPane;
 
-    private LoadableFXMLContentManager curContent;
+    private LoadableFXMLContent curContent;
 
     private MainDisplayManager mainDisplayManager;
     private LogInManager loginManager;
@@ -27,7 +27,7 @@ public class AppManager {
         loginManager = new LogInManager(this);
 
         windowData = Utilities.loadFXMLWindow(WINDOW_FXML, TITLE, stage);
-        windowRootVBox =  windowData.getRoot(VBox.class);
+        windowRootPane =  windowData.getRoot(StackPane.class);
     }
 
     public final Stage getStage() {
@@ -46,15 +46,15 @@ public class AppManager {
         return loginManager;
     }
 
-    public final void loadContent(LoadableFXMLContentManager content) {
-        if (curContent != null) curContent.remove();
+    public final void loadContent(LoadableFXMLContent content) {
+        if (curContent != null) curContent.destroy();
         clearWindow();
 
         curContent = content;
-        content.loadOn(windowRootVBox);
+        content.loadOn(windowRootPane);
     }
 
     private void clearWindow() {
-        windowRootVBox.getChildren().clear();
+        windowRootPane.getChildren().clear();
     }
 }

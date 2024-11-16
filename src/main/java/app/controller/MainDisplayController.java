@@ -1,13 +1,14 @@
 package app.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 @SuppressWarnings("exports")
 public class MainDisplayController {
     
     @FXML
-    public VBox contentPane;
+    public StackPane contentPane;
 
     @FXML
     private void handleHomeButton() {

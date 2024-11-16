@@ -8,13 +8,13 @@ import app.util.Utilities;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+@SuppressWarnings("exports")
 public class App extends Application {
 
 	private Stage primaryStage;
 
     private AppManager appManager;
 
-    @SuppressWarnings("exports")
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
@@ -22,9 +22,7 @@ public class App extends Application {
 
         appManager.getLoginManager().addAccount(new UserAccount("1", "1"));
 
-        appManager.loadContent(appManager.getLoginManager());
-
-        Utilities.logParentHierarchy(appManager.getRoot());
+        appManager.getLoginManager().openLoginPage();
     }
     
     public static void main(String[] args) {

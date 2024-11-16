@@ -4,20 +4,21 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.25, 0.75" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.MainDisplayController">
+<SplitPane dividerPositions="0.15, 0.75" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.MainDisplayController">
    <items>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+      <VBox alignment="TOP_CENTER" prefWidth="300.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="5.0" prefWidth="147.0" spacing="10" style="-fx-padding: 10;" VBox.vgrow="ALWAYS">
+            <VBox alignment="TOP_CENTER" prefHeight="5.0" spacing="10" style="-fx-padding: 10;" VBox.vgrow="ALWAYS">
                <children>
                   <Button fx:id="handleHomeButton" maxWidth="Infinity" text="Home" />
                   <Button fx:id="handleLibraryButton" maxWidth="Infinity" text="Library" />
                   <Button fx:id="handleDashboardsButton" maxWidth="Infinity" text="Dashboards" />
                </children>
             </VBox>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="5.0" prefWidth="147.0" spacing="10" style="-fx-padding: 10;">
+            <VBox alignment="BOTTOM_CENTER" prefHeight="5.0" spacing="10" style="-fx-padding: 10;">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -28,9 +29,8 @@
             </VBox>
          </children>
       </VBox>
-      <VBox fx:id="contentPane" prefHeight="150.0" prefWidth="200.0"> 
-      </VBox>
-      <VBox prefHeight="398.0" prefWidth="286.0" spacing="10.0" style="-fx-padding: 10;">
+      <StackPane fx:id="contentPane" prefWidth="952.0" />
+      <VBox prefWidth="278.0" spacing="10.0" style="-fx-padding: 10;">
          <children>
             <Label text="Details" />
          </children>
