@@ -2,8 +2,10 @@ package app.controller;
 
 import java.io.IOException;
 
+import app.data.Library;
 import app.data.UserAccount;
 import app.managers.LogInManager;
+import app.service.LibraryApiService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +34,9 @@ public class RegisterController {
 	@FXML
 	Label alert;
 	
+	private Library library;
+	private LibraryApiService service;
+	
 	public void register(ActionEvent event) throws IOException {
 		String username = usernameTextField.getText();
 		String password = passwordTextField.getText();
@@ -49,6 +54,10 @@ public class RegisterController {
 			LogInManager.addNewAccount(new UserAccount(username, password));
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LoginPage.fxml"));
 			root = loader.load();
+			
+			BaseController controller = loader.getController();
+	        controller.setLibAndService(library, service);
+            
 			stage = (Stage) ( (Node) event.getSource() ).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);

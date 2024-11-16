@@ -2,7 +2,9 @@ package app.controller;
 
 import java.io.IOException;
 
+import app.data.Library;
 import app.managers.LogInManager;
+import app.service.LibraryApiService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class SceneLoginController {
+public class SceneLoginController extends BaseController {
 
 	private Stage stage;
 	private Scene scene;
@@ -23,6 +25,9 @@ public class SceneLoginController {
 	
 	@FXML
 	TextField passwordTextField;
+	
+	private Library library;
+	private LibraryApiService service;
 	
 	public void login(ActionEvent event) throws IOException {
 		
@@ -39,6 +44,10 @@ public class SceneLoginController {
 			//homepageController scene2Controller = loader.getController();
 			//homepageController.displayName(username);	
 			
+			 // Pass Library to the MainDisplayController
+			BaseController controller = loader.getController();
+	        controller.setLibAndService(library, service);
+            
 			//root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
 			stage = (Stage) ( (Node) event.getSource() ).getScene().getWindow();
 			scene = new Scene(root);
@@ -52,6 +61,10 @@ public class SceneLoginController {
 	public void register(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/RegisterPage.fxml"));
 		root = loader.load();
+		
+		BaseController controller = loader.getController();
+        controller.setLibAndService(library, service);
+		
 		stage = (Stage) ( (Node) event.getSource() ).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

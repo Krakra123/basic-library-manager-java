@@ -6,6 +6,9 @@ module app {
 	requires java.base;
 	requires spring.boot;
 	requires spring.boot.autoconfigure;
+	requires com.fasterxml.jackson.core;
+	requires jakarta.ws.rs;
+	requires com.fasterxml.jackson.databind;
 
     opens app to javafx.fxml;
     opens app.controller to javafx.fxml;
