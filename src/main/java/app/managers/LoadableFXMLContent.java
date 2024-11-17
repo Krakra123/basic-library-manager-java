@@ -7,7 +7,7 @@ import javafx.scene.layout.StackPane;
 @SuppressWarnings("exports")
 public class LoadableFXMLContent {
     
-    private Utilities.FXMLData fxmlData;
+    private final Utilities.FXMLData fxmlData;
     private boolean loaded = false;
     private StackPane curPane;
 

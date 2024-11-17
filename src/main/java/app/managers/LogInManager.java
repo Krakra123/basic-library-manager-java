@@ -6,15 +6,17 @@ import java.util.List;
 import app.controller.LoginPageController;
 import app.controller.RegisterController;
 import app.data.UserAccount;
-import app.util.Utilities;
 
 @SuppressWarnings({"FieldMayBeFinal"})
 public class LogInManager {
 
+	private static final String LOGIN_PAGE_FXML = "LogInPage";
+	private static final String REGISTER_PAGE_FXML = "RegisterPage";
+
 	private AppManager appManager;
 
-	private LoadableFXMLContent loginPageContent;
-	private LoadableFXMLContent registerPageContent;
+	private LoadableFXMLContent loginPageFXMLContent;
+	private LoadableFXMLContent registerPageFXMLContent;
 
     private LoginPageController loginPageController;
     private RegisterController registerPageController;
@@ -25,14 +27,14 @@ public class LogInManager {
 		appManager = manager;
 		accountList = new ArrayList<>();
 
-		loginPageContent = new LoadableFXMLContent("LogInPage");
-		registerPageContent = new LoadableFXMLContent("RegisterPage");
+		loginPageFXMLContent = new LoadableFXMLContent(LOGIN_PAGE_FXML);
+		registerPageFXMLContent = new LoadableFXMLContent(REGISTER_PAGE_FXML);
 
-		loginPageController = loginPageContent.getData().getController(LoginPageController.class);
-		registerPageController = registerPageContent.getData().getController(RegisterController.class);
+		loginPageController = loginPageFXMLContent.getData().getController(LoginPageController.class);
+		registerPageController = registerPageFXMLContent.getData().getController(RegisterController.class);
 
-		loginPageContent.setEnableCallback(() -> { onLoginPageEnable(); });
-		registerPageContent.setEnableCallback(() -> { onRegisterPageEnable(); });
+		loginPageFXMLContent.setEnableCallback(() -> { onLoginPageEnable(); });
+		registerPageFXMLContent.setEnableCallback(() -> { onRegisterPageEnable(); });
 	}
 
 	public void addAccount(UserAccount account) {
@@ -48,10 +50,10 @@ public class LogInManager {
 	}
 
 	public void openLoginPage() {
-		appManager.loadContent(loginPageContent);
+		appManager.loadContent(loginPageFXMLContent);
 	}
 	public void openRigisterPage() {
-		appManager.loadContent(registerPageContent);
+		appManager.loadContent(registerPageFXMLContent);
 	}
 
 	public boolean checkAccount(String username, String password) {
@@ -64,11 +66,11 @@ public class LogInManager {
 	}
 
 	public LoadableFXMLContent getLoginPageContent() {
-		return loginPageContent;
+		return loginPageFXMLContent;
 	}
 
 	public LoadableFXMLContent getRegisterPageContent() {
-		return registerPageContent;
+		return registerPageFXMLContent;
 	}
 
 	private void onLoginPageEnable() {
