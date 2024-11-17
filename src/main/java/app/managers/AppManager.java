@@ -1,6 +1,5 @@
 package app.managers;
 
-import app.data.BookCollection;
 import app.util.Utilities;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
@@ -22,8 +21,6 @@ public class AppManager {
     private MainDisplayManager mainDisplayManager;
     private LogInManager loginManager;
 
-    private BookCollection collection;
-
     public AppManager(Stage stage) {
         curStage = stage;
         mainDisplayManager = new MainDisplayManager(this);
@@ -31,12 +28,7 @@ public class AppManager {
 
         windowData = Utilities.loadFXMLWindow(WINDOW_FXML, TITLE, stage);
         windowRootPane =  windowData.getRoot(StackPane.class);
-
-        collection = new BookCollection(); 
-        // DOSOMETHING
     }
-
-    public BookCollection getCollection() { return collection; }
 
     public final Stage getStage() {
         return curStage;

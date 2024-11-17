@@ -18,7 +18,7 @@ public class MainDisplayController {
 
     @FXML
     private void handleHomeButton() {
-        manager.LoadMainMenu();
+        manager.loadMainMenu();
     }
 
     @FXML

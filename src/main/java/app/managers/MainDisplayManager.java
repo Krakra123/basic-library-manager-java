@@ -30,6 +30,10 @@ public class MainDisplayManager extends BaseManager {
         bookLibraryManager = new BookLibraryManager(manager);
     }
 
+    public void openMainDisplay() {
+        manager.loadContent(mainDisplayFXMLContent);
+    }
+
     public LoadableFXMLContent getMainDisplayContent() {
         return mainDisplayFXMLContent;
     }
@@ -43,14 +47,14 @@ public class MainDisplayManager extends BaseManager {
         
         contentPane = mainDisplayController.contentPane;
         
-        LoadMainMenu();
+        loadMainMenu();
 	}
 
     public StackPane getContentPane() {
         return contentPane;
     }
 
-    public void LoadMainMenu() {
+    public void loadMainMenu() {
         bookLibraryManager.loadOn(contentPane);
     }
 }
