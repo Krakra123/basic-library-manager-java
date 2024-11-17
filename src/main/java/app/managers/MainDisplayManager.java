@@ -4,13 +4,11 @@ import app.controller.MainDisplayController;
 import javafx.scene.layout.StackPane;
 
 @SuppressWarnings({"FieldMayBeFinal", "exports"})
-public class MainDisplayManager {
+public class MainDisplayManager extends BaseManager {
     
     private static final String MAINDISPLAY_FXML = "MainDisplay";
     private static final int WINDOW_WIDTH = 1600;
     private static final int WINDOW_HEIGHT = 900;
-
-    private AppManager appManager;
 
     private LoadableFXMLContent mainDisplayFXMLContent;
 
@@ -19,7 +17,7 @@ public class MainDisplayManager {
     private MainDisplayController mainDisplayController;
 
     public MainDisplayManager(AppManager manager) {
-        appManager = manager;
+        super(manager);
 
         mainDisplayFXMLContent = new LoadableFXMLContent(MAINDISPLAY_FXML);
 
@@ -33,9 +31,9 @@ public class MainDisplayManager {
     }
     
 	private void onMainDisplayEnable() {
-        appManager.getStage().setWidth(WINDOW_WIDTH);
-        appManager.getStage().setHeight(WINDOW_HEIGHT + 40);
-        appManager.getStage().centerOnScreen();
+        manager.getStage().setWidth(WINDOW_WIDTH);
+        manager.getStage().setHeight(WINDOW_HEIGHT + 40);
+        manager.getStage().centerOnScreen();
 
         contentPane = mainDisplayController.contentPane;
 	}

@@ -8,12 +8,10 @@ import app.controller.RegisterController;
 import app.data.UserAccount;
 
 @SuppressWarnings({"FieldMayBeFinal"})
-public class LogInManager {
+public class LogInManager extends BaseManager {
 
 	private static final String LOGIN_PAGE_FXML = "LogInPage";
 	private static final String REGISTER_PAGE_FXML = "RegisterPage";
-
-	private AppManager appManager;
 
 	private LoadableFXMLContent loginPageFXMLContent;
 	private LoadableFXMLContent registerPageFXMLContent;
@@ -24,7 +22,8 @@ public class LogInManager {
 	private List<UserAccount> accountList;
 
 	public LogInManager(AppManager manager) {
-		appManager = manager;
+		super(manager);
+
 		accountList = new ArrayList<>();
 
 		loginPageFXMLContent = new LoadableFXMLContent(LOGIN_PAGE_FXML);
@@ -43,17 +42,17 @@ public class LogInManager {
 
 	public void tryLogin(String username, String password) {
 		if (checkAccount(username, password)) {
-			appManager.loadContent(appManager.getMainDisplayManager().getMainDisplayContent());
+			manager.loadContent(manager.getMainDisplayManager().getMainDisplayContent());
 		} else {
 			System.out.println("Username or password not true");
 		}
 	}
 
 	public void openLoginPage() {
-		appManager.loadContent(loginPageFXMLContent);
+		manager.loadContent(loginPageFXMLContent);
 	}
 	public void openRigisterPage() {
-		appManager.loadContent(registerPageFXMLContent);
+		manager.loadContent(registerPageFXMLContent);
 	}
 
 	public boolean checkAccount(String username, String password) {
