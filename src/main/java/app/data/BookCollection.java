@@ -19,11 +19,31 @@ public class BookCollection {
         bookList.remove(book);
     }
 
+    public void removeBookById(String id) {
+        for (Book book : bookList) {
+        	if (book.getId().equals(id)) {
+        		bookList.remove(book);
+        	}
+        }
+    }
+    
+    public Book findBookById(String id) {
+        for (Book book : bookList) {
+        	if (book.getId().equals(id)) {
+        		return book;
+        	}
+        }
+        return null;
+    }
     public List<Book> get() {
         return bookList;
     }
 
     public Book search(String type) { //TODO
         throw new RuntimeException();
+    }
+    
+    public void clear() {
+    	bookList.clear();
     }
 }

@@ -1,4 +1,8 @@
 module app {
+	requires com.fasterxml.jackson.core;
+	requires com.fasterxml.jackson.databind;
+	requires jakarta.ws.rs;
+	requires java.base;
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;

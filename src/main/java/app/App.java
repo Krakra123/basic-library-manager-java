@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import app.data.UserAccount;
 import app.managers.AppManager;
-import app.util.Utilities;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -12,7 +11,6 @@ import javafx.stage.Stage;
 public class App extends Application {
 
 	private Stage primaryStage;
-
     private AppManager appManager;
 
     @Override
