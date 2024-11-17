@@ -16,6 +16,8 @@ public class MainDisplayManager extends BaseManager {
 
     private MainDisplayController mainDisplayController;
 
+    private BookLibraryManager bookLibraryManager;
+
     public MainDisplayManager(AppManager manager) {
         super(manager);
 
@@ -24,6 +26,8 @@ public class MainDisplayManager extends BaseManager {
         mainDisplayController = mainDisplayFXMLContent.getData().getController(MainDisplayController.class);
 
 		mainDisplayFXMLContent.setEnableCallback(() -> { onMainDisplayEnable(); });
+
+        bookLibraryManager = new BookLibraryManager(manager);
     }
 
     public LoadableFXMLContent getMainDisplayContent() {
@@ -35,12 +39,18 @@ public class MainDisplayManager extends BaseManager {
         manager.getStage().setHeight(WINDOW_HEIGHT + 40);
         manager.getStage().centerOnScreen();
 
+        mainDisplayController.setManager(this); 
+        
         contentPane = mainDisplayController.contentPane;
+        
+        LoadMainMenu();
 	}
 
     public StackPane getContentPane() {
         return contentPane;
     }
 
-
+    public void LoadMainMenu() {
+        bookLibraryManager.loadOn(contentPane);
+    }
 }

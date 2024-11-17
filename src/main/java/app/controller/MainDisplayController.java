@@ -1,18 +1,24 @@
 package app.controller;
 
+import app.managers.MainDisplayManager;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 
 @SuppressWarnings("exports")
 public class MainDisplayController {
     
+    private MainDisplayManager manager;
+
+    public void setManager(MainDisplayManager manager) {
+        this.manager = manager;
+    }
+
     @FXML
     public StackPane contentPane;
 
     @FXML
     private void handleHomeButton() {
-
+        manager.LoadMainMenu();
     }
 
     @FXML

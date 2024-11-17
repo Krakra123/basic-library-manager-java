@@ -7,7 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.StackPane;
 
 @SuppressWarnings("exports")
-public class BookCollectionController {
+public class BookCollectionListController {
 
     @FXML 
     private ListView<StackPane> listView;
