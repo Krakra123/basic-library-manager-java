@@ -1,4 +1,4 @@
-package app.data;
+	package app.data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,5 +25,10 @@ public class Library {
 	
 	public Book findBookById(String id) {
 		return listOfBooks.findBookById(id);
+	}
+	
+	@Override
+	public String toString() {
+		return listOfBooks.toString();
 	}
 }

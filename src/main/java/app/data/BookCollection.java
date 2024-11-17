@@ -46,4 +46,9 @@ public class BookCollection {
     public void clear() {
     	bookList.clear();
     }
+    
+    @Override 
+    public String toString() {
+    	return bookList.toString();
+    }
 }
