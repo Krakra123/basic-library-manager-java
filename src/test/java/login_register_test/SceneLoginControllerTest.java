@@ -31,11 +31,13 @@ public class SceneLoginControllerTest extends ApplicationTest {
     public void testSuccessfulLoginSwitchesToMainPage() {
         UserAccount a = new UserAccount("123", "123");
         LogInManager.addNewAccount(a);
-
+        
         // clickOn("#usernameTextField").write("123");
         // clickOn("#passwordTextField").write("123");
         // clickOn("#loginButton");
 
+        
+        
         try {
 			Thread.sleep(15000);
 		} catch (InterruptedException e) {

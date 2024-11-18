@@ -47,6 +47,8 @@ public class SceneLoginController extends BaseController {
 			 // Pass Library to the MainDisplayController
 			BaseController controller = loader.getController();
 	        controller.setLibAndService(library, service);
+	        service.fetchAllBooks();
+	        System.out.println(library);
             
 			//root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
 			stage = (Stage) ( (Node) event.getSource() ).getScene().getWindow();
