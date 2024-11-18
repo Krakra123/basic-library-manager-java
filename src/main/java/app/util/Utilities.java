@@ -6,7 +6,6 @@ import java.util.Date;
 
 import app.App;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -64,7 +63,8 @@ public class Utilities {
             data.root = loader.load();
             data.controller = loader.getController();
         } catch (IOException | RuntimeException e) {
-            System.err.println("Failed to load FXML: /fxml/" + fxml + ".fxml; Message: " + e.getMessage());
+            System.err.println("Failed to load FXML: /fxml/" + fxml + ".fxml.");
+            e.printStackTrace();
         }
         return data;
     }
@@ -82,7 +82,8 @@ public class Utilities {
             stage.setScene(new Scene(data.root));
             stage.show();
         } catch (IOException | RuntimeException e) {
-            System.err.println("Failed to load FXML: /fxml/" + fxml + ".fxml; Message: " + e.getMessage());
+            System.err.println("Failed to load FXML: /fxml/" + fxml + ".fxml.");
+            e.printStackTrace();
         }
         return data;
     }
@@ -91,22 +92,22 @@ public class Utilities {
         stage.getIcons().add(new Image(iconDir));
     }
 
-    public static void logParentHierarchy(Parent parent) {
-        logParentHierarchy(parent, 0);
-    }
+    // public static void logParentHierarchy(Parent parent) {
+    //     logParentHierarchy(parent, 0);
+    // }
 
-    private static void logParentHierarchy(Parent parent, int level) {
-        String indentation = "  ".repeat(level);
-        System.out.println(indentation + parent.getClass().getSimpleName());
+    // private static void logParentHierarchy(Parent parent, int level) {
+    //     String indentation = "  ".repeat(level);
+    //     System.out.println(indentation + parent.getClass().getSimpleName());
 
-        for (Node node : parent.getChildrenUnmodifiable()) {
-            if (node instanceof Parent p) {
-                logParentHierarchy(p, level + 1);
-            } else {
-                System.out.println(indentation + "  " + node.getClass().getSimpleName());
-            }
-        }
-    }
+    //     for (Node node : parent.getChildrenUnmodifiable()) {
+    //         if (node instanceof Parent p) {
+    //             logParentHierarchy(p, level + 1);
+    //         } else {
+    //             System.out.println(indentation + "  " + node.getClass().getSimpleName());
+    //         }
+    //     }
+    // }
 
     public static String formatDateTimeString(Date date) {
         return DATE_TIME_FORMAT.format(date);

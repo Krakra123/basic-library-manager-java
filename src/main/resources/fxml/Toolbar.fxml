@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefWidth="200.0" styleClass="toolbar-container" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ToolbarController">
+   <children>
+      <VBox VBox.vgrow="ALWAYS">
+         <children>
+            <JFXButton contentDisplay="TOP" mnemonicParsing="false" onAction="#openMenu" prefHeight="75.0" prefWidth="200.0" styleClass="toolbar-button" text="Menu" textAlignment="CENTER">
+               <graphic>
+                  <FontAwesomeIconView glyphName="HOME" size="25" />
+               </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="TOP" mnemonicParsing="false" onAction="#openLibrary" prefHeight="75.0" prefWidth="200.0" styleClass="toolbar-button" text="Library" textAlignment="CENTER">
+               <graphic>
+                  <FontAwesomeIconView glyphName="BOOK" size="25" />
+               </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="TOP" mnemonicParsing="false" onAction="#openDashboards" prefHeight="75.0" prefWidth="200.0" styleClass="toolbar-button" text="Dashboards" textAlignment="CENTER">
+               <graphic>
+                  <FontAwesomeIconView glyphName="TABLE" size="25" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </VBox>
+      <VBox alignment="BOTTOM_LEFT">
+         <children>
+            <JFXButton contentDisplay="TOP" mnemonicParsing="false" onAction="#openSettings" prefHeight="75.0" prefWidth="200.0" styleClass="toolbar-button" text="Settings" textAlignment="CENTER">
+               <graphic>
+                  <FontAwesomeIconView glyphName="COG" size="25" />
+               </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="TOP" mnemonicParsing="false" onAction="#openAccount" prefHeight="75.0" prefWidth="200.0" styleClass="toolbar-button" text="Account" textAlignment="CENTER">
+               <graphic>
+                  <FontAwesomeIconView glyphName="USER" size="25" textAlignment="CENTER" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+</VBox>

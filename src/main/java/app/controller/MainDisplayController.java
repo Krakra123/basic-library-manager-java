@@ -5,7 +5,7 @@ import java.io.IOException;
 import app.managers.MainDisplayManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 @SuppressWarnings({"exports"})
 public class MainDisplayController {
@@ -17,25 +17,26 @@ public class MainDisplayController {
     }
 
     @FXML
-    public StackPane contentPane;
+    public VBox toolbarPane;
 
-    public void openHome(ActionEvent event) throws IOException {
-        manager.loadMainMenu();
-    }
+    @FXML
+    public VBox contentPane;
 
-    public void openLibrary(ActionEvent event) throws IOException {
-        manager.loadUserLibrary();
-    }
-
-    public void openDashboards(ActionEvent event) throws IOException {
+    public void handleMenuSettings(ActionEvent event) throws IOException {
 
     }
-
-    public void openSetting(ActionEvent event) throws IOException {
+    public void handleMenuClose(ActionEvent event) throws IOException {
 
     }
 
-    public void openInfo(ActionEvent event) throws IOException {
+    public void handleMenuAddBook(ActionEvent event) throws IOException {
+
+    }
+    public void handleMenuAddMember(ActionEvent event) throws IOException {
+
+    }
+
+    public void handleAboutMenu(ActionEvent event) throws IOException {
 
     }
 }

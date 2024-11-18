@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="Infinity" maxWidth="Infinity" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookCollectionListController">
+<VBox maxHeight="Infinity" maxWidth="Infinity" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookCollectionListController">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true">
          <content>

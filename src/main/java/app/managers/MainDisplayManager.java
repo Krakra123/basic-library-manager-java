@@ -1,60 +1,55 @@
 package app.managers;
 
 import app.controller.MainDisplayController;
-import javafx.scene.layout.StackPane;
+import app.controller.ToolbarController;
+import javafx.scene.layout.Pane;
 
 @SuppressWarnings({"FieldMayBeFinal", "exports"})
 public class MainDisplayManager extends BaseManager {
     
-    private static final String MAINDISPLAY_FXML = "MainDisplay";
+    private static final String MAIN_DISPLAY_FXML = "Main";
+    private static final String TOOLBAR_FXML = "Toolbar";
     private static final int WINDOW_WIDTH = 1600;
     private static final int WINDOW_HEIGHT = 900;
 
     private LoadableFXMLContent mainDisplayFXMLContent;
-
-    private StackPane contentPane;
-    private LoadableFXMLContent currentFXMLContent;
-
+    public LoadableFXMLContent getMainDisplayFXMLContent() {
+        return mainDisplayFXMLContent;
+    }
     private MainDisplayController mainDisplayController;
 
+    private LoadableFXMLContent toolbarFXMLContent;
+    private ToolbarController toolbarController;
+
+    private Pane contentPane;
+    public Pane getContentPane() {
+        return contentPane;
+    }
+    private LoadableFXMLContent currentFXMLContent;
+
+
     private BookLibraryManager bookLibraryManager;
+    public BookLibraryManager getBookLibraryManager() {
+        return bookLibraryManager;
+    }
     private UserLibraryManager userLibraryManager;
+    public UserLibraryManager getUserLibraryManager() {
+        return userLibraryManager;
+    }
 
     public MainDisplayManager(AppManager manager) {
         super(manager);
 
-        mainDisplayFXMLContent = new LoadableFXMLContent(MAINDISPLAY_FXML);
-
+        mainDisplayFXMLContent = new LoadableFXMLContent(MAIN_DISPLAY_FXML);
         mainDisplayController = mainDisplayFXMLContent.getData().getController(MainDisplayController.class);
 
-		mainDisplayFXMLContent.setEnableCallback(() -> { onMainDisplayEnable(); });
+        toolbarFXMLContent = new LoadableFXMLContent(TOOLBAR_FXML);
+        toolbarController = toolbarFXMLContent.getData().getController(ToolbarController.class);
 
         bookLibraryManager = new BookLibraryManager(manager);
         userLibraryManager = new UserLibraryManager(manager);
-    }
 
-    public void openMainDisplay() {
-        manager.loadContent(mainDisplayFXMLContent);
-    }
-
-    public LoadableFXMLContent getMainDisplayContent() {
-        return mainDisplayFXMLContent;
-    }
-    
-	private void onMainDisplayEnable() {
-        manager.getStage().setWidth(WINDOW_WIDTH);
-        manager.getStage().setHeight(WINDOW_HEIGHT + 40);
-        manager.getStage().centerOnScreen();
-
-        mainDisplayController.setManager(this); 
-        
-        contentPane = mainDisplayController.contentPane;
-        
-        loadMainMenu();
-	}
-
-    public StackPane getContentPane() {
-        return contentPane;
+		mainDisplayFXMLContent.setEnableCallback(() -> { onMainDisplayEnable(); });
     }
 
     public void loadMainMenu() {
@@ -84,11 +79,18 @@ public class MainDisplayManager extends BaseManager {
         }
     }
 
-    public BookLibraryManager getBookLibraryManager() {
-        return bookLibraryManager;
-    }
+    private void onMainDisplayEnable() {
+        manager.getStage().setWidth(WINDOW_WIDTH);
+        manager.getStage().setHeight(WINDOW_HEIGHT + 40);
+        manager.getStage().centerOnScreen();
 
-    public UserLibraryManager getUserLibraryManager() {
-        return userLibraryManager;
-    }
+        
+        mainDisplayController.setManager(this); 
+        toolbarController.setManager(this);
+        
+        toolbarFXMLContent.openOn(mainDisplayController.toolbarPane);
+        contentPane = mainDisplayController.contentPane;
+        
+        loadMainMenu();
+	}
 }

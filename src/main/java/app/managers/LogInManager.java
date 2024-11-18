@@ -42,17 +42,17 @@ public class LogInManager extends BaseManager {
 
 	public void tryLogin(String username, String password) {
 		if (checkAccount(username, password)) {
-			manager.loadContent(manager.getMainDisplayManager().getMainDisplayContent());
+			manager.loadOnWindow(manager.getMainDisplayManager().getMainDisplayFXMLContent());
 		} else {
 			System.out.println("Username or password not true");
 		}
 	}
 
 	public void openLoginPage() {
-		manager.loadContent(loginPageFXMLContent);
+		manager.loadOnWindow(loginPageFXMLContent);
 	}
 	public void openRigisterPage() {
-		manager.loadContent(registerPageFXMLContent);
+		manager.loadOnWindow(registerPageFXMLContent);
 	}
 
 	public boolean checkAccount(String username, String password) {
