@@ -4,7 +4,7 @@ import app.managers.MainDisplayManager;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 
-@SuppressWarnings("exports")
+@SuppressWarnings({"exports"})
 public class MainDisplayController {
     
     private MainDisplayManager manager;

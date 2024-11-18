@@ -3,7 +3,9 @@ package app.controller;
 import app.data.Library;
 import app.service.LibraryApiService;
 
+@SuppressWarnings("exports")
 public abstract class BaseController {
+    
     protected Library library;
     protected LibraryApiService libraryApiService;
 

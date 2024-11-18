@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BookCollection {
     
-    private List<Book> bookList;
+    private final List<Book> bookList;
 
     public BookCollection() {
         bookList = new ArrayList<>();
@@ -21,7 +21,7 @@ public class BookCollection {
 
     public void removeBookById(String id) {
         for (Book book : bookList) {
-        	if (book.getId().equals(id)) {
+        	if (book.id.equals(id)) {
         		bookList.remove(book);
         	}
         }
@@ -29,7 +29,7 @@ public class BookCollection {
     
     public Book findBookById(String id) {
         for (Book book : bookList) {
-        	if (book.getId().equals(id)) {
+        	if (book.id.equals(id)) {
         		return book;
         	}
         }

@@ -20,8 +20,7 @@ public class App extends Application {
 
         appManager.getLoginManager().addAccount(new UserAccount("1", "1"));
 
-        // appManager.getLoginManager().openLoginPage();
-        appManager.getMainDisplayManager().openMainDisplay();
+        appManager.getLoginManager().openLoginPage();
     }
     
     public static void main(String[] args) {

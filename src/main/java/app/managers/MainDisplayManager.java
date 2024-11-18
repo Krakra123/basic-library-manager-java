@@ -55,6 +55,10 @@ public class MainDisplayManager extends BaseManager {
     }
 
     public void loadMainMenu() {
-        bookLibraryManager.loadOn(contentPane);
+        bookLibraryManager.openCollectionListPaneOn(contentPane);
+    }
+
+    public BookLibraryManager getBookLibraryManager() {
+        return bookLibraryManager;
     }
 }

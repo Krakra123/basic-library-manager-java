@@ -3,7 +3,6 @@ package app.controller;
 import java.io.IOException;
 
 import app.managers.LogInManager;
-import app.service.LibraryApiService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

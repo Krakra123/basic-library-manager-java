@@ -2,14 +2,14 @@ package app.managers;
 
 import app.interfaces.ICallback;
 import app.util.Utilities;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
 
 @SuppressWarnings("exports")
 public class LoadableFXMLContent {
     
     private final Utilities.FXMLData fxmlData;
     private boolean loaded = false;
-    private StackPane curPane;
+    private Pane curPane;
 
     private ICallback enableCallback;
     private ICallback disableCallback;
@@ -30,7 +30,7 @@ public class LoadableFXMLContent {
         disableCallback = callback;
     }
 
-    public void loadOn(StackPane pane) {
+    public void loadOn(Pane pane) {
         if (loaded) {
             System.out.println("FXML already loaded.");
             return;
@@ -63,7 +63,7 @@ public class LoadableFXMLContent {
         }
     }
 
-    public StackPane getCurrentPane() {
+    public Pane getCurrentPane() {
         return curPane;
     }
 

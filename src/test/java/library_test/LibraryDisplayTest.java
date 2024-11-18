@@ -1,27 +1,46 @@
 package library_test;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import app.data.Book;
+import app.data.BookCollection;
+import app.data.UserAccount;
 import app.managers.AppManager;
 import javafx.stage.Stage;
 
 public class LibraryDisplayTest extends ApplicationTest {
     
 	private Stage primaryStage;
-
     private AppManager appManager;
 
     @Override
     public void start(Stage stage) throws IOException {
-        appManager = new AppManager();
-
         primaryStage = stage;
-        appManager.makeWindow(primaryStage);
+        appManager = new AppManager(primaryStage);
 
-        appManager.loadLoginPage();
+        appManager.getLoginManager().addAccount(new UserAccount("1", "1"));
+        BookCollection collection = new BookCollection();
+        collection.add(new Book("", "aaa", "000", LocalDate.now()));
+        collection.add(new Book("", "ddd", "333", LocalDate.now()));
+        collection.add(new Book("", "ddd", "333", LocalDate.now()));
+        collection.add(new Book("", "bbb", "111", LocalDate.now()));
+        collection.add(new Book("", "ccc", "222", LocalDate.now()));
+        collection.add(new Book("", "ddd", "333", LocalDate.now()));
+        collection.add(new Book("", "ddd", "333", LocalDate.now()));
+        collection.add(new Book("", "ddd", "333", LocalDate.now()));
+        collection.add(new Book("", "ddd", "333", LocalDate.now()));
+        collection.add(new Book("", "ddd", "333", LocalDate.now()));
+        collection.add(new Book("", "ddd", "333", LocalDate.now()));
+        collection.add(new Book("", "eee", "444", LocalDate.now()));
+        collection.add(new Book("", "fff", "555", LocalDate.now()));
+
+        appManager.getMainDisplayManager().openMainDisplay();
+
+        appManager.getMainDisplayManager().getBookLibraryManager().updateCollectionList(collection);
     }
 
     @Test
