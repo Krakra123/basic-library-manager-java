@@ -7,9 +7,8 @@ import app.data.BookCollection;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 
-@SuppressWarnings({"FieldMayBeFinal", "exports"})
+@SuppressWarnings({"FieldMayBeFinal"})
 public class BookLibraryManager extends BaseManager {
     
     private static final String BOOK_COLLECTION_LIST_FXML = "BookCollectionList";
@@ -27,11 +26,11 @@ public class BookLibraryManager extends BaseManager {
 
         bookCollectionListPaneFXMLContent = new LoadableFXMLContent(BOOK_COLLECTION_LIST_FXML);
         bookCollectionListController = bookCollectionListPaneFXMLContent.getData().getController(BookCollectionListController.class);
+
+        bookCollectionListPaneFXMLContent.setEnableCallback(() -> { onEnable(); });
     }
 
-    public void openCollectionListPaneOn(StackPane pane) {
-        bookCollectionListPaneFXMLContent.loadOn(pane);
-
+    private void onEnable() {
         updateCollectionListLayout(BOOK_NUMBER_DISPLAY_PER_ROW);
     }
 
@@ -39,6 +38,10 @@ public class BookLibraryManager extends BaseManager {
         bookCollectionData = collection;
     
         updateCollectionDisplaying();
+    }
+
+    public LoadableFXMLContent getBookCollectionListPaneFXMLContent() {
+        return bookCollectionListPaneFXMLContent;
     }
 
     private void updateCollectionDisplaying() {

@@ -1,6 +1,9 @@
 package app.controller;
 
+import java.io.IOException;
+
 import app.managers.MainDisplayManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 
@@ -16,28 +19,23 @@ public class MainDisplayController {
     @FXML
     public StackPane contentPane;
 
-    @FXML
-    private void handleHomeButton() {
+    public void openHome(ActionEvent event) throws IOException {
         manager.loadMainMenu();
     }
 
-    @FXML
-    private void handleLibraryButton() {
+    public void openLibrary(ActionEvent event) throws IOException {
+        manager.loadUserLibrary();
+    }
+
+    public void openDashboards(ActionEvent event) throws IOException {
 
     }
 
-    @FXML
-    private void handleDashboardsButton() {
+    public void openSetting(ActionEvent event) throws IOException {
 
     }
 
-    @FXML
-    private void handleSettingButton() {
-        
-    }
-
-    @FXML
-    private void handleInfoButton() {
+    public void openInfo(ActionEvent event) throws IOException {
 
     }
 }

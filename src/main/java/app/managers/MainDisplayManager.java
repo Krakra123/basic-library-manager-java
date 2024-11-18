@@ -13,10 +13,12 @@ public class MainDisplayManager extends BaseManager {
     private LoadableFXMLContent mainDisplayFXMLContent;
 
     private StackPane contentPane;
+    private LoadableFXMLContent currentFXMLContent;
 
     private MainDisplayController mainDisplayController;
 
     private BookLibraryManager bookLibraryManager;
+    private UserLibraryManager userLibraryManager;
 
     public MainDisplayManager(AppManager manager) {
         super(manager);
@@ -28,6 +30,7 @@ public class MainDisplayManager extends BaseManager {
 		mainDisplayFXMLContent.setEnableCallback(() -> { onMainDisplayEnable(); });
 
         bookLibraryManager = new BookLibraryManager(manager);
+        userLibraryManager = new UserLibraryManager(manager);
     }
 
     public void openMainDisplay() {
@@ -55,10 +58,37 @@ public class MainDisplayManager extends BaseManager {
     }
 
     public void loadMainMenu() {
-        bookLibraryManager.openCollectionListPaneOn(contentPane);
+        LoadableFXMLContent content = bookLibraryManager.getBookCollectionListPaneFXMLContent();
+        
+        // FIXME
+        if (currentFXMLContent != content) {
+            if (currentFXMLContent != null) {
+                currentFXMLContent.hide();
+            }
+
+            content.openOn(contentPane); 
+            currentFXMLContent = content;
+        }
+    }
+
+    public void loadUserLibrary() {
+        LoadableFXMLContent content = userLibraryManager.getUserLibraryUIFXMLContent();
+        
+        if (currentFXMLContent != content) {
+            if (currentFXMLContent != null) {
+                currentFXMLContent.hide();
+            }
+
+            content.openOn(contentPane); 
+            currentFXMLContent = content;
+        }
     }
 
     public BookLibraryManager getBookLibraryManager() {
         return bookLibraryManager;
+    }
+
+    public UserLibraryManager getUserLibraryManager() {
+        return userLibraryManager;
     }
 }

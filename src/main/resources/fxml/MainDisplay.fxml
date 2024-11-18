@@ -13,9 +13,9 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="5.0" spacing="10" style="-fx-padding: 10;" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="handleHomeButton" maxWidth="Infinity" text="Home" />
-                  <Button fx:id="handleLibraryButton" maxWidth="Infinity" text="Library" />
-                  <Button fx:id="handleDashboardsButton" maxWidth="Infinity" text="Dashboards" />
+                  <Button fx:id="homeButton" onAction="#openHome" maxWidth="Infinity" text="Home" />
+                  <Button fx:id="libraryButton" onAction="#openLibrary" maxWidth="Infinity" text="Library" />
+                  <Button fx:id="dashboardsButton" onAction="#openDashboards" maxWidth="Infinity" text="Dashboards" />
                </children>
             </VBox>
             <VBox alignment="BOTTOM_CENTER" prefHeight="5.0" spacing="10" style="-fx-padding: 10;">
@@ -23,8 +23,8 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <Button fx:id="handleSettingButton" maxWidth="Infinity" text="Setting" />
-                  <Button fx:id="handleInfoButton" maxWidth="Infinity" text="Infomations" />
+                  <Button fx:id="settingButton" onAction="#openSetting" maxWidth="Infinity" text="Setting" />
+                  <Button fx:id="infoButton" onAction="#openInfo" maxWidth="Infinity" text="Infomations" />
                </children>
             </VBox>
          </children>

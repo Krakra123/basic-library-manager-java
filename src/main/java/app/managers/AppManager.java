@@ -47,11 +47,11 @@ public class AppManager {
     }
 
     public final void loadContent(LoadableFXMLContent content) {
-        if (curContent != null) curContent.destroy();
+        if (curContent != null) curContent.hide();
         clearWindow();
 
         curContent = content;
-        content.loadOn(windowRootPane);
+        content.openOn(windowRootPane);
     }
 
     private void clearWindow() {

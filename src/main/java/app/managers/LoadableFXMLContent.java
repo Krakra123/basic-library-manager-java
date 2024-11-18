@@ -30,7 +30,7 @@ public class LoadableFXMLContent {
         disableCallback = callback;
     }
 
-    public void loadOn(Pane pane) {
+    public void openOn(Pane pane) {
         if (loaded) {
             System.out.println("FXML already loaded.");
             return;
@@ -47,7 +47,7 @@ public class LoadableFXMLContent {
         }
     }
 
-    public void destroy() {
+    public void hide() {
         if (!loaded) {
             System.out.println("FXML have not yet loaded.");
             return;
