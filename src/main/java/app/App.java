@@ -23,9 +23,9 @@ public class App extends Application {
         primaryStage = stage;
         appManager = new AppManager(primaryStage);
 
-        // appManager.getLoginManager().addAccount(new UserAccount("1", "1"));
+         appManager.getLoginManager().addAccount(new UserAccount("1", "1"));
 
-        // appManager.openLoginWindow();
+         appManager.openLoginWindow();
 
         BookCollection collection = new BookCollection();
         collection.add(new Book("", "aaa", "000", LocalDate.now()));
@@ -53,7 +53,7 @@ public class App extends Application {
         collection.add(new Book("", "eee", "444", LocalDate.now()));
         collection.add(new Book("", "fff", "555", LocalDate.now()));
 
-        appManager.openMainDisplayWindow();
+//        appManager.openMainDisplayWindow();
 
         appManager.getMainDisplayManager().getMenuManager().updateBookCollectionDisplay(collection, GroupByType.TITLE);
 
