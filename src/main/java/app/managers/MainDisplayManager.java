@@ -2,7 +2,7 @@ package app.managers;
 
 import app.controller.MainDisplayController;
 import app.controller.ToolbarController;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
 
 @SuppressWarnings({"FieldMayBeFinal", "exports"})
 public class MainDisplayManager extends BaseManager {
@@ -21,8 +21,8 @@ public class MainDisplayManager extends BaseManager {
     private LoadableFXMLContent toolbarFXMLContent;
     private ToolbarController toolbarController;
 
-    private Pane contentPane;
-    public Pane getContentPane() {
+    private AnchorPane contentPane;
+    public AnchorPane getContentPane() {
         return contentPane;
     }
     private LoadableFXMLContent currentFXMLContent;

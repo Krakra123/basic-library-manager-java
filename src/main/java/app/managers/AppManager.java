@@ -2,7 +2,7 @@ package app.managers;
 
 import app.util.Utilities;
 import javafx.scene.Parent;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 @SuppressWarnings({"FieldMayBeFinal", "exports"})
@@ -17,7 +17,7 @@ public class AppManager {
     }
 
     private Utilities.FXMLData windowData;
-    private Pane windowRootPane;
+    private AnchorPane windowRootPane;
     public final Parent getRoot() {
         return windowData.root;
     }
@@ -39,7 +39,7 @@ public class AppManager {
         loginManager = new LogInManager(this);
 
         windowData = Utilities.loadFXMLWindow(WINDOW_FXML, TITLE, stage);
-        windowRootPane = windowData.getRoot(Pane.class);
+        windowRootPane = windowData.getRoot(AnchorPane.class);
     }
 
     public final void loadOnWindow(LoadableFXMLContent content) {

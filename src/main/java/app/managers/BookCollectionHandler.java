@@ -8,6 +8,7 @@ import app.controller.BookItemDisplayController;
 import app.controller.BookItemGroupDisplayController;
 import app.data.Book;
 import app.data.BookCollection;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -49,7 +50,6 @@ public class BookCollectionHandler {
             }
             case GroupByType.AUTHOR -> {
                 bookGroups = bookCollectionData.getBookGroupsByAuthorLetter();
-                System.out.println("AA");
             }
             default -> throw new AssertionError();
         }
@@ -85,7 +85,7 @@ public class BookCollectionHandler {
         }
     }
 
-    public void openOn(Pane pane) {
+    public void openOn(AnchorPane pane) {
         bookCollectionListPaneFXMLContent.openOn(pane);
     }
 

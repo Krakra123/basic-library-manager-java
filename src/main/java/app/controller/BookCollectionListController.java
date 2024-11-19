@@ -1,11 +1,11 @@
 package app.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 
 @SuppressWarnings({"exports", "FieldMayBeFinal"})
 public class BookCollectionListController {
 
     @FXML
-    public VBox contentPane;
+    public AnchorPane contentPane;
 }

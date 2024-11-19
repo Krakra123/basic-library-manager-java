@@ -2,7 +2,7 @@ package app.managers;
 
 import app.interfaces.ICallback;
 import app.util.Utilities;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
 
 @SuppressWarnings("exports")
 public class LoadableFXMLContent {
@@ -12,9 +12,9 @@ public class LoadableFXMLContent {
         return fxmlData;
     }
     private boolean loaded = false;
-    private Pane curPane;
-    public Pane getCurrentPane() {
-        return curPane;
+    private AnchorPane anchorPane;
+    public AnchorPane getAnchorPane() {
+        return anchorPane;
     }
 
     private ICallback enableCallback;
@@ -32,7 +32,7 @@ public class LoadableFXMLContent {
         disableCallback = callback;
     }
 
-    public void openOn(Pane pane) {
+    public void openOn(AnchorPane pane) {
         if (loaded) {
             System.out.println("FXML already loaded.");
             return;
@@ -42,7 +42,7 @@ public class LoadableFXMLContent {
         
         fxmlData.root.setDisable(false);
         pane.getChildren().add(fxmlData.root);
-        curPane = pane;
+        anchorPane = pane;
 
         if (enableCallback != null) {
             enableCallback.Call();
@@ -58,10 +58,23 @@ public class LoadableFXMLContent {
         loaded = false;
 
         fxmlData.root.setDisable(true);
-        curPane.getChildren().remove(fxmlData.root);
+        anchorPane.getChildren().remove(fxmlData.root);
 
         if (disableCallback != null) {
             disableCallback.Call();
         }
+    }
+
+    public void StickToTopAnchorPane() {
+        AnchorPane.setTopAnchor(fxmlData.root, 0.0);
+    }
+    public void StickToBottomAnchorPane() {
+        AnchorPane.setBottomAnchor(fxmlData.root, 0.0);
+    }
+    public void StickToRightAnchorPane() {
+        AnchorPane.setRightAnchor(fxmlData.root, 0.0);
+    }
+    public void StickToLeftAnchorPane() {
+        AnchorPane.setLeftAnchor(fxmlData.root, 0.0);
     }
 }
