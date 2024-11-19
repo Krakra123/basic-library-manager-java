@@ -1,14 +1,14 @@
 package app.managers;
 
-import app.controller.BookCollectionListController;
 import app.controller.UserLibraryUIController;
-import javafx.scene.layout.StackPane;
+import app.data.BookCollection;
+import app.managers.BookCollectionHandler.GroupByType;
 
-@SuppressWarnings({"FieldMayBeFinal", "exports"})
+@SuppressWarnings({"FieldMayBeFinal"})
 public class UserLibraryManager extends BaseManager {
     
     private static final String USER_LIBRARY_UI = "UserLibraryUI";
-    private static final String BOOK_COLLECTION_LIST_FXML = "BookCollectionList";
+    private static final int BOOK_NUMBER_DISPLAY_PER_ROW = 5;
 
     private LoadableFXMLContent userLibraryUIFXMLContent;
     public LoadableFXMLContent getUserLibraryUIFXMLContent() {
@@ -16,11 +16,7 @@ public class UserLibraryManager extends BaseManager {
     }
     private UserLibraryUIController userLibraryUIController;
 
-    private LoadableFXMLContent bookCollectionListPaneFXMLContent;
-    public LoadableFXMLContent getBookCollectionListPaneFXMLContent() {
-        return bookCollectionListPaneFXMLContent;
-    }
-    private BookCollectionListController bookCollectionListController;
+    private BookCollectionHandler bookCollectionDisplay;
 
     public UserLibraryManager(AppManager manager) {
         super(manager);
@@ -28,25 +24,21 @@ public class UserLibraryManager extends BaseManager {
         userLibraryUIFXMLContent = new LoadableFXMLContent(USER_LIBRARY_UI);
         userLibraryUIController = userLibraryUIFXMLContent.getData().getController(UserLibraryUIController.class);
         
-        bookCollectionListPaneFXMLContent = new LoadableFXMLContent(BOOK_COLLECTION_LIST_FXML);
-        bookCollectionListController = bookCollectionListPaneFXMLContent.getData().getController(BookCollectionListController.class);
+        bookCollectionDisplay = new BookCollectionHandler();
 
         userLibraryUIFXMLContent.setEnableCallback(() -> { onEnable(); });
         userLibraryUIFXMLContent.setDisableCallback(() -> { onDisable(); });
     }
 
+    public void updateBookCollectionDisplay(BookCollection collection, GroupByType groupBy) {
+        bookCollectionDisplay.update(collection, BOOK_NUMBER_DISPLAY_PER_ROW, groupBy);
+    }
+
     private void onEnable() {
-        bookCollectionListPaneFXMLContent = new LoadableFXMLContent(BOOK_COLLECTION_LIST_FXML);
-        bookCollectionListPaneFXMLContent.openOn(userLibraryUIController.bookListPane);
+        bookCollectionDisplay.openOn(userLibraryUIController.bookListPane);
     }
 
     private void onDisable() {
-        bookCollectionListPaneFXMLContent.hide();
+        bookCollectionDisplay.hide();
     }
-
-    public void openUserLibraryOn(StackPane pane) {
-        userLibraryUIFXMLContent.openOn(pane);
-    }
-
-    
 }

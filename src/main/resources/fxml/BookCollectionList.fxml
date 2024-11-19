@@ -2,18 +2,20 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="Infinity" maxWidth="Infinity" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookCollectionListController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="860.0" prefWidth="1380.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookCollectionListController">
    <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true">
-         <content>
-            <GridPane fx:id="listPane" />
-         </content>
-      </ScrollPane>
       <Label text="Collection" />
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+         <children>
+            <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <content>
+                  <VBox fx:id="contentPane" />
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
    </children>
 </VBox>

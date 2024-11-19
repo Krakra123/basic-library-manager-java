@@ -8,8 +8,8 @@ import org.testfx.framework.junit5.ApplicationTest;
 
 import app.data.Book;
 import app.data.BookCollection;
-import app.data.UserAccount;
 import app.managers.AppManager;
+import app.managers.MenuManager.GroupByType;
 import javafx.stage.Stage;
 
 public class LibraryDisplayTest extends ApplicationTest {
@@ -22,7 +22,10 @@ public class LibraryDisplayTest extends ApplicationTest {
         primaryStage = stage;
         appManager = new AppManager(primaryStage);
 
-        appManager.getLoginManager().addAccount(new UserAccount("1", "1"));
+        // appManager.getLoginManager().addAccount(new UserAccount("1", "1"));
+
+        // appManager.openLoginWindow();
+
         BookCollection collection = new BookCollection();
         collection.add(new Book("", "aaa", "000", LocalDate.now()));
         collection.add(new Book("", "ddd", "333", LocalDate.now()));
@@ -38,9 +41,9 @@ public class LibraryDisplayTest extends ApplicationTest {
         collection.add(new Book("", "eee", "444", LocalDate.now()));
         collection.add(new Book("", "fff", "555", LocalDate.now()));
 
-        appManager.loadOnWindow(appManager.getMainDisplayManager().getMainDisplayFXMLContent());
+        appManager.openMainDisplayWindow();
 
-        appManager.getMainDisplayManager().getBookLibraryManager().updateCollectionList(collection);
+        appManager.getMainDisplayManager().getMenuManager().updateBookCollectionDisplay(collection, GroupByType.TITLE);
     }
 
     @Test

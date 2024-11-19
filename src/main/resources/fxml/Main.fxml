@@ -3,11 +3,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane fx:id="rootPane" maxHeight="900.0" maxWidth="1600.0" minHeight="900.0" minWidth="1600.0" prefHeight="900.0" prefWidth="1600.0" styleClass="custom-pane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.MainDisplayController">
+<StackPane fx:id="rootPane" maxHeight="900.0" maxWidth="1600.0" minHeight="900.0" minWidth="1600.0" prefHeight="900.0" prefWidth="1600.0" styleClass="custom-pane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.MainDisplayController">
    <children>
       <VBox VBox.vgrow="ALWAYS">
          <children>
@@ -35,7 +36,11 @@
             <HBox VBox.vgrow="ALWAYS">
                <children>
                   <VBox fx:id="toolbarPane" />
-                  <VBox fx:id="contentPane" />
+                  <AnchorPane>
+                     <children>
+                        <VBox fx:id="contentPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
                </children>
             </HBox>
          </children>

@@ -15,11 +15,11 @@ public class ToolbarController {
     }
 
     public void openHome(ActionEvent event) throws IOException {
-
+        manager.loadMainMenu();
     }
 
     public void openLibrary(ActionEvent event) throws IOException {
-
+        manager.loadUserLibrary();
     }
 
     public void openDashboards(ActionEvent event) throws IOException {

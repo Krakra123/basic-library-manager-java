@@ -27,10 +27,9 @@ public class MainDisplayManager extends BaseManager {
     }
     private LoadableFXMLContent currentFXMLContent;
 
-
-    private BookLibraryManager bookLibraryManager;
-    public BookLibraryManager getBookLibraryManager() {
-        return bookLibraryManager;
+    private MenuManager menuManager;
+    public MenuManager getMenuManager() {
+        return menuManager;
     }
     private UserLibraryManager userLibraryManager;
     public UserLibraryManager getUserLibraryManager() {
@@ -46,16 +45,15 @@ public class MainDisplayManager extends BaseManager {
         toolbarFXMLContent = new LoadableFXMLContent(TOOLBAR_FXML);
         toolbarController = toolbarFXMLContent.getData().getController(ToolbarController.class);
 
-        bookLibraryManager = new BookLibraryManager(manager);
+        menuManager = new MenuManager(manager);
         userLibraryManager = new UserLibraryManager(manager);
 
 		mainDisplayFXMLContent.setEnableCallback(() -> { onMainDisplayEnable(); });
     }
 
     public void loadMainMenu() {
-        LoadableFXMLContent content = bookLibraryManager.getBookCollectionListPaneFXMLContent();
+        LoadableFXMLContent content = menuManager.getMainMenuFXMLContent();
         
-        // FIXME
         if (currentFXMLContent != content) {
             if (currentFXMLContent != null) {
                 currentFXMLContent.hide();

@@ -50,6 +50,18 @@ public class AppManager {
         content.openOn(windowRootPane);
     }
 
+    public final void openMainDisplayWindow() {
+        loadOnWindow(mainDisplayManager.getMainDisplayFXMLContent());
+    }
+
+    public final void openLoginWindow() {
+        loadOnWindow(loginManager.getLoginPageContent());
+    }
+
+    public final void openRegisterWindow() {
+        loadOnWindow(loginManager.getRegisterPageContent());
+    }
+
     private void clearWindow() {
         windowRootPane.getChildren().clear();
     }

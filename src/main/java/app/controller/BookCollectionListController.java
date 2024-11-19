@@ -1,11 +1,11 @@
 package app.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 @SuppressWarnings({"exports", "FieldMayBeFinal"})
 public class BookCollectionListController {
 
     @FXML
-    public GridPane listPane;
+    public VBox contentPane;
 }

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ToolbarController">
+<VBox VBox.vgrow="ALWAYS" prefWidth="200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ToolbarController">
    <children>
       <VBox VBox.vgrow="ALWAYS">
          <children>
@@ -33,7 +33,6 @@
                   <Font size="14.0" />
                </font>
             </MFXButton>
-            <MFXButton />
          </children>
       </VBox>
       <VBox alignment="BOTTOM_LEFT">
