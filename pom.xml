@@ -21,12 +21,12 @@
         <!-- JavaFX Modules -->
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
+            <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
+            <artifactId>javafx-controls</artifactId>
             <version>${javafx.version}</version>
         </dependency>
         <dependency>

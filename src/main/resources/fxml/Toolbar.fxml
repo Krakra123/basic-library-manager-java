@@ -33,6 +33,7 @@
                   <Font size="14.0" />
                </font>
             </MFXButton>
+            <MFXButton />
          </children>
       </VBox>
       <VBox alignment="BOTTOM_LEFT">
