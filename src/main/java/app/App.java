@@ -15,12 +15,14 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        setUserAgentStylesheet(STYLESHEET_MODENA);
+
         primaryStage = stage;
         appManager = new AppManager(primaryStage);
 
         appManager.getLoginManager().addAccount(new UserAccount("1", "1"));
 
-        appManager.getLoginManager().openLoginPage();
+        appManager.getLoginManager().openLoginPageOnWindow();
     }
     
     public static void main(String[] args) {

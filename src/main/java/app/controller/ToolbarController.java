@@ -14,7 +14,7 @@ public class ToolbarController {
         this.manager = manager;
     }
 
-    public void openMenu(ActionEvent event) throws IOException {
+    public void openHome(ActionEvent event) throws IOException {
 
     }
 

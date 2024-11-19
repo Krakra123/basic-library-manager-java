@@ -39,7 +39,7 @@ public class AppManager {
         loginManager = new LogInManager(this);
 
         windowData = Utilities.loadFXMLWindow(WINDOW_FXML, TITLE, stage);
-        windowRootPane =  windowData.getRoot(Pane.class);
+        windowRootPane = windowData.getRoot(Pane.class);
     }
 
     public final void loadOnWindow(LoadableFXMLContent content) {

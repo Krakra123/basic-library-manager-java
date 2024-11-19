@@ -12,21 +12,21 @@ public class LoginPageController {
 	
 	private LogInManager manager;
 
-	@FXML
-	public TextField usernameTextField;
-	
-	@FXML
-	public TextField passwordTextField;
-
 	public void setManager(LogInManager manager) {
 		this.manager = manager;
 	}
 
-	public void login(ActionEvent event) throws IOException {
-		manager.tryLogin(usernameTextField.getText(), passwordTextField.getText());
+	@FXML
+	public TextField username;
+	
+	@FXML
+	public TextField password;
+
+	public void handleLogin(ActionEvent event) throws IOException {
+		manager.tryLogin(username.getText(), password.getText());
 	}
 
-	public void register(ActionEvent event) throws IOException {
-		manager.openRigisterPage();
+	public void handleRegister(ActionEvent event) throws IOException {
+		manager.openRigisterPageOnWindow();
 	}
 }

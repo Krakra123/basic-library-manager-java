@@ -13,8 +13,17 @@ public class LogInManager extends BaseManager {
 	private static final String LOGIN_PAGE_FXML = "LogInPage";
 	private static final String REGISTER_PAGE_FXML = "RegisterPage";
 
+	private static final int WINDOW_WIDTH = 400;
+    private static final int WINDOW_HEIGHT = 400;
+
 	private LoadableFXMLContent loginPageFXMLContent;
+	public LoadableFXMLContent getLoginPageContent() {
+		return loginPageFXMLContent;
+	}
 	private LoadableFXMLContent registerPageFXMLContent;
+	public LoadableFXMLContent getRegisterPageContent() {
+		return registerPageFXMLContent;
+	}
 
     private LoginPageController loginPageController;
     private RegisterController registerPageController;
@@ -48,35 +57,30 @@ public class LogInManager extends BaseManager {
 		}
 	}
 
-	public void openLoginPage() {
+	public void openLoginPageOnWindow() {
 		manager.loadOnWindow(loginPageFXMLContent);
 	}
-	public void openRigisterPage() {
+	public void openRigisterPageOnWindow() {
 		manager.loadOnWindow(registerPageFXMLContent);
 	}
 
-	public boolean checkAccount(String username, String password) {
+	private void onLoginPageEnable() {
+		manager.getStage().setWidth(WINDOW_WIDTH);
+        manager.getStage().setHeight(WINDOW_HEIGHT + 40);
+
+		loginPageController.setManager(this);
+	}
+
+	private void onRegisterPageEnable() {
+		registerPageController.setManager(this);
+	}
+
+	private boolean checkAccount(String username, String password) {
 		for (UserAccount account : accountList) {
 			if (account.username.equals(username) && account.checkPassword(password)) {
 				return true;
 			}
 		}
 		return false;
-	}
-
-	public LoadableFXMLContent getLoginPageContent() {
-		return loginPageFXMLContent;
-	}
-
-	public LoadableFXMLContent getRegisterPageContent() {
-		return registerPageFXMLContent;
-	}
-
-	private void onLoginPageEnable() {
-		loginPageController.setManager(this);
-	}
-
-	private void onRegisterPageEnable() {
-		registerPageController.setManager(this);
 	}
 }

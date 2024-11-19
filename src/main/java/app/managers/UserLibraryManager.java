@@ -11,9 +11,15 @@ public class UserLibraryManager extends BaseManager {
     private static final String BOOK_COLLECTION_LIST_FXML = "BookCollectionList";
 
     private LoadableFXMLContent userLibraryUIFXMLContent;
+    public LoadableFXMLContent getUserLibraryUIFXMLContent() {
+        return userLibraryUIFXMLContent;
+    }
     private UserLibraryUIController userLibraryUIController;
 
     private LoadableFXMLContent bookCollectionListPaneFXMLContent;
+    public LoadableFXMLContent getBookCollectionListPaneFXMLContent() {
+        return bookCollectionListPaneFXMLContent;
+    }
     private BookCollectionListController bookCollectionListController;
 
     public UserLibraryManager(AppManager manager) {
@@ -42,11 +48,5 @@ public class UserLibraryManager extends BaseManager {
         userLibraryUIFXMLContent.openOn(pane);
     }
 
-    public LoadableFXMLContent getUserLibraryUIFXMLContent() {
-        return userLibraryUIFXMLContent;
-    }
-
-    public LoadableFXMLContent getBookCollectionListPaneFXMLContent() {
-        return bookCollectionListPaneFXMLContent;
-    }
+    
 }

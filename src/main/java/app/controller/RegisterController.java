@@ -23,10 +23,10 @@ public class RegisterController {
 	}
 
 	public void register(ActionEvent event) throws IOException {
-		manager.openLoginPage();
+		manager.openLoginPageOnWindow();
 	}
 
 	public void backToLogin(ActionEvent event) throws IOException {
-		manager.openLoginPage();
+		manager.openLoginPageOnWindow();
 	}
 }

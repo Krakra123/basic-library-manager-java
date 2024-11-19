@@ -8,8 +8,14 @@ import javafx.scene.layout.Pane;
 public class LoadableFXMLContent {
     
     private final Utilities.FXMLData fxmlData;
+    public Utilities.FXMLData getData() {
+        return fxmlData;
+    }
     private boolean loaded = false;
     private Pane curPane;
+    public Pane getCurrentPane() {
+        return curPane;
+    }
 
     private ICallback enableCallback;
     private ICallback disableCallback;
@@ -17,10 +23,6 @@ public class LoadableFXMLContent {
     public LoadableFXMLContent(String fxml) {
         fxmlData = Utilities.loadFXML(fxml);
         fxmlData.root.setDisable(true);
-    }
-
-    public Utilities.FXMLData getData() {
-        return fxmlData;
     }
 
     public void setEnableCallback(ICallback callback) {
@@ -61,13 +63,5 @@ public class LoadableFXMLContent {
         if (disableCallback != null) {
             disableCallback.Call();
         }
-    }
-
-    public Pane getCurrentPane() {
-        return curPane;
-    }
-
-    public final Utilities.FXMLData getFXMLData() {
-        return fxmlData;
     }
 }

@@ -3,7 +3,6 @@ module app {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
-    requires com.jfoenix;
     requires de.jensd.fx.glyphs.fontawesome;
 
     opens app to javafx.fxml;
