@@ -1,13 +1,13 @@
 package app.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.AnchorPane;
 
 @SuppressWarnings("exports")
 public class UserLibraryUIController {
     
     @FXML
-    public StackPane bookListPane;
+    public AnchorPane bookListPane;
 
 
 }

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox VBox.vgrow="ALWAYS" prefWidth="200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ToolbarController">
+<VBox prefWidth="200.0" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ToolbarController">
    <children>
       <VBox VBox.vgrow="ALWAYS">
          <children>

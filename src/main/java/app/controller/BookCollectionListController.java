@@ -7,5 +7,5 @@ import javafx.scene.layout.VBox;
 public class BookCollectionListController {
 
     @FXML
-    public VBox contentPane;
+    public VBox listPane;
 }

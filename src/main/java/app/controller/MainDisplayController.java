@@ -5,7 +5,7 @@ import java.io.IOException;
 import app.managers.MainDisplayManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 
 @SuppressWarnings({"exports"})
 public class MainDisplayController {
@@ -17,10 +17,10 @@ public class MainDisplayController {
     }
 
     @FXML
-    public VBox toolbarPane;
+    public AnchorPane toolbarPane;
 
     @FXML
-    public VBox contentPane;
+    public AnchorPane contentPane;
 
     public void handleMenuSettings(ActionEvent event) throws IOException {
 

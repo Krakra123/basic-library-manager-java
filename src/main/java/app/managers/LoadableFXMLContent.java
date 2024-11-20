@@ -2,7 +2,7 @@ package app.managers;
 
 import app.interfaces.ICallback;
 import app.util.Utilities;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
 
 @SuppressWarnings("exports")
 public class LoadableFXMLContent {
@@ -12,9 +12,9 @@ public class LoadableFXMLContent {
         return fxmlData;
     }
     private boolean loaded = false;
-    private Pane curPane;
-    public Pane getCurrentPane() {
-        return curPane;
+    private AnchorPane anchorPane;
+    public AnchorPane getAnchorPane() {
+        return anchorPane;
     }
 
     private ICallback enableCallback;
@@ -32,17 +32,16 @@ public class LoadableFXMLContent {
         disableCallback = callback;
     }
 
-    public void openOn(Pane pane) {
+    public void openOn(AnchorPane pane) {
         if (loaded) {
             System.out.println("FXML already loaded.");
             return;
         }
-
         loaded = true;
         
         fxmlData.root.setDisable(false);
         pane.getChildren().add(fxmlData.root);
-        curPane = pane;
+        anchorPane = pane;
 
         if (enableCallback != null) {
             enableCallback.Call();
@@ -54,14 +53,60 @@ public class LoadableFXMLContent {
             System.out.println("FXML have not yet loaded.");
             return;
         }
-
         loaded = false;
 
-        fxmlData.root.setDisable(true);
-        curPane.getChildren().remove(fxmlData.root);
+        if (anchorPane != null) {
+            fxmlData.root.setDisable(true);
+            anchorPane.getChildren().remove(fxmlData.root);
+        }
+        else {
+            System.out.println("FXML have no root pane");
+        }
 
         if (disableCallback != null) {
             disableCallback.Call();
         }
+    }
+
+    public void setEnable() {
+        if (loaded) {
+            System.out.println("FXML already loaded.");
+            return;
+        }
+        loaded = true;
+
+        fxmlData.root.setDisable(false);
+
+        if (enableCallback != null) {
+            enableCallback.Call();
+        }
+    }
+
+    public void stickToTopAnchorPane() {
+        AnchorPane.setTopAnchor(fxmlData.root, 0.0);
+    }
+    public void stickToBottomAnchorPane() {
+        AnchorPane.setBottomAnchor(fxmlData.root, 0.0);
+    }
+    public void stickToRightAnchorPane() {
+        AnchorPane.setRightAnchor(fxmlData.root, 0.0);
+    }
+    public void stickToLeftAnchorPane() {
+        AnchorPane.setLeftAnchor(fxmlData.root, 0.0);
+    }
+
+    public void stickToHorizontalAnchorPane() {
+        AnchorPane.setRightAnchor(fxmlData.root, 0.0);
+        AnchorPane.setLeftAnchor(fxmlData.root, 0.0);
+    }
+    public void stickToVerticalAnchorPane() {
+        AnchorPane.setTopAnchor(fxmlData.root, 0.0);
+        AnchorPane.setBottomAnchor(fxmlData.root, 0.0);
+    }
+    public void stickToWholeAnchorPane() {
+        AnchorPane.setTopAnchor(fxmlData.root, 0.0);
+        AnchorPane.setBottomAnchor(fxmlData.root, 0.0);
+        AnchorPane.setRightAnchor(fxmlData.root, 0.0);
+        AnchorPane.setLeftAnchor(fxmlData.root, 0.0);
     }
 }

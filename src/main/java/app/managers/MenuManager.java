@@ -1,20 +1,20 @@
 package app.managers;
 
-import app.controller.MenuController;
+import app.controller.MenuUIController;
 import app.data.BookCollection;
 import app.managers.BookCollectionHandler.GroupByType;
 
 @SuppressWarnings({"FieldMayBeFinal"})
 public class MenuManager extends BaseManager {
 
-    private static final String MAIN_MENU_FXML = "Menu";
+    private static final String MAIN_MENU_FXML = "MenuUI";
     private static final int BOOK_NUMBER_DISPLAY_PER_ROW = 5;
 
     private LoadableFXMLContent mainMenuFXMLContent;
     public LoadableFXMLContent getMainMenuFXMLContent() {
         return mainMenuFXMLContent;
     }
-    private MenuController mainMenuController;
+    private MenuUIController mainMenuUIController;
 
     private BookCollectionHandler bookCollectionDisplay;
 
@@ -22,7 +22,7 @@ public class MenuManager extends BaseManager {
         super(manager);
 
         mainMenuFXMLContent = new LoadableFXMLContent(MAIN_MENU_FXML);
-        mainMenuController = mainMenuFXMLContent.getData().getController(MenuController.class);
+        mainMenuUIController = mainMenuFXMLContent.getData().getController(MenuUIController.class);
 
         bookCollectionDisplay = new BookCollectionHandler();
 
@@ -35,7 +35,7 @@ public class MenuManager extends BaseManager {
     }
 
     private void onEnable() {
-        bookCollectionDisplay.openOn(mainMenuController.contentPane);
+        bookCollectionDisplay.openOn(mainMenuUIController.contentPane);
     }
 
     private void onDisable() {
