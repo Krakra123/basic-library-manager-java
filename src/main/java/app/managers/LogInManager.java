@@ -55,7 +55,7 @@ public class LogInManager extends BaseManager {
 
 	public void tryLogin(String username, String password) {
 		username = username.trim();
-		if (username.matches(".*\\s.*")) {
+		if (username.matches(".*\\s.*|^$")) {
 			System.out.println("Username invalid");
 			return;
 		}
@@ -74,7 +74,7 @@ public class LogInManager extends BaseManager {
 		}
 
 		username = username.trim();
-		if (username.matches(".*\\s.*")) {
+		if (username.matches(".*\\s.*|^$")) {
 			System.out.println("Username invalid");
 			return;
 		}
