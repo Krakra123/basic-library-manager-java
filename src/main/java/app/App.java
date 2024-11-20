@@ -9,7 +9,14 @@ import app.data.Account;
 import app.managers.AccountsManager;
 import app.managers.AppManager;
 import app.managers.BookCollectionHandler.GroupByType;
+import app.managers.ShortcutManager;
 import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 @SuppressWarnings("exports")
@@ -27,6 +34,14 @@ public class App extends Application {
         initTempData();
 
         appManager.openLoginWindow();
+        Scene scene = appManager.getWindowData().scene;
+        ShortcutManager.updateScene(scene);
+
+        ShortcutManager.handleCombinationShortcut(KeyCombination.CONTROL_DOWN, KeyCode.W, ()->{stage.close();});
+
+        ShortcutManager.handleKeyShortcut(KeyCode.ENTER, ()-> {appManager.getLoginManager().tryLogin();});
+
+
         // appManager.openMainDisplayWindow();
 
         // appManager.getMainDisplayManager().getMenuManager().updateBookCollectionDisplay(collection, GroupByType.TITLE);
