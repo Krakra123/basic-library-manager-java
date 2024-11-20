@@ -5,7 +5,7 @@ import java.util.List;
 
 import app.controller.LoginPageController;
 import app.controller.RegisterController;
-import app.data.UserAccount;
+import app.data.Account;
 
 @SuppressWarnings({"FieldMayBeFinal"})
 public class LogInManager extends BaseManager {
@@ -28,7 +28,9 @@ public class LogInManager extends BaseManager {
     private LoginPageController loginPageController;
     private RegisterController registerPageController;
 
-	private List<UserAccount> accountList;
+	private AccountsManager accountsManager;
+
+	private List<Account> accountList;
 
 	public LogInManager(AppManager manager) {
 		super(manager);
@@ -41,19 +43,46 @@ public class LogInManager extends BaseManager {
 		loginPageController = loginPageFXMLContent.getData().getController(LoginPageController.class);
 		registerPageController = registerPageFXMLContent.getData().getController(RegisterController.class);
 
+		accountsManager = manager.getAccountsManager();
+
 		loginPageFXMLContent.setEnableCallback(() -> { onLoginPageEnable(); });
 		registerPageFXMLContent.setEnableCallback(() -> { onRegisterPageEnable(); });
 	}
 
-	public void addAccount(UserAccount account) {
+	public void addAccount(Account account) {
 		accountList.add(account);
 	}
 
 	public void tryLogin(String username, String password) {
-		if (checkAccount(username, password)) {
+		username = username.trim();
+		if (username.matches(".*\\s.*")) {
+			System.out.println("Username invalid");
+			return;
+		}
+
+		if (accountsManager.tryLogin(username, password)) {
 			manager.loadOnWindow(manager.getMainDisplayManager().getMainDisplayFXMLContent());
 		} else {
 			System.out.println("Username or password not true");
+		}
+	}
+
+	public void tryRegister(String username, String password, String rePassword, Account.AccountType type) {
+		if (!password.equals(rePassword)) {
+			System.out.println("Password mismatched");
+			return;
+		}
+
+		username = username.trim();
+		if (username.matches(".*\\s.*")) {
+			System.out.println("Username invalid");
+			return;
+		}
+
+		if (accountsManager.tryRegister(username, password, type)) {
+			openLoginPageOnWindow();
+		} else {
+			System.out.println("Username already existed");
 		}
 	}
 
@@ -62,6 +91,7 @@ public class LogInManager extends BaseManager {
 	}
 	public void openRigisterPageOnWindow() {
 		manager.loadOnWindow(registerPageFXMLContent);
+		registerPageController.clear();
 	}
 
 	private void onLoginPageEnable() {
@@ -73,14 +103,5 @@ public class LogInManager extends BaseManager {
 
 	private void onRegisterPageEnable() {
 		registerPageController.setManager(this);
-	}
-
-	private boolean checkAccount(String username, String password) {
-		for (UserAccount account : accountList) {
-			if (account.username.equals(username) && account.checkPassword(password)) {
-				return true;
-			}
-		}
-		return false;
 	}
 }

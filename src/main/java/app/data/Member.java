@@ -8,9 +8,9 @@ public class Member {
 	private BookCollection borrowedBooks = new BookCollection();
 	private String name;
 	private String id;
-	private UserAccount loginInfo;
+	private Account loginInfo;
 	
-	public Member(String name, String id, UserAccount loginInfo) {
+	public Member(String name, String id, Account loginInfo) {
 		this.name = new String(name);
 		this.id = new String(id);
 		this.loginInfo = loginInfo;

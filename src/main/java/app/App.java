@@ -5,7 +5,8 @@ import java.time.LocalDate;
 
 import app.data.Book;
 import app.data.BookCollection;
-import app.data.UserAccount;
+import app.data.Account;
+import app.managers.AccountsManager;
 import app.managers.AppManager;
 import app.managers.BookCollectionHandler.GroupByType;
 import javafx.application.Application;
@@ -25,12 +26,12 @@ public class App extends Application {
         
         initTempData();
 
-        // appManager.openLoginWindow();
-        appManager.openMainDisplayWindow();
+        appManager.openLoginWindow();
+        // appManager.openMainDisplayWindow();
 
-        appManager.getMainDisplayManager().getMenuManager().updateBookCollectionDisplay(collection, GroupByType.TITLE);
+        // appManager.getMainDisplayManager().getMenuManager().updateBookCollectionDisplay(collection, GroupByType.TITLE);
 
-        appManager.getMainDisplayManager().getUserLibraryManager().updateBookCollectionDisplay(collection, GroupByType.AUTHOR);
+        // appManager.getMainDisplayManager().getUserLibraryManager().updateBookCollectionDisplay(collection, GroupByType.AUTHOR);
     }
     
     public static void main(String[] args) {
@@ -39,8 +40,6 @@ public class App extends Application {
 
     BookCollection collection;
     private void initTempData() {
-        appManager.getLoginManager().addAccount(new UserAccount("1", "1"));
-
         collection = new BookCollection();
         collection.add(new Book("", "adwaa", "000", LocalDate.now()));
         collection.add(new Book("", "qwwqddd", "3wqe33", LocalDate.now()));

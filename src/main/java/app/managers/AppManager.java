@@ -33,8 +33,17 @@ public class AppManager {
         return loginManager;
     }
 
+    private AccountsManager accountsManager;
+    public final AccountsManager getAccountsManager() {
+        return accountsManager;
+    }
+
     public AppManager(Stage stage) {
         curStage = stage;
+
+        accountsManager = new AccountsManager();
+        accountsManager.read();
+
         mainDisplayManager = new MainDisplayManager(this);
         loginManager = new LogInManager(this);
 

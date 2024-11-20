@@ -103,7 +103,6 @@ public class BookCollectionHandler {
     }
 
     private void onEnable() {
-        System.out.println("AAAA");
         bookCollectionListPaneFXMLContent.stickToWholeAnchorPane();
     }
 }
