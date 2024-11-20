@@ -3,7 +3,6 @@ package app.managers;
 import app.interfaces.ICallback;
 import app.util.Utilities;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 
 @SuppressWarnings("exports")
 public class LoadableFXMLContent {

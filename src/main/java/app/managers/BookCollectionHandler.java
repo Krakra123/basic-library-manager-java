@@ -10,7 +10,6 @@ import app.data.Book;
 import app.data.BookCollection;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 
 @SuppressWarnings({"exports", "FieldMayBeFinal"})
 public class BookCollectionHandler {

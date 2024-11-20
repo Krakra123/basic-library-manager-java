@@ -11,11 +11,12 @@ import app.data.Account;
 import app.data.DataHash;
 import app.data.Account.AccountType;
 
+@SuppressWarnings("CallToPrintStackTrace")
 public class AccountsManager {
     
     private static final String ACCOUNTS_SAVE_DIR = "data/accounts.txt";
 
-    private List<Account> accountList;
+    private final List<Account> accountList;
 
     public AccountsManager() {
         accountList = new ArrayList<>();
@@ -23,9 +24,7 @@ public class AccountsManager {
 
     public void read() {
         Path path = Paths.get(ACCOUNTS_SAVE_DIR);
-        try {
-            Stream<String> lines = Files.lines(path);
-
+        try (Stream<String> lines = Files.lines(path);) {
             List<String> data = lines
                 .filter(line -> !line.isBlank())
                 .flatMap(line -> Arrays.stream(line.split(" ")))
@@ -41,6 +40,8 @@ public class AccountsManager {
             
                 accountList.add(new Account(usernameHash, passwordHash, type));
             }
+
+            lines.close();
             
         } catch (IOException e) {
             e.printStackTrace();
