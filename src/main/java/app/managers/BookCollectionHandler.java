@@ -23,6 +23,7 @@ public class BookCollectionHandler {
     private static final String BOOK_COLLECTION_LIST_FXML = "BookCollectionList";
     private static final String BOOK_ITEM_GROUP_DISPLAY_FXML = "BookItemGroupDisplay";
     private static final String BOOK_ITEM_DISPLAY_FXML = "BookItemDisplay";
+    private static final String BLANK_FXML = "Blank";
     
     private LoadableFXMLContent bookCollectionListPaneFXMLContent;
     public LoadableFXMLContent getBookCollectionListPaneFXMLContent() {
@@ -60,9 +61,15 @@ public class BookCollectionHandler {
         for (SortedMap.Entry<String, List<Book>> bookGroup : bookGroups.entrySet()) {
             LoadableFXMLContent bookItemGroupDisplayFXMLContent = new LoadableFXMLContent(BOOK_ITEM_GROUP_DISPLAY_FXML);
             BookItemGroupDisplayController bookItemGroupDisplayController = bookItemGroupDisplayFXMLContent.getData().getController(BookItemGroupDisplayController.class);
-            bookItemGroupDisplayFXMLContent.openOn(bookCollectionListController.contentPane);
+            
+            LoadableFXMLContent blankFXMLContent = new LoadableFXMLContent(BLANK_FXML);
+            bookCollectionListController.listPane.getChildren().add(blankFXMLContent.getData().root);
+            blankFXMLContent.setEnable();
 
-            bookItemGroupDisplayController.groupLabel.setText(bookGroup.getKey());
+            bookItemGroupDisplayFXMLContent.openOn(blankFXMLContent.getData().getRoot(AnchorPane.class));
+            bookItemGroupDisplayFXMLContent.stickToHorizontalAnchorPane();
+
+            bookItemGroupDisplayController.groupLabel.setText(bookGroup.getKey().toUpperCase());
 
             placeBookListItemOnGrid(bookGroup.getValue(), bookItemGroupDisplayController.contentPane, numberPerRow);
         }
@@ -75,6 +82,8 @@ public class BookCollectionHandler {
             BookItemDisplayController bookItemDisplayController = bookItemDisplayFXMLContent.getData().getController(BookItemDisplayController.class);
 
             grid.add(bookItemDisplayFXMLContent.getData().root, x, y);
+            bookItemDisplayFXMLContent.setEnable();
+
             bookItemDisplayController.update(book);
         
             x++;
@@ -94,6 +103,7 @@ public class BookCollectionHandler {
     }
 
     private void onEnable() {
-
+        System.out.println("AAAA");
+        bookCollectionListPaneFXMLContent.stickToWholeAnchorPane();
     }
 }

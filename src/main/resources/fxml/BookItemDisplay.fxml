@@ -1,17 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxWidth="300.0" minHeight="150.0" prefHeight="150.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookItemDisplayController">
+<AnchorPane prefHeight="260.0" prefWidth="165.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookItemDisplayController">
    <children>
-      <VBox>
-         <children>
-            <Label fx:id="title" text="title" />
-            <Label fx:id="author" text="author" />
-         </children>
-      </VBox>
+      <MFXButton text="." textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="1.0" />
+         </font>
+         <graphic>
+            <AnchorPane>
+               <children>
+                  <ImageView fitHeight="183.82" fitWidth="130.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                  <VBox layoutX="17.0" layoutY="208.0" prefHeight="52.0" prefWidth="124.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0">
+                     <children>
+                        <Label fx:id="title" text="TITLE...">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="author" text="Author---">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="260.0" stroke="#00000074" strokeDashOffset="20.0" strokeLineCap="ROUND" strokeMiterLimit="30.0" strokeType="INSIDE" width="165.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </graphic>
+      </MFXButton>
    </children>
 </AnchorPane>

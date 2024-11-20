@@ -10,9 +10,9 @@ public class UserLibraryManager extends BaseManager {
     private static final String USER_LIBRARY_UI = "UserLibraryUI";
     private static final int BOOK_NUMBER_DISPLAY_PER_ROW = 5;
 
-    private LoadableFXMLContent userLibraryUIFXMLContent;
-    public LoadableFXMLContent getUserLibraryUIFXMLContent() {
-        return userLibraryUIFXMLContent;
+    private LoadableFXMLContent userLibraryFXMLContent;
+    public LoadableFXMLContent getUserLibraryFXMLContent() {
+        return userLibraryFXMLContent;
     }
     private UserLibraryUIController userLibraryUIController;
 
@@ -21,13 +21,13 @@ public class UserLibraryManager extends BaseManager {
     public UserLibraryManager(AppManager manager) {
         super(manager);
 
-        userLibraryUIFXMLContent = new LoadableFXMLContent(USER_LIBRARY_UI);
-        userLibraryUIController = userLibraryUIFXMLContent.getData().getController(UserLibraryUIController.class);
+        userLibraryFXMLContent = new LoadableFXMLContent(USER_LIBRARY_UI);
+        userLibraryUIController = userLibraryFXMLContent.getData().getController(UserLibraryUIController.class);
         
         bookCollectionDisplay = new BookCollectionHandler();
 
-        userLibraryUIFXMLContent.setEnableCallback(() -> { onEnable(); });
-        userLibraryUIFXMLContent.setDisableCallback(() -> { onDisable(); });
+        userLibraryFXMLContent.setEnableCallback(() -> { onEnable(); });
+        userLibraryFXMLContent.setDisableCallback(() -> { onDisable(); });
     }
 
     public void updateBookCollectionDisplay(BookCollection collection, GroupByType groupBy) {

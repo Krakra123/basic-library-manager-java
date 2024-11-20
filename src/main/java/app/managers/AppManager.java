@@ -48,6 +48,7 @@ public class AppManager {
 
         curContent = content;
         content.openOn(windowRootPane);
+        content.stickToWholeAnchorPane();
     }
 
     public final void openMainDisplayWindow() {

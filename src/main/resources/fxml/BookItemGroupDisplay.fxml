@@ -2,23 +2,23 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookItemGroupDisplayController">
    <children>
       <Label fx:id="groupLabel" text="A" textFill="#7a0ed9">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
          <VBox.margin>
-            <Insets left="10.0" top="10.0" />
+            <Insets left="10.0" top="35.0" />
          </VBox.margin>
       </Label>
-      <GridPane fx:id="contentPane" />
+      <GridPane fx:id="contentPane" hgap="10.0" vgap="8.0">
+         <VBox.margin>
+            <Insets right="30.0" />
+         </VBox.margin></GridPane>
    </children>
 </VBox>

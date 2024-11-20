@@ -6,26 +6,37 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="Infinity" maxWidth="Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.UserLibraryUIController">
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.UserLibraryUIController">
    <children>
-      <HBox spacing="15.0">
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <MFXComboBox prefHeight="40.0" prefWidth="138.0" text="Collection" />
-            <MFXComboBox prefHeight="40.0" prefWidth="141.0" text="Sort By" />
+            <HBox spacing="20.0">
+               <children>
+                  <HBox HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXComboBox maxWidth="600.0" text="Collection" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <MFXComboBox maxWidth="-Infinity" text="Sort By" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <AnchorPane>
+               <children>
+                  <MFXTextField floatingText="Search" layoutX="53.0" layoutY="3.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="20.0" />
+                  <FontAwesomeIconView glyphName="SEARCH" layoutY="40.0" size="30" AnchorPane.leftAnchor="30.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="bookListPane" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </AnchorPane>
          </children>
-         <VBox.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </VBox.margin>
-      </HBox>
-      <AnchorPane>
-         <children>
-            <MFXTextField layoutX="53.0" layoutY="3.0" prefWidth="275.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="10.0" />
-            <FontAwesomeIconView glyphName="SEARCH" layoutY="40.0" size="45" AnchorPane.leftAnchor="7.0" />
-         </children>
-      </AnchorPane>
-      <StackPane fx:id="bookListPane" />
+      </VBox>
    </children>
-</VBox>
+</AnchorPane>

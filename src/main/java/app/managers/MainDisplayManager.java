@@ -7,10 +7,10 @@ import javafx.scene.layout.AnchorPane;
 @SuppressWarnings({"FieldMayBeFinal", "exports"})
 public class MainDisplayManager extends BaseManager {
     
-    private static final String MAIN_DISPLAY_FXML = "Main";
+    private static final String MAIN_DISPLAY_FXML = "MainDisplay";
     private static final String TOOLBAR_FXML = "Toolbar";
-    private static final int WINDOW_WIDTH = 1600;
-    private static final int WINDOW_HEIGHT = 900;
+    private static final int WINDOW_WIDTH = 1120;
+    private static final int WINDOW_HEIGHT = 650;
 
     private LoadableFXMLContent mainDisplayFXMLContent;
     public LoadableFXMLContent getMainDisplayFXMLContent() {
@@ -52,27 +52,21 @@ public class MainDisplayManager extends BaseManager {
     }
 
     public void loadMainMenu() {
-        LoadableFXMLContent content = menuManager.getMainMenuFXMLContent();
-        
-        if (currentFXMLContent != content) {
-            if (currentFXMLContent != null) {
-                currentFXMLContent.hide();
-            }
-
-            content.openOn(contentPane); 
-            currentFXMLContent = content;
-        }
+        loadOnMainDisplay(menuManager.getMainMenuFXMLContent());
     }
 
     public void loadUserLibrary() {
-        LoadableFXMLContent content = userLibraryManager.getUserLibraryUIFXMLContent();
-        
+        loadOnMainDisplay(userLibraryManager.getUserLibraryFXMLContent());
+    }
+
+    private void loadOnMainDisplay(LoadableFXMLContent content) {
         if (currentFXMLContent != content) {
             if (currentFXMLContent != null) {
                 currentFXMLContent.hide();
             }
 
             content.openOn(contentPane); 
+            content.stickToWholeAnchorPane();
             currentFXMLContent = content;
         }
     }
@@ -82,11 +76,11 @@ public class MainDisplayManager extends BaseManager {
         manager.getStage().setHeight(WINDOW_HEIGHT + 40);
         manager.getStage().centerOnScreen();
 
-        
         mainDisplayController.setManager(this); 
         toolbarController.setManager(this);
         
         toolbarFXMLContent.openOn(mainDisplayController.toolbarPane);
+        toolbarFXMLContent.stickToVerticalAnchorPane();
         contentPane = mainDisplayController.contentPane;
         
         loadMainMenu();
