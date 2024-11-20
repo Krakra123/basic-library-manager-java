@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import app.data.Account;
-import app.data.PasswordHash;
+import app.data.DataHash;
 import app.data.Account.AccountType;
 
 public class AccountsManager {
@@ -33,13 +33,13 @@ public class AccountsManager {
                 .toList();
 
             int l = data.size();
-            for (int i = 0; i < l; i+=4) {
-                String username = data.get(i);
-                PasswordHash passwordHash = new PasswordHash(Long.parseLong(data.get(i + 1), 10), Long.parseLong(data.get(i + 2), 10));
+            for (int i = 0; i < l; i+=3) {
+                DataHash usernameHash = new DataHash(Long.parseLong(data.get(i), 10));
+                DataHash passwordHash = new DataHash(Long.parseLong(data.get(i + 1), 10));
                 AccountType type = AccountType.USER;
-                if (data.get(i + 3).charAt(0) != '0') type = AccountType.ADMIN;
+                if (data.get(i + 2).charAt(0) != '0') type = AccountType.ADMIN;
             
-                accountList.add(new Account(username, passwordHash, type));
+                accountList.add(new Account(usernameHash, passwordHash, type));
             }
             
         } catch (IOException e) {
@@ -61,7 +61,7 @@ public class AccountsManager {
     }
 
     public boolean tryRegister(String username, String password, AccountType type) {
-        if (checkUsername(username)) {
+        if (checkHasUsername(username)) {
             return false;
         }
         
@@ -70,12 +70,12 @@ public class AccountsManager {
     }
 
     public void registerNewAccount(String username, String password, AccountType type) {
-        PasswordHash passHash = new PasswordHash(password);
+        DataHash usernameHash = new DataHash(username);
+        DataHash passwordHash = new DataHash(password);
 
         String line = 
-            username + " " + 
-            passHash.fw + " " + 
-            passHash.rv + " " + 
+            usernameHash + " " + 
+            passwordHash + " " + 
             (type == AccountType.USER ? '0' : '1');
 
         Path path = Paths.get(ACCOUNTS_SAVE_DIR);
@@ -85,12 +85,12 @@ public class AccountsManager {
             e.printStackTrace();
         }
 
-        accountList.add(new Account(username, passHash, type));
+        accountList.add(new Account(usernameHash, passwordHash, type));
     }
 
-    public boolean checkUsername(String username) {
+    public boolean checkHasUsername(String username) {
         for (Account account : accountList) {
-            if (account.username.equals(username)) {
+            if (account.usernameHash.check(username)) {
                 return true;
             }
         }
@@ -99,7 +99,7 @@ public class AccountsManager {
 
     public Account findAccount(String username) throws Exception {
         for (Account account : accountList) {
-            if (account.username.equals(username)) {
+            if (account.usernameHash.check(username)) {
                 return account;
             }
         }

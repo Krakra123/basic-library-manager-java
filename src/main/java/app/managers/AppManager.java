@@ -62,6 +62,8 @@ public class AppManager {
 
     public final void openMainDisplayWindow() {
         loadOnWindow(mainDisplayManager.getMainDisplayFXMLContent());
+
+        
     }
 
     public final void openLoginWindow() {
