@@ -57,18 +57,7 @@ public class BookCollectionHandler {
     // Optimize
     public void update(BookCollection collection, GroupByType groupBy) {
         bookCollectionData = collection;
-    
-        SortedMap<String, List<Book>> bookGroups = bookCollectionData.getBookGroupsByTitleLetter();
-        switch (groupBy) {
-            case GroupByType.TITLE -> {
-                bookGroups = bookCollectionData.getBookGroupsByTitleLetter();
-            }
-            case GroupByType.AUTHOR -> {
-                bookGroups = bookCollectionData.getBookGroupsByAuthorLetter();
-            }
-            default -> throw new AssertionError();
-        }
-        updateCollectionDisplaying(bookGroups);
+        updateCollectionDisplaying(collection.getBookGroups(groupBy));
     }
 
     private void updateCollectionDisplaying(SortedMap<String, List<Book>> bookGroups) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
@@ -14,26 +15,46 @@
          <children>
             <HBox spacing="20.0">
                <children>
-                  <HBox HBox.hgrow="ALWAYS">
-                     <children>
-                        <MFXComboBox maxWidth="600.0" text="Collection" HBox.hgrow="ALWAYS" />
-                     </children>
-                  </HBox>
-                  <MFXComboBox maxWidth="-Infinity" text="Sort By" />
+                  <MFXComboBox floatingText="Collection" maxWidth="600.0" prefHeight="50.0" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </MFXComboBox>
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </HBox>
-            <AnchorPane>
-               <children>
-                  <MFXTextField floatingText="Search" layoutX="53.0" layoutY="3.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="20.0" />
-                  <FontAwesomeIconView glyphName="SEARCH" layoutY="40.0" size="30" AnchorPane.leftAnchor="30.0" />
-               </children>
+            <HBox spacing="10.0">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="20.0" top="2.0" />
                </VBox.margin>
-            </AnchorPane>
+               <children>
+                  <MFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #7a0ed9;" text="." textFill="TRANSPARENT">
+                     <HBox.margin>
+                        <Insets left="30.0" top="5.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="25" text="" textAlignment="CENTER" />
+                     </graphic>
+                  </MFXButton>
+                  <AnchorPane HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXTextField fx:id="search" floatingText="Search" layoutX="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <MFXComboBox fx:id="groupBy" floatingText="GroupBy" prefHeight="50.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </MFXComboBox>
+                  <MFXComboBox fx:id="groupBy1" floatingText="SortBy" prefHeight="50.0">
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </MFXComboBox>
+               </children>
+            </HBox>
             <AnchorPane fx:id="bookListPane" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets top="5.0" />

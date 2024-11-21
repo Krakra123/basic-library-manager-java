@@ -8,7 +8,6 @@ import app.managers.BookCollectionHandler.GroupByType;
 public class UserLibraryManager extends BaseManager {
     
     private static final String USER_LIBRARY_UI = "UserLibraryUI";
-    private static final int BOOK_NUMBER_DISPLAY_PER_ROW = 5;
 
     private LoadableFXMLContent userLibraryFXMLContent;
     public LoadableFXMLContent getUserLibraryFXMLContent() {

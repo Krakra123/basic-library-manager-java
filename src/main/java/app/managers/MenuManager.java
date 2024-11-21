@@ -8,7 +8,6 @@ import app.managers.BookCollectionHandler.GroupByType;
 public class MenuManager extends BaseManager {
 
     private static final String MAIN_MENU_FXML = "MenuUI";
-    private static final int BOOK_NUMBER_DISPLAY_PER_ROW = 5;
 
     private LoadableFXMLContent mainMenuFXMLContent;
     public LoadableFXMLContent getMainMenuFXMLContent() {

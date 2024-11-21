@@ -72,7 +72,7 @@ public class AppManager {
         BookCollection collection = new BookCollection();
         collection.add(BookAPI.getBook("3KgoyQEACAAJ"));
         collection.add(BookAPI.getBook("Zi02DwAAQBAJ"));
-        mainDisplayManager.getMenuManager().updateBookCollectionDisplay(collection, GroupByType.TITLE);
+        mainDisplayManager.getMenuManager().updateBookCollectionDisplay(collection, GroupByType.AUTHOR);
     }
 
     public final void openLoginWindow() {

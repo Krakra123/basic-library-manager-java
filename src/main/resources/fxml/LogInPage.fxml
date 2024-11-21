@@ -12,12 +12,12 @@
    <children>
       <MFXTextField fx:id="username" floatingText="Username" layoutX="95.0" layoutY="125.0" prefHeight="30.0" prefWidth="260.0" />
       <MFXPasswordField fx:id="password" floatingText="Password" layoutX="95.0" layoutY="200.0" prefHeight="30.0" prefWidth="260.0" />
-      <MFXButton layoutX="106.0" layoutY="277.0" onAction="#handleLogin" prefHeight="49.0" prefWidth="90.0" text="Login">
+      <MFXButton buttonType="RAISED" layoutX="106.0" layoutY="277.0" onAction="#handleLogin" prefHeight="49.0" prefWidth="90.0" text="Login">
          <font>
             <Font size="14.0" />
          </font>
       </MFXButton>
-      <MFXButton layoutX="239.0" layoutY="277.0" onAction="#handleRegister" prefHeight="49.0" prefWidth="90.0" text="Register">
+      <MFXButton buttonType="RAISED" layoutX="239.0" layoutY="277.0" onAction="#handleRegister" prefHeight="49.0" prefWidth="90.0" text="Register">
          <font>
             <Font size="14.0" />
          </font>

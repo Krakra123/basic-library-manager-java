@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="400.0" minWidth="300.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookDetailsDisplayController">
    <children>
       <MFXScrollPane hbarPolicy="NEVER" pannable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -30,7 +29,7 @@
                               <Image url="@../pic/no-cover.png" />
                            </image>
                         </ImageView>
-                        <MFXButton fx:id="saveButton" prefHeight="60.0" prefWidth="60.0" rippleColor="WHITE" style="-fx-background-color: #7a0ed9;" text="." textFill="TRANSPARENT">
+                        <MFXButton fx:id="saveButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" rippleColor="WHITE" style="-fx-background-color: #7a0ed9;" text="." textFill="TRANSPARENT">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="SAVE" selectionFill="#6b6b6b" size="40" />
                            </graphic>

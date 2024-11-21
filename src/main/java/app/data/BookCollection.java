@@ -5,77 +5,62 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.List;
 
+import app.managers.BookCollectionHandler.GroupByType;
+
 @SuppressWarnings("FieldMayBeFinal")
 public class BookCollection {
     
-    private List<Book> bookList;
-    public List<Book> getBookList() {
-        return bookList;
-    }
-
-    private SortedMap<String, List<Book>> bookGroupsByTitleLetter;
-    public SortedMap<String, List<Book>> getBookGroupsByTitleLetter() {
-        return bookGroupsByTitleLetter;
-    }
-
-    private SortedMap<String, List<Book>> bookGroupsByAuthorLetter;
-    public SortedMap<String, List<Book>> getBookGroupsByAuthorLetter() {
-        return bookGroupsByAuthorLetter;
-    }
+    public List<Book> items;
 
     public BookCollection() {
-        bookList = new ArrayList<>();
-        bookGroupsByTitleLetter = new TreeMap<>();
-        bookGroupsByAuthorLetter = new TreeMap<>();
+        items = new ArrayList<>();
     }
 
     public void add(Book book) {
-        if (bookList.contains(book)) {
+        if (items.contains(book)) {
             throw new RuntimeException("Cannot add book.");
         }
 
-        bookList.add(book);
-
-        String titleLetter = String.valueOf(book.volumeInfo.title.charAt(0));
-        if (!bookGroupsByTitleLetter.containsKey(titleLetter)) {
-            bookGroupsByTitleLetter.put(titleLetter, new ArrayList<>());
-        }
-        bookGroupsByTitleLetter.get(titleLetter).add(book);
-
-        String authorLetter = ".";
-        if (!book.volumeInfo.authors.isEmpty()) authorLetter = String.valueOf(book.volumeInfo.authors.get(0).charAt(0));
-        if (!bookGroupsByAuthorLetter.containsKey(authorLetter)) {
-            bookGroupsByAuthorLetter.put(authorLetter, new ArrayList<>());
-        }
-        bookGroupsByAuthorLetter.get(authorLetter).add(book);
+        items.add(book);
     }
 
     public void remove(Book book) {
-        if (!bookList.contains(book)) {
+        if (!items.contains(book)) {
             throw new RuntimeException("Cannot remove book.");
         }
 
-        bookList.remove(book);
-
-        String titleLetter = String.valueOf(book.volumeInfo.title.charAt(0));
-        if (bookGroupsByTitleLetter.containsKey(titleLetter)) {
-            bookGroupsByTitleLetter.get(titleLetter).remove(book);
-        }
-
-        String authorLetter = String.valueOf(book.volumeInfo.authors.get(0).charAt(0));
-        if (bookGroupsByAuthorLetter.containsKey(authorLetter)) {
-            bookGroupsByAuthorLetter.get(authorLetter).remove(book);
-        }
+        items.remove(book);
     }
 
     public void clear() {
-    	bookList.clear();
-
-        bookGroupsByTitleLetter.clear();
-        bookGroupsByAuthorLetter.clear();
+    	items.clear();
     }
 
     public boolean contains(Book book) {
-        return bookList.contains(book);
+        return items.contains(book);
+    }
+
+    public SortedMap<String, List<Book>> getBookGroups(GroupByType type) {
+        SortedMap<String, List<Book>> bookGroups = new TreeMap<>();
+
+        for (Book book : items) {
+            String key = "";
+            switch (type) {
+                case GroupByType.TITLE -> {
+                    key = String.valueOf(book.volumeInfo.title.charAt(0)).toUpperCase();
+                }
+                case GroupByType.AUTHOR -> {
+                    key = book.volumeInfo.authors.get(0);
+                }
+                default -> throw new AssertionError();
+            }
+
+            if (!bookGroups.containsKey(key)) {
+                bookGroups.put(key, new ArrayList<>());
+            }
+            bookGroups.get(key).add(book);
+        }
+
+        return bookGroups;
     }
 }

@@ -80,7 +80,7 @@ public class BookDetailsDisplayController {
         }
         title.setText(book.volumeInfo.title);
         authors.setText(book.volumeInfo.authors.toString().substring(1, book.volumeInfo.authors.toString().length() - 1));
-        publisher.setText("Pulisher: " + book.volumeInfo.publisher + " | " + book.volumeInfo.publishedDate);
+        publisher.setText("Publisher: " + book.volumeInfo.publisher + " | " + book.volumeInfo.publishedDate);
         page.setText("Pages: " + book.volumeInfo.pageCount);
         description.setText("Description: " + book.volumeInfo.description);
         read.setText("Read: " + book.accessInfo.webReaderLink);

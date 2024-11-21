@@ -22,7 +22,7 @@
       <MFXPasswordField fx:id="rePasswordTextField" floatingText="Comfirm password" layoutX="95.0" layoutY="235.0" prefHeight="30.0" prefWidth="260.0" />
       <VBox alignment="TOP_CENTER" layoutX="129.0" layoutY="302.0" prefHeight="50.0" prefWidth="143.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="335.0">
          <children>
-            <MFXButton onAction="#register" prefHeight="49.0" prefWidth="90.0" text="Register">
+            <MFXButton buttonType="RAISED" onAction="#register" prefHeight="49.0" prefWidth="90.0" text="Register">
                <font>
                   <Font size="14.0" />
                </font></MFXButton>
