@@ -10,7 +10,7 @@ public class MainDisplayManager extends BaseManager {
     private static final String MAIN_DISPLAY_FXML = "MainDisplay";
     private static final String TOOLBAR_FXML = "Toolbar";
     private static final int WINDOW_WIDTH = 1200;
-    private static final int WINDOW_HEIGHT = 700;
+    private static final int WINDOW_HEIGHT = 750;
 
     private LoadableFXMLContent mainDisplayFXMLContent;
     public LoadableFXMLContent getMainDisplayFXMLContent() {
@@ -80,7 +80,7 @@ public class MainDisplayManager extends BaseManager {
         toolbarController.setManager(this);
         
         toolbarFXMLContent.openOn(mainDisplayController.toolbarPane);
-        toolbarFXMLContent.stickToVerticalAnchorPane();
+        toolbarFXMLContent.stickToWholeAnchorPane();
         contentPane = mainDisplayController.contentPane;
         
         loadMainMenu();

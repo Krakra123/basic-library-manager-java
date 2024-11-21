@@ -46,7 +46,7 @@ public class BookCollectionHandler {
 
         bookDetailsDisplayFXMLContent = new LoadableFXMLContent(BOOK_DETAILS_DISPLAY_FXML);
         bookDetailsDisplayController = bookDetailsDisplayFXMLContent.getData().getController(BookDetailsDisplayController.class);
-        bookDetailsDisplayController.start();
+        bookDetailsDisplayController.reset();
 
         bookDetailsDisplayFXMLContent.openOn(bookCollectionListController.detailsPane);
         bookDetailsDisplayFXMLContent.stickToWholeAnchorPane();
