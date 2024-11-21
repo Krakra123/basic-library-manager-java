@@ -20,6 +20,11 @@ public class AppManager {
     }
 
     private Utilities.FXMLData windowData;
+
+    public Utilities.FXMLData getWindowData() {
+        return windowData;
+    }
+
     private AnchorPane windowRootPane;
     public final Parent getRoot() {
         return windowData.root;
