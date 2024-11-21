@@ -4,10 +4,11 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.LoginPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.LoginPageController">
    <children>
       <MFXTextField fx:id="username" floatingText="Username" layoutX="95.0" layoutY="125.0" prefHeight="30.0" prefWidth="260.0" />
       <MFXPasswordField fx:id="password" floatingText="Password" layoutX="95.0" layoutY="200.0" prefHeight="30.0" prefWidth="260.0" />
@@ -21,8 +22,12 @@
             <Font size="14.0" />
          </font>
       </MFXButton>
-      <FontAwesomeIconView glyphName="LOCK" layoutX="184.0" layoutY="93.0" size="50" text="" />
-      <FontAwesomeIconView glyphName="USER" layoutX="56.0" layoutY="172.0" size="35" />
-      <FontAwesomeIconView glyphName="KEY" layoutX="46.0" layoutY="237.0" size="35" />
+      <FontAwesomeIconView glyphName="USER" layoutX="51.0" layoutY="162.0" size="30" />
+      <FontAwesomeIconView glyphName="KEY" layoutX="46.0" layoutY="237.0" size="30" />
+      <Label alignment="TOP_CENTER" prefHeight="38.0" prefWidth="400.0" text="LOGIN" AnchorPane.topAnchor="60.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
