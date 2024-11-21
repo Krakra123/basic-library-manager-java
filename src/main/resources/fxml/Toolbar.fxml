@@ -2,14 +2,15 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefWidth="200.0" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ToolbarController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #f6f6f6;" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ToolbarController">
    <children>
       <VBox VBox.vgrow="ALWAYS">
          <children>
-            <MFXButton contentDisplay="TOP" onAction="#openHome" prefHeight="75.0" prefWidth="200.0" text="HOME">
+            <MFXButton contentDisplay="TOP" onAction="#openHome" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #f6f6f6;" text="HOME">
                <graphic>
                   <FontAwesomeIconView glyphName="HOME" size="25" />
                </graphic>
@@ -17,7 +18,7 @@
                   <Font size="14.0" />
                </font>
             </MFXButton>
-            <MFXButton contentDisplay="TOP" onAction="#openLibrary" prefHeight="75.0" prefWidth="200.0" text="LIBRARY">
+            <MFXButton contentDisplay="TOP" onAction="#openLibrary" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #f6f6f6;" text="LIBRARY">
                <graphic>
                   <FontAwesomeIconView glyphName="BOOK" size="25" />
                </graphic>
@@ -25,7 +26,7 @@
                   <Font size="14.0" />
                </font>
             </MFXButton>
-            <MFXButton contentDisplay="TOP" onAction="#openDashboards" prefHeight="75.0" prefWidth="200.0" text="DASHBOARDS">
+            <MFXButton contentDisplay="TOP" onAction="#openDashboards" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #f6f6f6;" text="DASHBOARDS">
                <graphic>
                   <FontAwesomeIconView glyphName="TABLE" size="25" />
                </graphic>
@@ -33,25 +34,27 @@
                   <Font size="14.0" />
                </font>
             </MFXButton>
-         </children>
-      </VBox>
-      <VBox alignment="BOTTOM_LEFT">
-         <children>
-            <MFXButton contentDisplay="TOP" onAction="#openSettings" prefHeight="75.0" prefWidth="200.0" text="SETTINGS">
+            <MFXButton contentDisplay="TOP" onAction="#openSettings" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #f6f6f6;" text="SETTINGS">
                <graphic>
                   <FontAwesomeIconView glyphName="COG" size="25" />
                </graphic>
                <font>
                   <Font size="14.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </MFXButton>
-            <MFXButton contentDisplay="TOP" onAction="#openAccount" prefHeight="75.0" prefWidth="200.0" text="ACCOUNT">
+            <MFXButton contentDisplay="TOP" onAction="#openAccount" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #f6f6f6;" text="ACCOUNT">
                <graphic>
                   <FontAwesomeIconView glyphName="USER" size="25" />
                </graphic>
                <font>
                   <Font size="14.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </MFXButton>
          </children>
       </VBox>
