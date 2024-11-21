@@ -29,8 +29,8 @@ public class App extends Application {
 
         // BookAPI.getBook("3KgoyQEACAAJ");
 
-        appManager.openLoginWindow();
-        // appManager.openMainDisplayWindow();
+        // appManager.openLoginWindow();
+        appManager.openMainDisplayWindow();
 
         // appManager.getMainDisplayManager().getMenuManager().updateBookCollectionDisplay(collection, GroupByType.TITLE);
 

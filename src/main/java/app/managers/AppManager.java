@@ -1,5 +1,8 @@
 package app.managers;
 
+import app.data.Book;
+import app.data.BookCollection;
+import app.managers.BookCollectionHandler.GroupByType;
 import app.util.Utilities;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
@@ -62,8 +65,16 @@ public class AppManager {
 
     public final void openMainDisplayWindow() {
         loadOnWindow(mainDisplayManager.getMainDisplayFXMLContent());
-
-        
+    
+        BookCollection collection = new BookCollection();
+        collection.add(BookAPI.getBook("DKcWE3WXoj8C"));
+        collection.add(BookAPI.getBook("DHgaEAAAQBAJ"));
+        collection.add(BookAPI.getBook("RZ5tDxofW5cC"));
+        collection.add(BookAPI.getBook("QTqDDwAAQBAJ"));
+        collection.add(BookAPI.getBook("o53aDwAAQBAJ"));
+        collection.add(BookAPI.getBook("DaqxDwAAQBAJ"));
+        collection.add(BookAPI.getBook("t0f3-BMADdQC"));
+        mainDisplayManager.getMenuManager().updateBookCollectionDisplay(collection, GroupByType.TITLE);
     }
 
     public final void openLoginWindow() {

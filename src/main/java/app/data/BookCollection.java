@@ -36,13 +36,14 @@ public class BookCollection {
 
         bookList.add(book);
 
-        String titleLetter = String.valueOf(book.title.charAt(0));
+        String titleLetter = String.valueOf(book.volumeInfo.title.charAt(0));
         if (!bookGroupsByTitleLetter.containsKey(titleLetter)) {
             bookGroupsByTitleLetter.put(titleLetter, new ArrayList<>());
         }
         bookGroupsByTitleLetter.get(titleLetter).add(book);
 
-        String authorLetter = String.valueOf(book.author.charAt(0));
+        String authorLetter = ".";
+        if (!book.volumeInfo.authors.isEmpty()) authorLetter = String.valueOf(book.volumeInfo.authors.get(0).charAt(0));
         if (!bookGroupsByAuthorLetter.containsKey(authorLetter)) {
             bookGroupsByAuthorLetter.put(authorLetter, new ArrayList<>());
         }
@@ -56,12 +57,12 @@ public class BookCollection {
 
         bookList.remove(book);
 
-        String titleLetter = String.valueOf(book.title.charAt(0));
+        String titleLetter = String.valueOf(book.volumeInfo.title.charAt(0));
         if (bookGroupsByTitleLetter.containsKey(titleLetter)) {
             bookGroupsByTitleLetter.get(titleLetter).remove(book);
         }
 
-        String authorLetter = String.valueOf(book.author.charAt(0));
+        String authorLetter = String.valueOf(book.volumeInfo.authors.get(0).charAt(0));
         if (bookGroupsByAuthorLetter.containsKey(authorLetter)) {
             bookGroupsByAuthorLetter.get(authorLetter).remove(book);
         }

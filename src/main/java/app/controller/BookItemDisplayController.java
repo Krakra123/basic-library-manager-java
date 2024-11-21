@@ -17,7 +17,9 @@ public class BookItemDisplayController {
     public void update(Book book) {
         data = book;
         
-        title.setText(data.title);
-        author.setText(data.author);
+        title.setText(data.volumeInfo.title);
+        String authorS = "";
+        for (String a : data.volumeInfo.authors) authorS += a;
+        author.setText(authorS);
     }
 }

@@ -35,7 +35,7 @@
             <HBox VBox.vgrow="ALWAYS">
                <children>
                   <AnchorPane fx:id="toolbarPane" />
-                  <AnchorPane fx:id="contentPane" />
+                  <AnchorPane fx:id="contentPane" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
