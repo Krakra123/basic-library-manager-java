@@ -56,6 +56,7 @@ public class BookCollectionHandler {
 
     // Optimize
     public void update(BookCollection collection, GroupByType groupBy) {
+        clear();
         bookCollectionData = collection;
         updateCollectionDisplaying(collection.getBookGroups(groupBy));
     }
@@ -107,6 +108,10 @@ public class BookCollectionHandler {
 
     public void hide() {
         bookCollectionListPaneFXMLContent.hide();
+    }
+
+    public void clear() {
+        bookCollectionListController.listPane.getChildren().clear();
     }
 
     private void onEnable() {

@@ -11,12 +11,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import app.data.Book;
 import app.data.BookCollection;
+import app.interfaces.ICallback;
+import javafx.concurrent.Task;
 
 @SuppressWarnings("CallToPrintStackTrace")
 public class BookAPI {
     private static final String BASE_URL = "https://www.googleapis.com/books/v1/volumes";
     private static final ObjectMapper objectMapper = new ObjectMapper();
-    
+
     public static Book getBook(String id) {
         Book book = new Book();
 
@@ -43,6 +45,8 @@ public class BookAPI {
     }
 
     public static BookCollection getBookCollection(String search, int num) {
+        search = search.trim().replaceAll("\\s", "_");
+
         BookCollection collection = new BookCollection();
 
         String url = BASE_URL + "?q=" + search + "&maxResults=" + num;

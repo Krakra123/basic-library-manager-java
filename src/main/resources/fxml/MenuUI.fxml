@@ -40,7 +40,7 @@
                   <Insets bottom="20.0" top="2.0" />
                </VBox.margin>
                <children>
-                  <MFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #7a0ed9;" text="." textFill="TRANSPARENT">
+                  <MFXButton fx:id="searchButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#search" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #7a0ed9;" text="." textFill="TRANSPARENT">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="25" text="" textAlignment="CENTER" />
                      </graphic>
@@ -50,7 +50,7 @@
                   </MFXButton>
                   <AnchorPane HBox.hgrow="ALWAYS">
                      <children>
-                        <MFXTextField fx:id="search" floatingText="Search" layoutX="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <MFXTextField fx:id="searchText" floatingText="Search" layoutX="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <MFXComboBox fx:id="groupBy" floatingText="GroupBy" prefHeight="50.0">
@@ -58,7 +58,7 @@
                         <Insets />
                      </HBox.margin>
                   </MFXComboBox>
-                  <MFXComboBox fx:id="groupBy1" floatingText="SortBy" prefHeight="50.0">
+                  <MFXComboBox fx:id="searchBy" floatingText="SortBy" prefHeight="50.0">
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin>
