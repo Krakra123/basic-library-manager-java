@@ -34,6 +34,10 @@
                   <Font size="14.0" />
                </font>
             </MFXButton>
+         </children>
+      </VBox>
+      <VBox>
+         <children>
             <MFXButton contentDisplay="TOP" onAction="#openSettings" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #f6f6f6;" text="SETTINGS">
                <graphic>
                   <FontAwesomeIconView glyphName="COG" size="25" />
@@ -42,7 +46,7 @@
                   <Font size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets />
                </VBox.margin>
             </MFXButton>
             <MFXButton contentDisplay="TOP" onAction="#openAccount" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #f6f6f6;" text="ACCOUNT">
@@ -53,7 +57,7 @@
                   <Font size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets />
                </VBox.margin>
             </MFXButton>
          </children>

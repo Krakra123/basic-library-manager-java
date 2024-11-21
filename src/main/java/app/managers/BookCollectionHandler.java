@@ -9,6 +9,7 @@ import app.controller.BookItemDisplayController;
 import app.controller.BookItemGroupDisplayController;
 import app.data.Book;
 import app.data.BookCollection;
+import javafx.application.Platform;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
@@ -55,7 +56,6 @@ public class BookCollectionHandler {
         bookCollectionListPaneFXMLContent.setEnableCallback(() -> { onEnable(); });
     }
 
-    // Optimize
     public void update(BookCollection collection, GroupByType groupBy) {
         clear();
         bookCollectionData = collection;
@@ -67,14 +67,16 @@ public class BookCollectionHandler {
             LoadableFXMLContent bookItemGroupDisplayFXMLContent = new LoadableFXMLContent(BOOK_ITEM_GROUP_DISPLAY_FXML);
             BookItemGroupDisplayController bookItemGroupDisplayController = bookItemGroupDisplayFXMLContent.getData().getController(BookItemGroupDisplayController.class);
             
-            LoadableFXMLContent blankFXMLContent = new LoadableFXMLContent(BLANK_FXML);
-            bookCollectionListController.listPane.getChildren().add(blankFXMLContent.getData().root);
-            blankFXMLContent.setEnable();
+            Platform.runLater(() -> {
+                LoadableFXMLContent blankFXMLContent = new LoadableFXMLContent(BLANK_FXML);
+                bookCollectionListController.listPane.getChildren().add(blankFXMLContent.getData().root);
+                blankFXMLContent.setEnable();
 
-            bookItemGroupDisplayFXMLContent.openOn(blankFXMLContent.getData().getRoot(AnchorPane.class));
-            bookItemGroupDisplayFXMLContent.stickToHorizontalAnchorPane();
+                bookItemGroupDisplayFXMLContent.openOn(blankFXMLContent.getData().getRoot(AnchorPane.class));
+                bookItemGroupDisplayFXMLContent.stickToHorizontalAnchorPane();
 
-            bookItemGroupDisplayController.groupLabel.setText(bookGroup.getKey().toUpperCase());
+                bookItemGroupDisplayController.groupLabel.setText(bookGroup.getKey().toUpperCase());
+            });
 
             placeBookListItemOnGrid(bookGroup.getValue(), bookItemGroupDisplayController.contentPane);
         }
@@ -85,13 +87,15 @@ public class BookCollectionHandler {
             LoadableFXMLContent bookItemDisplayFXMLContent = new LoadableFXMLContent(BOOK_ITEM_DISPLAY_FXML);
             BookItemDisplayController bookItemDisplayController = bookItemDisplayFXMLContent.getData().getController(BookItemDisplayController.class);
 
-            LoadableFXMLContent blankFXMLContent = new LoadableFXMLContent(BLANK_FXML);
-            pane.getChildren().add(blankFXMLContent.getData().root);
-            blankFXMLContent.setEnable();
+            Platform.runLater(() -> {
+                LoadableFXMLContent blankFXMLContent = new LoadableFXMLContent(BLANK_FXML);
+                pane.getChildren().add(blankFXMLContent.getData().root);
+                blankFXMLContent.setEnable();
 
-            bookItemDisplayFXMLContent.openOn(blankFXMLContent.getData().getRoot(AnchorPane.class));
-            bookItemDisplayController.update(book);
-            bookItemDisplayController.setManager(this);
+                bookItemDisplayFXMLContent.openOn(blankFXMLContent.getData().getRoot(AnchorPane.class));
+                bookItemDisplayController.update(book);
+                bookItemDisplayController.setManager(this);
+            });
         }
     }
 
@@ -112,7 +116,9 @@ public class BookCollectionHandler {
     }
 
     public void clear() {
-        bookCollectionListController.listPane.getChildren().clear();
+        Platform.runLater(() -> {
+            bookCollectionListController.listPane.getChildren().clear();
+        });
     }
 
     private void onEnable() {

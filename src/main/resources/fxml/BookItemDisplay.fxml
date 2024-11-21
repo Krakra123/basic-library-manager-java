@@ -14,7 +14,7 @@
             <Font size="1.0" />
          </font>
          <graphic>
-            <AnchorPane>
+            <AnchorPane prefHeight="260.0" prefWidth="165.0">
                <children>
                   <ImageView fx:id="image" fitHeight="183.82" fitWidth="130.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
                   <AnchorPane layoutX="16.390625" layoutY="208.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

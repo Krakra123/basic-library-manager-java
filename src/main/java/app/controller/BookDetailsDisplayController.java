@@ -1,11 +1,14 @@
 package app.controller;
 
 import java.io.File;
+import java.io.IOException;
 
 import app.data.Book;
 import app.data.BookCollection;
 import app.managers.BookAPI;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,6 +26,9 @@ public class BookDetailsDisplayController {
     @FXML
     public Button saveButton;
 
+    @FXML
+    public Button readButton;
+
     @FXML 
     public Label title;
 
@@ -38,13 +44,15 @@ public class BookDetailsDisplayController {
     @FXML 
     public Label description;
 
-    @FXML 
-    public Label read;
-
-    @FXML
-    public Label date;
-
     private Task<ImageView> changeImageTask;
+
+    public void save(ActionEvent event) throws IOException {
+    
+    }
+
+    public void read(ActionEvent event) throws IOException {
+    
+    }
 
     public void reset() {
         if (changeImageTask != null) {
@@ -57,6 +65,8 @@ public class BookDetailsDisplayController {
 
         saveButton.setVisible(false);
         saveButton.setDisable(true);
+        readButton.setVisible(false);
+        readButton.setDisable(true);
 
         loadNoCover();
         title.setText("");
@@ -64,7 +74,6 @@ public class BookDetailsDisplayController {
         publisher.setText("");
         page.setText("");
         description.setText("");
-        read.setText("");
     }
 
     public void update(Book book) {
@@ -78,13 +87,14 @@ public class BookDetailsDisplayController {
 
         saveButton.setVisible(true);
         saveButton.setDisable(false);
+        readButton.setVisible(true);
+        readButton.setDisable(false);
 
         title.setText(book.volumeInfo.title);
         authors.setText(book.volumeInfo.authors.toString().substring(1, book.volumeInfo.authors.toString().length() - 1));
         publisher.setText("Publisher: " + book.volumeInfo.publisher + " | " + book.volumeInfo.publishedDate);
         page.setText("Pages: " + book.volumeInfo.pageCount);
         description.setText("Description: " + book.volumeInfo.description);
-        read.setText("Read: " + book.accessInfo.webReaderLink);
 
         changeImageTask = new Task<ImageView>() {
             @Override
