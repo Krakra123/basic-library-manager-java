@@ -9,7 +9,7 @@ import app.controller.BookItemGroupDisplayController;
 import app.data.Book;
 import app.data.BookCollection;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.FlowPane;
 
 @SuppressWarnings({"exports", "FieldMayBeFinal"})
 public class BookCollectionHandler {
@@ -40,7 +40,7 @@ public class BookCollectionHandler {
     }
 
     // Optimize
-    public void update(BookCollection collection, int numberPerRow, GroupByType groupBy) {
+    public void update(BookCollection collection, GroupByType groupBy) {
         bookCollectionData = collection;
     
         SortedMap<String, List<Book>> bookGroups = bookCollectionData.getBookGroupsByTitleLetter();
@@ -53,10 +53,10 @@ public class BookCollectionHandler {
             }
             default -> throw new AssertionError();
         }
-        updateCollectionDisplaying(numberPerRow, bookGroups);
+        updateCollectionDisplaying(bookGroups);
     }
 
-    private void updateCollectionDisplaying(int numberPerRow, SortedMap<String, List<Book>> bookGroups) {
+    private void updateCollectionDisplaying(SortedMap<String, List<Book>> bookGroups) {
         for (SortedMap.Entry<String, List<Book>> bookGroup : bookGroups.entrySet()) {
             LoadableFXMLContent bookItemGroupDisplayFXMLContent = new LoadableFXMLContent(BOOK_ITEM_GROUP_DISPLAY_FXML);
             BookItemGroupDisplayController bookItemGroupDisplayController = bookItemGroupDisplayFXMLContent.getData().getController(BookItemGroupDisplayController.class);
@@ -70,26 +70,21 @@ public class BookCollectionHandler {
 
             bookItemGroupDisplayController.groupLabel.setText(bookGroup.getKey().toUpperCase());
 
-            placeBookListItemOnGrid(bookGroup.getValue(), bookItemGroupDisplayController.contentPane, numberPerRow);
+            placeBookListItemOnGrid(bookGroup.getValue(), bookItemGroupDisplayController.contentPane);
         }
     }
 
-    private void placeBookListItemOnGrid(List<Book> bookList, GridPane grid, int numberPerRow) {
-        int x = 0, y = 0;
+    private void placeBookListItemOnGrid(List<Book> bookList, FlowPane pane) {
         for (Book book : bookList) {
             LoadableFXMLContent bookItemDisplayFXMLContent = new LoadableFXMLContent(BOOK_ITEM_DISPLAY_FXML);
             BookItemDisplayController bookItemDisplayController = bookItemDisplayFXMLContent.getData().getController(BookItemDisplayController.class);
 
-            grid.add(bookItemDisplayFXMLContent.getData().root, x, y);
-            bookItemDisplayFXMLContent.setEnable();
+            LoadableFXMLContent blankFXMLContent = new LoadableFXMLContent(BLANK_FXML);
+            pane.getChildren().add(blankFXMLContent.getData().root);
+            blankFXMLContent.setEnable();
 
+            bookItemDisplayFXMLContent.openOn(blankFXMLContent.getData().getRoot(AnchorPane.class));
             bookItemDisplayController.update(book);
-        
-            x++;
-            if (x >= numberPerRow) {
-                x = 0;
-                y++;
-            }
         }
     }
 

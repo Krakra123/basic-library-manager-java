@@ -31,7 +31,7 @@ public class UserLibraryManager extends BaseManager {
     }
 
     public void updateBookCollectionDisplay(BookCollection collection, GroupByType groupBy) {
-        bookCollectionDisplay.update(collection, BOOK_NUMBER_DISPLAY_PER_ROW, groupBy);
+        bookCollectionDisplay.update(collection, groupBy);
     }
 
     private void onEnable() {

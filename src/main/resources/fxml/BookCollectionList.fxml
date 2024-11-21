@@ -11,9 +11,9 @@
       <Label text="Collection" />
       <HBox VBox.vgrow="ALWAYS">
          <children>
-            <MFXScrollPane hbarPolicy="NEVER" minWidth="180.0" vbarPolicy="ALWAYS" HBox.hgrow="ALWAYS">
+            <MFXScrollPane hmax="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="180.0" vmax="10.0" HBox.hgrow="ALWAYS">
                <content>
-                  <VBox fx:id="listPane" />
+                  <VBox fx:id="listPane" fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
                </content>
             </MFXScrollPane>
             <VBox maxWidth="400.0" minWidth="250.0" HBox.hgrow="ALWAYS">
