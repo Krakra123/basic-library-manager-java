@@ -4,11 +4,8 @@ import java.io.File;
 import java.io.IOException;
 
 import app.data.Book;
-import app.data.BookCollection;
-import app.managers.BookAPI;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

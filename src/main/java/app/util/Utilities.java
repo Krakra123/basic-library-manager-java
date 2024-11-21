@@ -56,6 +56,7 @@ public class Utilities {
     private static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 
+    @SuppressWarnings("CallToPrintStackTrace")
     public static FXMLData loadFXML(String fxml) {
         FXMLData data = new FXMLData();
         try {
@@ -69,6 +70,7 @@ public class Utilities {
         return data;
     }
     
+    @SuppressWarnings("CallToPrintStackTrace")
     public static FXMLData loadFXMLWindow(String fxml, String title, Stage stage) {
         FXMLData data = new FXMLData();
         try {

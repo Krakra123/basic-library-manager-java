@@ -1,8 +1,5 @@
 package app.managers;
 
-import app.data.Book;
-import app.data.BookCollection;
-import app.managers.BookCollectionHandler.GroupByType;
 import app.util.Utilities;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;

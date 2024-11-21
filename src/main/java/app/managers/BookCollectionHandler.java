@@ -27,7 +27,6 @@ public class BookCollectionHandler {
     private static final String BOOK_ITEM_GROUP_DISPLAY_FXML = "BookItemGroupDisplay";
     private static final String BOOK_ITEM_DISPLAY_FXML = "BookItemDisplay";
     private static final String BOOK_DETAILS_DISPLAY_FXML = "BookDetailsDisplay";
-    private static final String BLANK_FXML = "Blank";
     
     private LoadableFXMLContent bookCollectionListPaneFXMLContent;
     public LoadableFXMLContent getBookCollectionListPaneFXMLContent() {
@@ -44,7 +43,6 @@ public class BookCollectionHandler {
     private BookCollection bookCollectionData;
 
     private List<LoadableFXMLContent> preBookGroupsContent = new ArrayList<>();
-    private List<LoadableFXMLContent> preBookItemsContent = new ArrayList<>();
 
     public BookCollectionHandler() {
         bookCollectionListPaneFXMLContent = new LoadableFXMLContent(BOOK_COLLECTION_LIST_FXML);

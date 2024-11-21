@@ -11,8 +11,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import app.data.Book;
 import app.data.BookCollection;
-import app.interfaces.ICallback;
-import javafx.concurrent.Task;
 
 @SuppressWarnings("CallToPrintStackTrace")
 public class BookAPI {
