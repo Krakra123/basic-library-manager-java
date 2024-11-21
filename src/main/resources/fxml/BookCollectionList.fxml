@@ -19,7 +19,7 @@
             <VBox maxWidth="400.0" minWidth="250.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Details" />
-                  <AnchorPane maxWidth="400.0" />
+                  <AnchorPane fx:id="detailsPane" maxWidth="400.0" />
                </children>
             </VBox>
          </children>

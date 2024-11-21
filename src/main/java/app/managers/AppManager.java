@@ -70,10 +70,6 @@ public class AppManager {
         collection.add(BookAPI.getBook("DKcWE3WXoj8C"));
         collection.add(BookAPI.getBook("DHgaEAAAQBAJ"));
         collection.add(BookAPI.getBook("RZ5tDxofW5cC"));
-        collection.add(BookAPI.getBook("QTqDDwAAQBAJ"));
-        collection.add(BookAPI.getBook("o53aDwAAQBAJ"));
-        collection.add(BookAPI.getBook("DaqxDwAAQBAJ"));
-        collection.add(BookAPI.getBook("t0f3-BMADdQC"));
         mainDisplayManager.getMenuManager().updateBookCollectionDisplay(collection, GroupByType.TITLE);
     }
 
