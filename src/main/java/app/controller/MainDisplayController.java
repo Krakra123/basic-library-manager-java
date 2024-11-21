@@ -1,26 +1,33 @@
 package app.controller;
 
-import java.io.IOException;
-
-import app.data.BookCollection;
-import app.util.Utilities;
+import app.managers.MainDisplayManager;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 
+@SuppressWarnings("exports")
 public class MainDisplayController {
     
-    @FXML
-    public VBox contentPane;
+    private MainDisplayManager manager;
+
+    public void setManager(MainDisplayManager manager) {
+        this.manager = manager;
+    }
 
     @FXML
-    private void handleMenuButton() {
+    public StackPane contentPane;
 
+    @FXML
+    private void handleHomeButton() {
+        manager.LoadMainMenu();
     }
 
     @FXML
     private void handleLibraryButton() {
+
+    }
+
+    @FXML
+    private void handleDashboardsButton() {
 
     }
 

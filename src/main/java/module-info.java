@@ -1,14 +1,13 @@
 module app {
+	requires com.fasterxml.jackson.core;
+	requires com.fasterxml.jackson.databind;
+	requires jakarta.ws.rs;
+	requires java.base;
     requires javafx.controls;
     requires javafx.fxml;
-	requires spring.context;
-	requires spring.web;
-	requires java.base;
-	requires spring.boot;
-	requires spring.boot.autoconfigure;
-	requires com.fasterxml.jackson.core;
-	requires jakarta.ws.rs;
-	requires com.fasterxml.jackson.databind;
+    requires javafx.graphics;
+	requires resteasy.client;
+	requires org.json;
 
     opens app to javafx.fxml;
     opens app.controller to javafx.fxml;

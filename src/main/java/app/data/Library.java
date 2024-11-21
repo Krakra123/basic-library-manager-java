@@ -3,12 +3,16 @@ package app.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.service.LibraryApiService;
+
 public class Library {
 
 	private BookCollection listOfBooks = new BookCollection();
 	private List<Member> listOfMembers = new ArrayList<Member>();
+	LibraryApiService service;
+	
 	public Library() {
-		
+		this.service = new LibraryApiService(this);
 	}
 	
 	public void clearLibrary() {
@@ -31,4 +35,10 @@ public class Library {
 	public String toString() {
 		return listOfBooks.toString();
 	}
+	
+	public void fetch() {
+		service.fetchAllBooks();
+	}
+	
+	
 }

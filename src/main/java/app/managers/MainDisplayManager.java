@@ -1,37 +1,56 @@
 package app.managers;
 
 import app.controller.MainDisplayController;
-import app.util.Utilities;
-import javafx.scene.Parent;
+import javafx.scene.layout.StackPane;
 
-public class MainDisplayManager {
+@SuppressWarnings({"FieldMayBeFinal", "exports"})
+public class MainDisplayManager extends BaseManager {
     
-    private final String MAIN_DISPLAY_FXML = "MainDisplay";
+    private static final String MAINDISPLAY_FXML = "MainDisplay";
+    private static final int WINDOW_WIDTH = 1600;
+    private static final int WINDOW_HEIGHT = 900;
 
-    private Utilities.FXMLData mainDisplayFXML;
-    private Parent mainDisplayRoot;
+    private LoadableFXMLContent mainDisplayFXMLContent;
+
+    private StackPane contentPane;
+
     private MainDisplayController mainDisplayController;
 
-    private BookCollectionItemManager bookCollectionManager;
+    private BookLibraryManager bookLibraryManager;
 
-    public MainDisplayManager(Utilities.FXMLData data) {
-        mainDisplayFXML = data;
-        if (mainDisplayFXML.controller instanceof MainDisplayController c) {
-            mainDisplayController = c;
-        } else {
-            throw new RuntimeException("MainDisplay has wrong controller");
-        }
+    public MainDisplayManager(AppManager manager) {
+        super(manager);
 
-        mainDisplayRoot = mainDisplayFXML.root;
+        mainDisplayFXMLContent = new LoadableFXMLContent(MAINDISPLAY_FXML);
 
-        bookCollectionManager = new BookCollectionItemManager();
+        mainDisplayController = mainDisplayFXMLContent.getData().getController(MainDisplayController.class);
+
+		mainDisplayFXMLContent.setEnableCallback(() -> { onMainDisplayEnable(); });
+
+        bookLibraryManager = new BookLibraryManager(manager);
     }
 
-    public BookCollectionItemManager getBookCollectionManager() {
-        return bookCollectionManager;
+    public LoadableFXMLContent getMainDisplayContent() {
+        return mainDisplayFXMLContent;
+    }
+    
+	private void onMainDisplayEnable() {
+        manager.getStage().setWidth(WINDOW_WIDTH);
+        manager.getStage().setHeight(WINDOW_HEIGHT + 40);
+        manager.getStage().centerOnScreen();
+
+        mainDisplayController.setManager(this); 
+        
+        contentPane = mainDisplayController.contentPane;
+        
+        LoadMainMenu();
+	}
+
+    public StackPane getContentPane() {
+        return contentPane;
     }
 
-    public void loadUserLibrary() {
-        bookCollectionManager.loadOnParent(mainDisplayController.contentPane);
+    public void LoadMainMenu() {
+        bookLibraryManager.loadOn(contentPane);
     }
 }

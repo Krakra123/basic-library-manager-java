@@ -3,51 +3,81 @@ package app.managers;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.controller.LoginPageController;
+import app.controller.RegisterController;
 import app.data.UserAccount;
 
-public class LogInManager {
+@SuppressWarnings({"FieldMayBeFinal"})
+public class LogInManager extends BaseManager {
 
-	private static UserAccount noAccount = new UserAccount("siuuuuuuuuuu", "KieuVanTuyen"); // TODO remove hard-code
-	private static List<UserAccount> accountList = new ArrayList<UserAccount>();
-	
-	public static UserAccount getAccount(String username) {
-		UserAccount returnAccount = noAccount;
-		for (int i = 0;i < accountList.size(); i++) {
-			if (username.equals(accountList.get(i).getUsername()) ) {
-				returnAccount = accountList.get(i);
-				break;
-			}
+	private static final String LOGIN_PAGE_FXML = "LogInPage";
+	private static final String REGISTER_PAGE_FXML = "RegisterPage";
+
+	private LoadableFXMLContent loginPageFXMLContent;
+	private LoadableFXMLContent registerPageFXMLContent;
+
+    private LoginPageController loginPageController;
+    private RegisterController registerPageController;
+
+	private List<UserAccount> accountList;
+
+	public LogInManager(AppManager manager) {
+		super(manager);
+
+		accountList = new ArrayList<>();
+
+		loginPageFXMLContent = new LoadableFXMLContent(LOGIN_PAGE_FXML);
+		registerPageFXMLContent = new LoadableFXMLContent(REGISTER_PAGE_FXML);
+
+		loginPageController = loginPageFXMLContent.getData().getController(LoginPageController.class);
+		registerPageController = registerPageFXMLContent.getData().getController(RegisterController.class);
+
+		loginPageFXMLContent.setEnableCallback(() -> { onLoginPageEnable(); });
+		registerPageFXMLContent.setEnableCallback(() -> { onRegisterPageEnable(); });
+	}
+
+	public void addAccount(UserAccount account) {
+		accountList.add(account);
+	}
+
+	public void tryLogin(String username, String password) {
+		if (checkAccount(username, password)) {
+			manager.loadContent(manager.getMainDisplayManager().getMainDisplayContent());
+			
+		} else {
+			System.out.println("Username or password not true");
 		}
-		return returnAccount;
 	}
 
-	public static UserAccount getNoAccount() {
-		return noAccount;
+	public void openLoginPage() {
+		manager.loadContent(loginPageFXMLContent);
 	}
-	
-	public static void addNewAccount(UserAccount newAccount) {
-		accountList.add(newAccount);
+	public void openRigisterPage() {
+		manager.loadContent(registerPageFXMLContent);
 	}
-	
-	public static boolean isUsernameExisted(String username) {
+
+	public boolean checkAccount(String username, String password) {
 		for (UserAccount account : accountList) {
-			if (account.getUsername().equals(username)) {
+			if (account.username.equals(username) && account.checkPassword(password)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	public static UserAccount getUserAccount(String username) {
-		for (UserAccount account : accountList) {
-			if (account.getUsername().equals(username)) {
-				return account;
-			}
-		}
-		return null;
+
+	public LoadableFXMLContent getLoginPageContent() {
+		return loginPageFXMLContent;
 	}
-	
-	public static void changePassword(UserAccount account, String password) {
-		account.setPassword(password);
+
+	public LoadableFXMLContent getRegisterPageContent() {
+		return registerPageFXMLContent;
+	}
+
+	private void onLoginPageEnable() {
+		loginPageController.setManager(this);
+	}
+
+	private void onRegisterPageEnable() {
+		registerPageController.setManager(this);
 	}
 }

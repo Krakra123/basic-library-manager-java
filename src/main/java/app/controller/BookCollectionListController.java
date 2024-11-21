@@ -4,22 +4,23 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 
-public class BookCollectionController extends BaseController {
+@SuppressWarnings("exports")
+public class BookCollectionListController {
 
     @FXML 
-    private ListView<VBox> listView;
+    private ListView<StackPane> listView;
 
-    private ObservableList<VBox> bookViews = FXCollections.observableArrayList();
+    private ObservableList<StackPane> bookViews = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
         listView.setItems(bookViews);
     }
 
-    public void addViews(VBox vbox) {
-        bookViews.add(vbox);
+    public void addViews(StackPane pane) {
+        bookViews.add(pane);
     }
 
     public void clearViews() {
