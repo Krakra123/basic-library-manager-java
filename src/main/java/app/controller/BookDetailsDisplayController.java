@@ -3,6 +3,9 @@ package app.controller;
 import java.io.File;
 
 import app.data.Book;
+import app.data.BookCollection;
+import app.managers.BookAPI;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -41,7 +44,13 @@ public class BookDetailsDisplayController {
     @FXML
     public Label date;
 
+    private Task<ImageView> changeImageTask;
+
     public void reset() {
+        if (changeImageTask != null) {
+            changeImageTask.cancel();
+        }
+
         image.setVisible(false);
         image.setDisable(true);
         image.setFitHeight(100);
@@ -59,6 +68,10 @@ public class BookDetailsDisplayController {
     }
 
     public void update(Book book) {
+        if (changeImageTask != null) {
+            changeImageTask.cancel();
+        }
+
         image.setVisible(true);
         image.setDisable(false);
         image.setFitHeight(367.64);
@@ -66,8 +79,30 @@ public class BookDetailsDisplayController {
         saveButton.setVisible(true);
         saveButton.setDisable(false);
 
-        if (!book.volumeInfo.imageLinks.thumbnail.isEmpty()) {
-            Image loadImage = new Image(book.volumeInfo.imageLinks.thumbnail);
+        title.setText(book.volumeInfo.title);
+        authors.setText(book.volumeInfo.authors.toString().substring(1, book.volumeInfo.authors.toString().length() - 1));
+        publisher.setText("Publisher: " + book.volumeInfo.publisher + " | " + book.volumeInfo.publishedDate);
+        page.setText("Pages: " + book.volumeInfo.pageCount);
+        description.setText("Description: " + book.volumeInfo.description);
+        read.setText("Read: " + book.accessInfo.webReaderLink);
+
+        changeImageTask = new Task<ImageView>() {
+            @Override
+            protected ImageView call() throws Exception {
+                image.setImage(null);
+                updateImage(book.volumeInfo.imageLinks.thumbnail);
+                return image;
+            }
+        };
+
+        Thread thread = new Thread(changeImageTask);
+        // thread.setDaemon(true);
+        thread.start();
+    }
+
+    private void updateImage(String url) {
+        if (!url.isEmpty()) {
+            Image loadImage = new Image(url);
             if (!loadImage.isError()) {
                 image.setImage(loadImage);
             }
@@ -78,12 +113,6 @@ public class BookDetailsDisplayController {
         else {
             loadNoCover();
         }
-        title.setText(book.volumeInfo.title);
-        authors.setText(book.volumeInfo.authors.toString().substring(1, book.volumeInfo.authors.toString().length() - 1));
-        publisher.setText("Publisher: " + book.volumeInfo.publisher + " | " + book.volumeInfo.publishedDate);
-        page.setText("Pages: " + book.volumeInfo.pageCount);
-        description.setText("Description: " + book.volumeInfo.description);
-        read.setText("Read: " + book.accessInfo.webReaderLink);
     }
 
     private void loadNoCover() {
