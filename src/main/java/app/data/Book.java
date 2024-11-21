@@ -1,5 +1,7 @@
 package app.data;
 
+import java.util.List;
+
 public class Book {
     
 	private String id;
@@ -9,6 +11,7 @@ public class Book {
     public String publisher;
     public String genre;
     public int yearPublished;
+    private List<String> authors;
     boolean isBorrowed = false;
     
     public Book(String name, String publisher) {
@@ -32,6 +35,14 @@ public class Book {
 		this.isBorrowed = b;
 	}
 
+	public Book(String title, List<String> authors, String publisher) {
+		this.title = title;
+		this.authors = authors;
+		this.publisher = publisher;
+		
+	}
+	
+	
 	public String getId() {
 		return id;
 	}

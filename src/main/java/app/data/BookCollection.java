@@ -3,10 +3,13 @@ package app.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.service.ApiService;
+
 public class BookCollection {
     
     private List<Book> bookList;
-
+    private ApiService service = new ApiService();
+    
     public BookCollection() {
         bookList = new ArrayList<>();
     }
@@ -26,6 +29,10 @@ public class BookCollection {
         	}
         }
     }
+    
+    public int size() {
+		return bookList.size();
+	}
     
     public Book findBookById(String id) {
         for (Book book : bookList) {
@@ -51,4 +58,18 @@ public class BookCollection {
     public String toString() {
     	return bookList.toString();
     }
+
+	public boolean isEmpty() {
+		return (bookList.isEmpty());
+	}
+	
+	public void fetch(String query, int total) {
+		this.service.fetchBooks(query, total, this);
+	}
+	
+	public static void main(String[] args) {
+		BookCollection books = new BookCollection();
+		books.fetch("Java programming", 10);
+		System.out.println(books);
+	}
 }

@@ -2,28 +2,30 @@ package app;
 
 import java.io.IOException;
 
-import app.data.Book;
 import app.data.BookCollection;
-import app.data.Library;
-import app.managers.MainDisplayManager;
-import app.util.Utilities;
+import app.data.UserAccount;
+import app.managers.AppManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SuppressWarnings("exports")
 public class App extends Application {
 
-	
 	private Stage primaryStage;
-	private Library library;
-    private MainDisplayManager mainDisplayManager;
+    private AppManager appManager;
 
     @Override
     public void start(Stage stage) throws IOException {
-    	this.library = new Library();
-        mainDisplayManager = new MainDisplayManager(Utilities.loadWindow("MainDisplay", "LibraryManager", stage, primaryStage));
+    	
+    	BookCollection books = new BookCollection();
+		books.fetch("Java programming", 10);
+		System.out.println(books);
+        primaryStage = stage;
+        appManager = new AppManager(primaryStage);
+
+        appManager.getLoginManager().addAccount(new UserAccount("1", "1"));
+
+        appManager.getLoginManager().openLoginPage();
     }
     
     public static void main(String[] args) {

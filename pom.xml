@@ -49,34 +49,60 @@
             <scope>test</scope>
         </dependency>
         
-        <!-- Add typical dependencies for a web application (spring boot) -->
-        <dependency>
-	        <groupId>org.springframework.boot</groupId>
-	        <artifactId>spring-boot-starter-web</artifactId>
-	    </dependency>
-	    
-	    <!-- Optional: Spring Boot Starter Data JPA (if working with databases) -->
+        <!-- Jersey Core Client -->
 	    <dependency>
-	        <groupId>org.springframework.boot</groupId>
-	        <artifactId>spring-boot-starter-data-jpa</artifactId>
-	    </dependency>
-	    
-	    <!-- Spring Boot Starter -->
-	    <dependency>
-	        <groupId>org.springframework.boot</groupId>
-	        <artifactId>spring-boot-starter</artifactId>
-	    </dependency>
-	    
-	   	<dependency>
 	        <groupId>org.glassfish.jersey.core</groupId>
 	        <artifactId>jersey-client</artifactId>
-	        <version>3.1.1</version>
+	        <version>3.0.4</version> <!-- Compatible version -->
 	    </dependency>
+	
+	    <!-- Jersey JSON Processing -->
 	    <dependency>
 	        <groupId>org.glassfish.jersey.media</groupId>
 	        <artifactId>jersey-media-json-jackson</artifactId>
-	        <version>3.1.1</version>
+	        <version>3.0.4</version>
 	    </dependency>
+	
+	    <!-- Jakarta WS-RS API -->
+	    <dependency>
+	        <groupId>jakarta.ws.rs</groupId>
+	        <artifactId>jakarta.ws.rs-api</artifactId>
+	        <version>4.0.0</version> <!-- Compatible version -->
+	    </dependency>
+	
+	    <!-- Jersey HK2 Dependency Injection -->
+	    <dependency>
+	        <groupId>org.glassfish.jersey.inject</groupId>
+	        <artifactId>jersey-hk2</artifactId>
+	        <version>3.0.4</version>
+	    </dependency>
+	    
+	    <dependency>
+		    <groupId>com.jfoenix</groupId>
+		    <artifactId>jfoenix</artifactId>
+		    <version>9.0.10</version>
+		</dependency>
+		
+		<dependency>
+  <groupId>org.glassfish.jersey.core</groupId>
+  <artifactId>jersey-client</artifactId>
+  <version>3.1.5</version>
+</dependency>
+
+<dependency>
+  <groupId>org.jboss.resteasy</groupId>
+  <artifactId>resteasy-client</artifactId>
+  <version>3.0.2.Final</version>
+</dependency>
+
+
+    
+    
+		<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20210307</version>
+</dependency>
     </dependencies>
 
 	<build>
@@ -86,7 +112,7 @@
 	            <artifactId>maven-compiler-plugin</artifactId>
 	            <version>3.8.0</version>
 	            <configuration>
-	                <release>22</release>
+	                <release>22</release	>
 	            </configuration>
 	        </plugin>
 	        <plugin>
