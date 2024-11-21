@@ -16,6 +16,7 @@ import javafx.scene.layout.FlowPane;
 public class BookCollectionHandler {
 
     public static enum GroupByType {
+        NONE,
         TITLE,
         AUTHOR
     }

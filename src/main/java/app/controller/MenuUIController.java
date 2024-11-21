@@ -37,6 +37,6 @@ public class MenuUIController {
     }
 
     public void search(ActionEvent event) throws IOException {
-        manager.search(searchText.getText(), GroupByType.TITLE);
+        manager.search(searchText.getText(), GroupByType.NONE); // FIXME
     }
 }

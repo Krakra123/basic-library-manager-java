@@ -17,20 +17,24 @@
             <AnchorPane>
                <children>
                   <ImageView fx:id="image" fitHeight="183.82" fitWidth="130.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
-                  <VBox layoutX="17.0" layoutY="208.0" prefHeight="52.0" prefWidth="124.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0">
+                  <AnchorPane layoutX="16.390625" layoutY="208.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <Label fx:id="title" text="TITLE...">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="author" text="Author---">
-                           <font>
-                              <Font name="System Italic" size="12.0" />
-                           </font>
-                        </Label>
+                        <VBox layoutX="0.609375" prefHeight="52.0" prefWidth="124.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0">
+                           <children>
+                              <Label fx:id="title" text="TITLE...">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="author" text="Author---">
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
                      </children>
-                  </VBox>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </graphic>

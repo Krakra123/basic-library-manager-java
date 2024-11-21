@@ -46,6 +46,9 @@ public class BookCollection {
         for (Book book : items) {
             String key = "";
             switch (type) {
+                case GroupByType.NONE -> {
+                    key = "";
+                }
                 case GroupByType.TITLE -> {
                     key = String.valueOf(book.volumeInfo.title.charAt(0)).toUpperCase();
                 }
