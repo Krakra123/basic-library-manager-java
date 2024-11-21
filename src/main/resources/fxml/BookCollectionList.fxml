@@ -11,16 +11,16 @@
    <children>
       <HBox VBox.vgrow="ALWAYS">
          <children>
-            <MFXScrollPane hmax="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="180.0" vmax="10.0" HBox.hgrow="ALWAYS">
+            <MFXScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="180.0" HBox.hgrow="ALWAYS">
                <content>
                   <VBox fx:id="listPane" fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
                </content>
             </MFXScrollPane>
-            <BorderPane maxWidth="400.0" minWidth="300.0" HBox.hgrow="ALWAYS">
+            <BorderPane maxWidth="400.0" minWidth="400.0" HBox.hgrow="ALWAYS">
                <center>
-                  <VBox maxWidth="400.0" minWidth="300.0" style="-fx-background-color: #ffffff;">
+                  <VBox style="-fx-background-color: #ffffff;">
                      <children>
-                        <AnchorPane fx:id="detailsPane" maxWidth="400.0" />
+                        <AnchorPane fx:id="detailsPane" />
                      </children>
                   </VBox>
                </center>

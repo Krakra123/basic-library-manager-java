@@ -61,7 +61,7 @@ public class LogInManager extends BaseManager {
 		}
 
 		if (accountsManager.tryLogin(username, password)) {
-			manager.loadOnWindow(manager.getMainDisplayManager().getMainDisplayFXMLContent());
+			manager.openMainDisplayWindow();
 		} else {
 			System.out.println("Username or password not true");
 		}
@@ -97,6 +97,7 @@ public class LogInManager extends BaseManager {
 	private void onLoginPageEnable() {
 		manager.getStage().setWidth(WINDOW_WIDTH);
         manager.getStage().setHeight(WINDOW_HEIGHT);
+        manager.getStage().centerOnScreen();
 
 		loginPageController.setManager(this);
 	}

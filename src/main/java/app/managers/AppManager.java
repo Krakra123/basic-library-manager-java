@@ -21,6 +21,9 @@ public class AppManager {
 
     private Utilities.FXMLData windowData;
     private AnchorPane windowRootPane;
+    public AnchorPane getRootPane() {
+        return windowRootPane;
+    }
     public final Parent getRoot() {
         return windowData.root;
     }
@@ -67,9 +70,8 @@ public class AppManager {
         loadOnWindow(mainDisplayManager.getMainDisplayFXMLContent());
     
         BookCollection collection = new BookCollection();
-        collection.add(BookAPI.getBook("DKcWE3WXoj8C"));
-        collection.add(BookAPI.getBook("DHgaEAAAQBAJ"));
-        collection.add(BookAPI.getBook("RZ5tDxofW5cC"));
+        collection.add(BookAPI.getBook("3KgoyQEACAAJ"));
+        collection.add(BookAPI.getBook("Zi02DwAAQBAJ"));
         mainDisplayManager.getMenuManager().updateBookCollectionDisplay(collection, GroupByType.TITLE);
     }
 
