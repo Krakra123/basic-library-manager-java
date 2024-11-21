@@ -11,7 +11,7 @@
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <MenuBar>
+            <MenuBar style="-fx-background-color: #f6f6f6;">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>

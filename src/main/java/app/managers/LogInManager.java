@@ -14,7 +14,7 @@ public class LogInManager extends BaseManager {
 	private static final String REGISTER_PAGE_FXML = "RegisterPage";
 
 	private static final int WINDOW_WIDTH = 400;
-    private static final int WINDOW_HEIGHT = 400;
+    private static final int WINDOW_HEIGHT = 500;
 
 	private LoadableFXMLContent loginPageFXMLContent;
 	public LoadableFXMLContent getLoginPageContent() {
@@ -61,7 +61,7 @@ public class LogInManager extends BaseManager {
 		}
 
 		if (accountsManager.tryLogin(username, password)) {
-			manager.loadOnWindow(manager.getMainDisplayManager().getMainDisplayFXMLContent());
+			manager.openMainDisplayWindow();
 		} else {
 			System.out.println("Username or password not true");
 		}
@@ -96,7 +96,7 @@ public class LogInManager extends BaseManager {
 
 	private void onLoginPageEnable() {
 		manager.getStage().setWidth(WINDOW_WIDTH);
-        manager.getStage().setHeight(WINDOW_HEIGHT + 40);
+        manager.getStage().setHeight(WINDOW_HEIGHT);
 
 		loginPageController.setManager(this);
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.SortedMap;
 
 import app.controller.BookCollectionListController;
+import app.controller.BookDetailsDisplayController;
 import app.controller.BookItemDisplayController;
 import app.controller.BookItemGroupDisplayController;
 import app.data.Book;
@@ -22,6 +23,7 @@ public class BookCollectionHandler {
     private static final String BOOK_COLLECTION_LIST_FXML = "BookCollectionList";
     private static final String BOOK_ITEM_GROUP_DISPLAY_FXML = "BookItemGroupDisplay";
     private static final String BOOK_ITEM_DISPLAY_FXML = "BookItemDisplay";
+    private static final String BOOK_DETAILS_DISPLAY_FXML = "BookDetailsDisplay";
     private static final String BLANK_FXML = "Blank";
     
     private LoadableFXMLContent bookCollectionListPaneFXMLContent;
@@ -30,11 +32,24 @@ public class BookCollectionHandler {
     }
     private BookCollectionListController bookCollectionListController;
 
+    private LoadableFXMLContent bookDetailsDisplayFXMLContent;
+    public LoadableFXMLContent getBookDetailsDisplayFXMLContent() {
+        return bookDetailsDisplayFXMLContent;
+    }
+    private BookDetailsDisplayController bookDetailsDisplayController;
+
     private BookCollection bookCollectionData;
 
     public BookCollectionHandler() {
         bookCollectionListPaneFXMLContent = new LoadableFXMLContent(BOOK_COLLECTION_LIST_FXML);
         bookCollectionListController = bookCollectionListPaneFXMLContent.getData().getController(BookCollectionListController.class);
+
+        bookDetailsDisplayFXMLContent = new LoadableFXMLContent(BOOK_DETAILS_DISPLAY_FXML);
+        bookDetailsDisplayController = bookDetailsDisplayFXMLContent.getData().getController(BookDetailsDisplayController.class);
+        bookDetailsDisplayController.start();
+
+        bookDetailsDisplayFXMLContent.openOn(bookCollectionListController.detailsPane);
+        bookDetailsDisplayFXMLContent.stickToWholeAnchorPane();
 
         bookCollectionListPaneFXMLContent.setEnableCallback(() -> { onEnable(); });
     }
@@ -85,7 +100,16 @@ public class BookCollectionHandler {
 
             bookItemDisplayFXMLContent.openOn(blankFXMLContent.getData().getRoot(AnchorPane.class));
             bookItemDisplayController.update(book);
+            bookItemDisplayController.setManager(this);
         }
+    }
+
+    public void viewDetails(Book book) {
+        if (!bookCollectionData.contains(book)) {
+            System.err.println("There's no such book to view details");
+        }
+
+        bookDetailsDisplayController.update(book);
     }
 
     public void openOn(AnchorPane pane) {

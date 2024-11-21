@@ -5,12 +5,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="260.0" prefWidth="165.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookItemDisplayController">
    <children>
-      <MFXButton text="." textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MFXButton onAction="#select" style="-fx-border-color: #f6f6f6; -fx-border-image-width: 50 50 50 50;" text="." textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font size="1.0" />
          </font>
@@ -32,7 +31,6 @@
                         </Label>
                      </children>
                   </VBox>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="260.0" stroke="#00000074" strokeDashOffset="20.0" strokeLineCap="ROUND" strokeMiterLimit="30.0" strokeType="INSIDE" width="165.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </graphic>

@@ -74,4 +74,8 @@ public class BookCollection {
         bookGroupsByTitleLetter.clear();
         bookGroupsByAuthorLetter.clear();
     }
+
+    public boolean contains(Book book) {
+        return bookList.contains(book);
+    }
 }

@@ -8,20 +8,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.RegisterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.RegisterController">
    <children>
-      <FontAwesomeIconView />
-      <MFXTextField fx:id="usernameTextField" floatingText="New username" layoutX="74.0" layoutY="75.0" prefHeight="30.0" prefWidth="260.0" AnchorPane.rightAnchor="66.0" />
-      <MFXPasswordField fx:id="passwordTextField" floatingText="New password" layoutX="74.0" layoutY="134.0" prefHeight="30.0" prefWidth="260.0" />
-      <MFXPasswordField fx:id="rePasswordTextField" floatingText="Reenter password" layoutX="74.0" layoutY="193.0" prefHeight="30.0" prefWidth="260.0" />
-      <Label layoutX="142.0" layoutY="24.0" prefHeight="50.0" prefWidth="159.0" text="Update new password" />
-      <VBox alignment="TOP_CENTER" layoutX="129.0" layoutY="302.0" prefHeight="50.0" prefWidth="143.0" spacing="10.0">
+      <Label alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="38.0" prefWidth="400.0" text="REGISTER" AnchorPane.topAnchor="60.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="usernameTextField" floatingText="Username" layoutX="95.0" layoutY="125.0" prefHeight="30.0" prefWidth="260.0" />
+      <MFXPasswordField fx:id="passwordTextField" floatingText="Password" layoutX="95.0" layoutY="180.0" prefHeight="30.0" prefWidth="260.0" />
+      <MFXPasswordField fx:id="rePasswordTextField" floatingText="Comfirm password" layoutX="95.0" layoutY="235.0" prefHeight="30.0" prefWidth="260.0" />
+      <VBox alignment="TOP_CENTER" layoutX="129.0" layoutY="302.0" prefHeight="50.0" prefWidth="143.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="335.0">
          <children>
-            <MFXButton onAction="#register" text="Register" />
+            <MFXButton onAction="#register" prefHeight="49.0" prefWidth="90.0" text="Register">
+               <font>
+                  <Font size="14.0" />
+               </font></MFXButton>
             <MFXButton onAction="#backToLogin" text="Back to Login" />
          </children>
       </VBox>
-      <MFXCheckbox fx:id="adminCheck" layoutX="127.0" layoutY="255.0" onAction="#registerAsAdmin" text="Register as Admin" />
+      <MFXCheckbox fx:id="adminCheck" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="300.0" onAction="#registerAsAdmin" text="Register as Admin" />
+      <FontAwesomeIconView glyphName="USER" layoutX="51.0" layoutY="160.0" size="30" />
+      <FontAwesomeIconView glyphName="LOCK" layoutX="51.0" layoutY="270.0" size="30" />
+      <FontAwesomeIconView glyphName="LOCK" layoutX="51.0" layoutY="215.0" size="30" />
    </children>
 </AnchorPane>

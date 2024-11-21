@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookCollectionListController">
    <children>
-      <Label text="Collection" />
       <HBox VBox.vgrow="ALWAYS">
          <children>
             <MFXScrollPane hmax="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="180.0" vmax="10.0" HBox.hgrow="ALWAYS">
@@ -16,12 +16,18 @@
                   <VBox fx:id="listPane" fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
                </content>
             </MFXScrollPane>
-            <VBox maxWidth="400.0" minWidth="250.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Label text="Details" />
-                  <AnchorPane fx:id="detailsPane" maxWidth="400.0" />
-               </children>
-            </VBox>
+            <BorderPane maxWidth="400.0" minWidth="300.0" HBox.hgrow="ALWAYS">
+               <center>
+                  <VBox maxWidth="400.0" minWidth="300.0" style="-fx-background-color: #ffffff;">
+                     <children>
+                        <AnchorPane fx:id="detailsPane" maxWidth="400.0" />
+                     </children>
+                  </VBox>
+               </center>
+               <left>
+                  <Pane prefWidth="4.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER" />
+               </left>
+            </BorderPane>
          </children>
       </HBox>
    </children>
