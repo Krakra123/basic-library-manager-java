@@ -1,43 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="260.0" prefWidth="165.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookItemDisplayController">
-   <children>
-      <MFXButton buttonType="RAISED" onAction="#select" style="-fx-border-color: #f6f6f6; -fx-border-image-width: 50 50 50 50;" text="." textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <font>
-            <Font size="1.0" />
-         </font>
-         <graphic>
-            <AnchorPane prefHeight="260.0" prefWidth="165.0">
-               <children>
-                  <ImageView fx:id="image" fitHeight="183.82" fitWidth="130.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
-                  <AnchorPane layoutX="16.390625" layoutY="208.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                     <children>
-                        <VBox layoutX="0.609375" prefHeight="52.0" prefWidth="124.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0">
-                           <children>
-                              <Label fx:id="title" text="TITLE...">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="author" text="Author---">
-                                 <font>
-                                    <Font name="System Italic" size="12.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-         </graphic>
-      </MFXButton>
-   </children>
-</AnchorPane>
+<MFXButton buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#select" prefHeight="260.0" prefWidth="165.0" style="-fx-border-color: #f6f6f6; -fx-border-image-width: 50 50 50 50;" text="." textFill="WHITE" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookItemDisplayController">
+   <font>
+      <Font size="1.0" />
+   </font>
+   <graphic>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="165.0">
+         <children>
+            <ImageView fx:id="image" fitHeight="183.82" fitWidth="130.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" smooth="false" AnchorPane.bottomAnchor="62.17999267578125" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+            <Label fx:id="title" alignment="TOP_LEFT" layoutY="206.0" prefHeight="54.0" prefWidth="61.0" style="-fx-background-color: #ffffff;" text="TITLE..." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="206.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </Label>
+            <Label fx:id="author" alignment="TOP_LEFT" layoutY="233.0" prefHeight="27.0" prefWidth="50.0" text="Author---" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="233.0">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </graphic>
+</MFXButton>

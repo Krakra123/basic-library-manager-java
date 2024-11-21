@@ -3,6 +3,7 @@ package app.managers;
 import app.interfaces.ICallback;
 import app.util.Utilities;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 @SuppressWarnings("exports")
 public class LoadableFXMLContent {
@@ -12,9 +13,12 @@ public class LoadableFXMLContent {
         return fxmlData;
     }
     private boolean loaded = false;
-    private AnchorPane anchorPane;
-    public AnchorPane getAnchorPane() {
-        return anchorPane;
+    private Pane pane;
+    public Pane getPane() {
+        return pane;
+    }
+    public void setPane(Pane pane) {
+        this.pane = pane;
     }
 
     private ICallback enableCallback;
@@ -41,7 +45,7 @@ public class LoadableFXMLContent {
         
         fxmlData.root.setDisable(false);
         pane.getChildren().add(fxmlData.root);
-        anchorPane = pane;
+        this.pane = pane;
 
         if (enableCallback != null) {
             enableCallback.Call();
@@ -55,9 +59,9 @@ public class LoadableFXMLContent {
         }
         loaded = false;
 
-        if (anchorPane != null) {
+        if (pane != null) {
             fxmlData.root.setDisable(true);
-            anchorPane.getChildren().remove(fxmlData.root);
+            pane.getChildren().remove(fxmlData.root);
         }
         else {
             System.out.println("FXML have no root pane");

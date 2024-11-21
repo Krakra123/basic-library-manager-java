@@ -1,5 +1,6 @@
 package app.managers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
 
@@ -42,6 +43,9 @@ public class BookCollectionHandler {
 
     private BookCollection bookCollectionData;
 
+    private List<LoadableFXMLContent> preBookGroupsContent = new ArrayList<>();
+    private List<LoadableFXMLContent> preBookItemsContent = new ArrayList<>();
+
     public BookCollectionHandler() {
         bookCollectionListPaneFXMLContent = new LoadableFXMLContent(BOOK_COLLECTION_LIST_FXML);
         bookCollectionListController = bookCollectionListPaneFXMLContent.getData().getController(BookCollectionListController.class);
@@ -57,45 +61,47 @@ public class BookCollectionHandler {
     }
 
     public void update(BookCollection collection, GroupByType groupBy) {
-        clear();
         bookCollectionData = collection;
-        updateCollectionDisplaying(collection.getBookGroups(groupBy));
+        Platform.runLater(() -> {
+            clear();
+            updateCollectionDisplaying(collection.getBookGroups(groupBy));
+        });
     }
 
     private void updateCollectionDisplaying(SortedMap<String, List<Book>> bookGroups) {
+        int index = 0;
         for (SortedMap.Entry<String, List<Book>> bookGroup : bookGroups.entrySet()) {
-            LoadableFXMLContent bookItemGroupDisplayFXMLContent = new LoadableFXMLContent(BOOK_ITEM_GROUP_DISPLAY_FXML);
-            BookItemGroupDisplayController bookItemGroupDisplayController = bookItemGroupDisplayFXMLContent.getData().getController(BookItemGroupDisplayController.class);
+            if (index >= preBookGroupsContent.size()) {
+                LoadableFXMLContent temp = new LoadableFXMLContent(BOOK_ITEM_GROUP_DISPLAY_FXML);
+                preBookGroupsContent.add(temp);
+
+                temp.setEnable();
+                temp.stickToHorizontalAnchorPane();
+            }
+            LoadableFXMLContent content = preBookGroupsContent.get(index);
+            BookItemGroupDisplayController controller = content.getData().getController(BookItemGroupDisplayController.class);
             
-            Platform.runLater(() -> {
-                LoadableFXMLContent blankFXMLContent = new LoadableFXMLContent(BLANK_FXML);
-                bookCollectionListController.listPane.getChildren().add(blankFXMLContent.getData().root);
-                blankFXMLContent.setEnable();
+            bookCollectionListController.listPane.getChildren().add(content.getData().root);
+            content.setPane(bookCollectionListController.listPane);
+            content.setPane(bookCollectionListController.listPane);
+            controller.groupLabel.setText(bookGroup.getKey().toUpperCase());
+            
+            placeBookListItemOnGrid(bookGroup.getValue(), controller.contentPane);
 
-                bookItemGroupDisplayFXMLContent.openOn(blankFXMLContent.getData().getRoot(AnchorPane.class));
-                bookItemGroupDisplayFXMLContent.stickToHorizontalAnchorPane();
-
-                bookItemGroupDisplayController.groupLabel.setText(bookGroup.getKey().toUpperCase());
-            });
-
-            placeBookListItemOnGrid(bookGroup.getValue(), bookItemGroupDisplayController.contentPane);
+            index++;
         }
     }
 
     private void placeBookListItemOnGrid(List<Book> bookList, FlowPane pane) {
+        pane.getChildren().clear();
         for (Book book : bookList) {
             LoadableFXMLContent bookItemDisplayFXMLContent = new LoadableFXMLContent(BOOK_ITEM_DISPLAY_FXML);
             BookItemDisplayController bookItemDisplayController = bookItemDisplayFXMLContent.getData().getController(BookItemDisplayController.class);
 
-            Platform.runLater(() -> {
-                LoadableFXMLContent blankFXMLContent = new LoadableFXMLContent(BLANK_FXML);
-                pane.getChildren().add(blankFXMLContent.getData().root);
-                blankFXMLContent.setEnable();
-
-                bookItemDisplayFXMLContent.openOn(blankFXMLContent.getData().getRoot(AnchorPane.class));
-                bookItemDisplayController.update(book);
-                bookItemDisplayController.setManager(this);
-            });
+            pane.getChildren().add(bookItemDisplayFXMLContent.getData().root);
+            bookItemDisplayFXMLContent.setEnable();
+            bookItemDisplayController.update(book);
+            bookItemDisplayController.setManager(this);
         }
     }
 
@@ -116,9 +122,7 @@ public class BookCollectionHandler {
     }
 
     public void clear() {
-        Platform.runLater(() -> {
-            bookCollectionListController.listPane.getChildren().clear();
-        });
+        bookCollectionListController.listPane.getChildren().clear();
     }
 
     private void onEnable() {

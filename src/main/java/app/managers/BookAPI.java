@@ -45,7 +45,7 @@ public class BookAPI {
     }
 
     public static BookCollection getBookCollection(String search, int num) {
-        search = search.trim().replaceAll("\\s", "_");
+        search = search.trim().replaceAll("\\s", "+");
 
         BookCollection collection = new BookCollection();
 

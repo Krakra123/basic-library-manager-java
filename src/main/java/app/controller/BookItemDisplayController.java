@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import app.data.Book;
 import app.managers.BookCollectionHandler;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -32,15 +33,38 @@ public class BookItemDisplayController {
 
     private Book data;
 
+    private Task<ImageView> changeImageTask;
+
     public void update(Book book) {
+        if (changeImageTask != null) {
+            changeImageTask.cancel();
+        }
+
         data = book;
 
         image.setVisible(true);
         image.setDisable(false);
         image.setFitHeight(367.64);
 
-        if (!book.volumeInfo.imageLinks.thumbnail.isEmpty()) {
-            Image loadImage = new Image(book.volumeInfo.imageLinks.thumbnail);
+        title.setText(book.volumeInfo.title);
+        author.setText(book.volumeInfo.authors.toString().substring(1, book.volumeInfo.authors.toString().length() - 1));
+
+        changeImageTask = new Task<ImageView>() { 
+            @Override
+            protected ImageView call() throws Exception {
+                image.setImage(null);
+                updateImage(book.volumeInfo.imageLinks.thumbnail);
+                return image;
+            }
+        };
+
+        Thread thread = new Thread(changeImageTask);
+        thread.start();
+    }
+
+    private void updateImage(String url) {
+        if (!url.isEmpty()) {
+            Image loadImage = new Image(url);
             if (!loadImage.isError()) {
                 image.setImage(loadImage);
             }
@@ -51,8 +75,6 @@ public class BookItemDisplayController {
         else {
             loadNoCover();
         }
-        title.setText(book.volumeInfo.title);
-        author.setText(book.volumeInfo.authors.toString().substring(1, book.volumeInfo.authors.toString().length() - 1));
     }
 
     private void loadNoCover() {

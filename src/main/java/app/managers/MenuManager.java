@@ -3,7 +3,6 @@ package app.managers;
 import app.controller.MenuUIController;
 import app.data.BookCollection;
 import app.managers.BookCollectionHandler.GroupByType;
-import javafx.application.Platform;
 import javafx.concurrent.Task;
 
 @SuppressWarnings({"FieldMayBeFinal", "unused"})
@@ -36,7 +35,7 @@ public class MenuManager extends BaseManager {
         Task<BookCollection> task = new Task<>() {
             @Override
             protected BookCollection call() throws Exception {
-                BookCollection collection = BookAPI.getBookCollection(search, 9);                
+                BookCollection collection = BookAPI.getBookCollection(search, 30);
                 updateBookCollectionDisplay(collection, groupBy);
                 return collection;
             }
@@ -56,7 +55,6 @@ public class MenuManager extends BaseManager {
         });
 
         Thread thread = new Thread(task);
-        thread.setDaemon(true);
         thread.start();
     }
 

@@ -106,7 +106,6 @@ public class BookDetailsDisplayController {
         };
 
         Thread thread = new Thread(changeImageTask);
-        // thread.setDaemon(true);
         thread.start();
     }
 
