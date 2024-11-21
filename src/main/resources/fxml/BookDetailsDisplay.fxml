@@ -1,77 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="400.0" minHeight="-Infinity" minWidth="250.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookDetailsDisplayController">
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.BookDetailsDisplayController">
    <children>
-      <ImageView fx:id="image" fitHeight="282.8" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-         <viewport>
-            <Rectangle2D />
-         </viewport>
-         <VBox.margin>
-            <Insets bottom="10.0" left="30.0" right="30.0" top="30.0" />
-         </VBox.margin>
-      </ImageView>
-      <Label fx:id="title" text="TITLE: a ddsadsa bcda bcdab cdbac dbjdsa" textOverrun="CENTER_ELLIPSIS" wrapText="true">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-         <VBox.margin>
-            <Insets left="20.0" right="20.0" />
-         </VBox.margin>
-      </Label>
-      <Label fx:id="authors" text="AUTHORS:" textOverrun="CENTER_ELLIPSIS" wrapText="true">
-         <font>
-            <Font name="System Italic" size="16.0" />
-         </font>
-         <VBox.margin>
-            <Insets left="30.0" right="20.0" />
-         </VBox.margin>
-      </Label>
-      <Label fx:id="publisher" text="publisher" textOverrun="CENTER_ELLIPSIS">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <VBox.margin>
-            <Insets left="20.0" right="20.0" top="10.0" />
-         </VBox.margin>
-      </Label>
-      <Label fx:id="page" text="pageCount" textOverrun="CENTER_ELLIPSIS">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <VBox.margin>
-            <Insets left="20.0" right="20.0" />
-         </VBox.margin>
-      </Label>
-      <Label fx:id="description" text="description" textOverrun="CENTER_ELLIPSIS" wrapText="true">
-         <font>
-            <Font size="16.0" />
-         </font>
-         <VBox.margin>
-            <Insets left="20.0" right="20.0" top="10.0" />
-         </VBox.margin>
-      </Label>
-      <Label fx:id="read" text="READ" textOverrun="CENTER_ELLIPSIS" wrapText="true">
-         <font>
-            <Font name="System Italic" size="16.0" />
-         </font>
-         <VBox.margin>
-            <Insets left="20.0" right="20.0" top="20.0" />
-         </VBox.margin>
-      </Label>
-      <Label fx:id="date" text="DateAdded" textFill="#868686" textOverrun="CENTER_ELLIPSIS" wrapText="true">
-         <font>
-            <Font name="System Italic" size="14.0" />
-         </font>
-         <VBox.margin>
-            <Insets bottom="30.0" left="20.0" right="20.0" top="20.0" />
-         </VBox.margin>
-      </Label>
+      <MFXScrollPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <content>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="400.0" minHeight="-Infinity" minWidth="250.0">
+               <children>
+                  <ImageView fx:id="image" fitHeight="282.8" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="30.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label fx:id="title" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="40.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="authors" text="&lt;&lt; Select a book to view &gt;&gt;" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                     <font>
+                        <Font name="System Italic" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="30.0" right="40.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="publisher" textOverrun="CENTER_ELLIPSIS">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="40.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="page" textOverrun="CENTER_ELLIPSIS">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="40.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="description" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="40.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="read" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                     <font>
+                        <Font name="System Italic" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="40.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="date" textFill="#868686" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="30.0" left="20.0" right="40.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </content>
+      </MFXScrollPane>
    </children>
-</VBox>
+</AnchorPane>

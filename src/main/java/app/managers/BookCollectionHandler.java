@@ -99,6 +99,7 @@ public class BookCollectionHandler {
 
             bookItemDisplayFXMLContent.openOn(blankFXMLContent.getData().getRoot(AnchorPane.class));
             bookItemDisplayController.update(book);
+            bookItemDisplayController.setManager(this);
         }
     }
 
@@ -107,7 +108,7 @@ public class BookCollectionHandler {
             System.err.println("There's no such book to view details");
         }
 
-
+        bookDetailsDisplayController.update(book);
     }
 
     public void openOn(AnchorPane pane) {
