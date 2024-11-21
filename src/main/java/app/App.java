@@ -3,8 +3,10 @@ package app;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import app.data.Book;
 import app.data.BookCollection;
-import app.data.UserAccount;
+import app.data.Account;
+import app.managers.AccountsManager;
 import app.managers.AppManager;
 import app.managers.BookAPI;
 import app.managers.BookCollectionHandler.GroupByType;
@@ -19,10 +21,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-    	
-    	BookCollection books = new BookCollection();
-		books.fetch("Java programming", 10);
-		System.out.println(books);
+
         primaryStage = stage;
         appManager = new AppManager(primaryStage);
         

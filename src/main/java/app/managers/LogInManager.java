@@ -54,9 +54,14 @@ public class LogInManager extends BaseManager {
 	}
 
 	public void tryLogin(String username, String password) {
-		if (checkAccount(username, password)) {
-			manager.loadContent(manager.getMainDisplayManager().getMainDisplayContent());
-			
+		username = username.trim();
+		if (username.matches(".*\\s.*|^$")) {
+			System.out.println("Username invalid");
+			return;
+		}
+
+		if (accountsManager.tryLogin(username, password)) {
+			manager.loadOnWindow(manager.getMainDisplayManager().getMainDisplayFXMLContent());
 		} else {
 			System.out.println("Username or password not true");
 		}

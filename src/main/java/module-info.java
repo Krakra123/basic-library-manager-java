@@ -4,8 +4,8 @@ module app {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
-	requires resteasy.client;
-	requires org.json;
+    requires de.jensd.fx.glyphs.fontawesome;
+    requires com.fasterxml.jackson.databind;
 
     opens app to javafx.fxml;
     opens app.controller to javafx.fxml;
