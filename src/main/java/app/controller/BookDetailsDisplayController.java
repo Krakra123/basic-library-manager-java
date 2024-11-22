@@ -34,6 +34,9 @@ public class BookDetailsDisplayController {
     public Label authors;
 
     @FXML 
+    public Label cat;
+
+    @FXML 
     public Label publisher;
 
     @FXML 
@@ -90,6 +93,7 @@ public class BookDetailsDisplayController {
 
         title.setText(book.volumeInfo.title);
         authors.setText(book.volumeInfo.authors.toString().substring(1, book.volumeInfo.authors.toString().length() - 1));
+        cat.setText("Categories: " + book.volumeInfo.categories.toString().substring(1, book.volumeInfo.categories.toString().length() - 1));
         publisher.setText("Publisher: " + book.volumeInfo.publisher + " | " + book.volumeInfo.publishedDate);
         page.setText("Pages: " + book.volumeInfo.pageCount);
         description.setText("Description: " + book.volumeInfo.description);

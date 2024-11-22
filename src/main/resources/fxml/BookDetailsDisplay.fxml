@@ -67,6 +67,14 @@
                         <Insets left="30.0" />
                      </VBox.margin>
                   </Label>
+                  <Label fx:id="cat" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                     <font>
+                        <Font name="System Italic" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
                   <Label fx:id="publisher" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font size="14.0" />

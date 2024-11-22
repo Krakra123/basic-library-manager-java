@@ -41,7 +41,7 @@ public class MenuUIController {
 
     @FXML
     public void initialize() {
-        groupBy.getItems().addAll("None", "Title", "Author");
+        groupBy.getItems().addAll("None", "Title", "Category", "Author");
         groupBy.setValue("None");
         groupBy.setOnAction(event -> {
             GroupByType type = GroupByType.NONE;
@@ -49,6 +49,7 @@ public class MenuUIController {
                 case "None" -> { type = GroupByType.NONE; }
                 case "Title" -> { type = GroupByType.TITLE; }
                 case "Author" -> { type = GroupByType.AUTHOR; }
+                case "Category" -> { type = GroupByType.CATEGORY; }
             }
             setGroupBy(type);
         });

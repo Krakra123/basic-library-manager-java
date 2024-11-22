@@ -22,7 +22,8 @@ public class BookCollectionHandler {
     public static enum GroupByType {
         NONE,
         TITLE,
-        AUTHOR
+        AUTHOR,
+        CATEGORY
     }
 
     public static enum SortByType {

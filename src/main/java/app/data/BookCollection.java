@@ -69,6 +69,11 @@ public class BookCollection {
                     if (!book.volumeInfo.authors.isEmpty()) author = book.volumeInfo.authors.get(0);
                     key = author.toUpperCase();
                 }
+                case GroupByType.CATEGORY -> {
+                    String author = ".";
+                    if (!book.volumeInfo.categories.isEmpty()) author = book.volumeInfo.categories.get(0);
+                    key = author.toUpperCase();
+                }
                 default -> throw new AssertionError();
             }
 
