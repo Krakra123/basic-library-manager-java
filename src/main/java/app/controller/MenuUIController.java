@@ -2,7 +2,9 @@ package app.controller;
 
 import java.io.IOException;
 
+import app.managers.BookCollectionHandler;
 import app.managers.BookCollectionHandler.GroupByType;
+import app.managers.BookCollectionHandler.SortByType;
 import app.managers.MenuManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,6 +37,7 @@ public class MenuUIController {
     public ComboBox<String> sortBy;
 
     private GroupByType groupByType = GroupByType.NONE;
+    private SortByType sortByType = SortByType.ASCENDING;
 
     @FXML
     public void initialize() {
@@ -49,6 +52,17 @@ public class MenuUIController {
             }
             setGroupBy(type);
         });
+
+        sortBy.getItems().addAll("Ascending", "Descending");
+        sortBy.setValue("Ascending");
+        sortBy.setOnAction(event -> {
+            SortByType type = SortByType.ASCENDING;
+            switch (sortBy.getValue()) {
+                case "Ascending" -> { type = SortByType.ASCENDING; }
+                case "Descending" -> { type = SortByType.DESCENDING; }
+            }
+            setSortBy(type);
+        });
     }
 
     public void lockSearch() {
@@ -61,10 +75,13 @@ public class MenuUIController {
     }
 
     public void search(ActionEvent event) throws IOException {
-        manager.search(searchText.getText(), groupByType); // FIXME
+        manager.search(searchText.getText(), groupByType, sortByType);
     }
 
     public void setGroupBy(GroupByType type) {
         groupByType = type;
+    }
+    public void setSortBy(SortByType type) {
+        sortByType = type;
     }
 }

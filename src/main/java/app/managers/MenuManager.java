@@ -3,6 +3,7 @@ package app.managers;
 import app.controller.MenuUIController;
 import app.data.BookCollection;
 import app.managers.BookCollectionHandler.GroupByType;
+import app.managers.BookCollectionHandler.SortByType;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 
@@ -31,7 +32,7 @@ public class MenuManager extends BaseManager {
         mainMenuFXMLContent.setDisableCallback(() -> { onDisable(); });
     }
 
-    public void search(String search, GroupByType groupBy) {
+    public void search(String search, GroupByType groupBy, SortByType sortBy) {
 
         Task<BookCollection> task = new Task<>() {
             @Override
@@ -43,7 +44,7 @@ public class MenuManager extends BaseManager {
 
         task.setOnSucceeded(event -> {
             Platform.runLater(() -> {
-                updateBookCollectionDisplay(task.getValue(), groupBy);
+                updateBookCollectionDisplay(task.getValue(), groupBy, sortBy);
                 
                 mainMenuUIController.unlockSearch();
                 bookCollectionDisplay.unlock();
@@ -68,8 +69,8 @@ public class MenuManager extends BaseManager {
         thread.start();
     }
 
-    private void updateBookCollectionDisplay(BookCollection collection, GroupByType groupBy) {
-        bookCollectionDisplay.update(collection, groupBy);
+    private void updateBookCollectionDisplay(BookCollection collection, GroupByType groupBy, SortByType sortBy) {
+        bookCollectionDisplay.update(collection, groupBy, sortBy);
     }
 
     private void onEnable() {

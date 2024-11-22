@@ -2,7 +2,9 @@ package app.managers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.SortedMap;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.NavigableMap;
 
 import app.controller.BookCollectionListController;
 import app.controller.BookDetailsDisplayController;
@@ -10,6 +12,7 @@ import app.controller.BookItemDisplayController;
 import app.controller.BookItemGroupDisplayController;
 import app.data.Book;
 import app.data.BookCollection;
+import app.managers.BookCollectionHandler.SortByType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
@@ -20,6 +23,11 @@ public class BookCollectionHandler {
         NONE,
         TITLE,
         AUTHOR
+    }
+
+    public static enum SortByType {
+        ASCENDING,
+        DESCENDING
     }
 
     private static final String BOOK_COLLECTION_LIST_FXML = "BookCollectionList";
@@ -64,15 +72,19 @@ public class BookCollectionHandler {
         bookCollectionListPaneFXMLContent.setEnableCallback(() -> { onEnable(); });
     }
 
-    public void update(BookCollection collection, GroupByType groupBy) {
+    public void update(BookCollection collection, GroupByType groupBy, SortByType sortBy) {
         bookCollectionData = collection;
         clear();
-        updateCollectionDisplaying(collection.getBookGroups(groupBy));
+        updateCollectionDisplaying(collection.getBookGroups(groupBy), sortBy);
     }
 
-    private void updateCollectionDisplaying(SortedMap<String, List<Book>> bookGroups) {
+    private void updateCollectionDisplaying(TreeMap<String, List<Book>> bookGroups, SortByType sort) {
+        NavigableMap<String, List<Book>> neviMap;
+        if (sort == SortByType.DESCENDING) neviMap = bookGroups.descendingMap();
+        else neviMap = bookGroups;
+
         int index = 0;
-        for (SortedMap.Entry<String, List<Book>> bookGroup : bookGroups.entrySet()) {
+        for (Map.Entry<String, List<Book>> bookGroup : neviMap.entrySet()) {
             if (index >= preBookGroupsContent.size()) {
                 LoadableFXMLContent temp = new LoadableFXMLContent(BOOK_ITEM_GROUP_DISPLAY_FXML);
                 preBookGroupsContent.add(temp);

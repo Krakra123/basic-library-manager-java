@@ -1,7 +1,9 @@
 package app.data;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
-import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.regex.Pattern;
 import java.util.TreeMap;
 import java.util.List;
 
@@ -40,8 +42,8 @@ public class BookCollection {
         return items.contains(book);
     }
 
-    public SortedMap<String, List<Book>> getBookGroups(GroupByType type) {
-        SortedMap<String, List<Book>> bookGroups = new TreeMap<>();
+    public TreeMap<String, List<Book>> getBookGroups(GroupByType type) {
+        TreeMap<String, List<Book>> bookGroups = new TreeMap<>();
 
         for (Book book : items) {
             String key = "";
@@ -50,10 +52,22 @@ public class BookCollection {
                     key = "";
                 }
                 case GroupByType.TITLE -> {
-                    key = String.valueOf(book.volumeInfo.title.charAt(0)).toUpperCase();
+                    String title = book.volumeInfo.title;
+                    String normalized = Normalizer.normalize(title, Normalizer.Form.NFD);
+                    title = normalized.replaceAll("\\p{M}", "");
+                    title = title.replace("Ă", "A");
+                    title = title.replace("Â", "A");
+                    title = title.replace("Đ", "D");
+                    title = title.replace("Ê", "E");
+                    title = title.replace("Ô", "O");
+                    title = title.replace("Ơ", "O");
+                    title = title.replace("Ư", "U");
+                    key = String.valueOf(title.charAt(0)).toUpperCase();
                 }
                 case GroupByType.AUTHOR -> {
-                    key = book.volumeInfo.authors.get(0);
+                    String author = ".";
+                    if (!book.volumeInfo.authors.isEmpty()) author = book.volumeInfo.authors.get(0);
+                    key = author.toUpperCase();
                 }
                 default -> throw new AssertionError();
             }

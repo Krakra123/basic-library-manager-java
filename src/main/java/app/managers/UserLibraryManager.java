@@ -3,6 +3,7 @@ package app.managers;
 import app.controller.UserLibraryUIController;
 import app.data.BookCollection;
 import app.managers.BookCollectionHandler.GroupByType;
+import app.managers.BookCollectionHandler.SortByType;
 
 @SuppressWarnings({"FieldMayBeFinal"})
 public class UserLibraryManager extends BaseManager {
@@ -29,8 +30,8 @@ public class UserLibraryManager extends BaseManager {
         userLibraryFXMLContent.setDisableCallback(() -> { onDisable(); });
     }
 
-    public void updateBookCollectionDisplay(BookCollection collection, GroupByType groupBy) {
-        bookCollectionDisplay.update(collection, groupBy);
+    public void updateBookCollectionDisplay(BookCollection collection, GroupByType groupBy, SortByType sortBy) {
+        bookCollectionDisplay.update(collection, groupBy, sortBy);
     }
 
     private void onEnable() {
