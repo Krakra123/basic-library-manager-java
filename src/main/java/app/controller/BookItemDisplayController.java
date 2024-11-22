@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import app.data.Book;
 import app.managers.BookCollectionHandler;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,14 +50,8 @@ public class BookItemDisplayController {
         title.setText(book.volumeInfo.title);
         author.setText(book.volumeInfo.authors.toString().substring(1, book.volumeInfo.authors.toString().length() - 1));
 
-        changeImageTask = new Task<ImageView>() { 
-            @Override
-            protected ImageView call() throws Exception {
-                image.setImage(null);
-                updateImage(book.volumeInfo.imageLinks.thumbnail);
-                return image;
-            }
-        };
+        image.setImage(null);
+        updateImage(book.volumeInfo.imageLinks.thumbnail);
 
         Thread thread = new Thread(changeImageTask);
         thread.start();
@@ -64,7 +59,7 @@ public class BookItemDisplayController {
 
     private void updateImage(String url) {
         if (!url.isEmpty()) {
-            Image loadImage = new Image(url);
+            Image loadImage = new Image(url, true);
             if (!loadImage.isError()) {
                 image.setImage(loadImage);
             }
@@ -79,7 +74,7 @@ public class BookItemDisplayController {
 
     private void loadNoCover() {
         File file = new File(NO_COVER_DIR);
-        Image loadImage = new Image(file.toURI().toString());
+        Image loadImage = new Image(file.toURI().toString(), true);
         image.setImage(loadImage);
     }
 

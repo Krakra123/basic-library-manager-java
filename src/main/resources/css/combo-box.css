@@ -1,0 +1,20 @@
+.combo-box {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #cccccc;
+    -fx-padding: 5;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: white;
+}
+
+.combo-box .list-cell:selected {
+    -fx-text-fill: black;
+}
+
+/* Highlight on hover */
+.combo-box .list-cell:hover {
+    -fx-background-color: #e0e0e0;
+}

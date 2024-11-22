@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -93,14 +94,8 @@ public class BookDetailsDisplayController {
         page.setText("Pages: " + book.volumeInfo.pageCount);
         description.setText("Description: " + book.volumeInfo.description);
 
-        changeImageTask = new Task<ImageView>() {
-            @Override
-            protected ImageView call() throws Exception {
-                image.setImage(null);
-                updateImage(book.volumeInfo.imageLinks.thumbnail);
-                return image;
-            }
-        };
+        image.setImage(null);
+        updateImage(book.volumeInfo.imageLinks.thumbnail);
 
         Thread thread = new Thread(changeImageTask);
         thread.start();
@@ -108,9 +103,9 @@ public class BookDetailsDisplayController {
 
     private void updateImage(String url) {
         if (!url.isEmpty()) {
-            Image loadImage = new Image(url);
+            Image loadImage = new Image(url, true);
             if (!loadImage.isError()) {
-                image.setImage(loadImage);
+                image.setImage(loadImage); 
             }
             else {
                 loadNoCover();
@@ -123,7 +118,7 @@ public class BookDetailsDisplayController {
 
     private void loadNoCover() {
         File file = new File(NO_COVER_DIR);
-        Image loadImage = new Image(file.toURI().toString());
+        Image loadImage = new Image(file.toURI().toString(), true);
         image.setImage(loadImage);
     }
 }

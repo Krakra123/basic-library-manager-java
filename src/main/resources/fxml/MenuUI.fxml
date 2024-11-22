@@ -2,9 +2,9 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -53,16 +53,12 @@
                         <MFXTextField fx:id="searchText" floatingText="Search" layoutX="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                      </children>
                   </AnchorPane>
-                  <MFXComboBox fx:id="groupBy" floatingText="GroupBy" prefHeight="50.0">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </MFXComboBox>
-                  <MFXComboBox fx:id="searchBy" floatingText="SortBy" prefHeight="50.0">
+                  <ComboBox fx:id="groupBy" prefHeight="50.0" prefWidth="150.0" promptText="GroupBy" stylesheets="@../css/combo-box.css" />
+                  <ComboBox fx:id="sortBy" prefHeight="50.0" prefWidth="150.0" promptText="SortBy" stylesheets="@../css/combo-box.css">
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin>
-                  </MFXComboBox>
+                  </ComboBox>
                </children>
             </HBox>
             <AnchorPane fx:id="contentPane" VBox.vgrow="ALWAYS">
