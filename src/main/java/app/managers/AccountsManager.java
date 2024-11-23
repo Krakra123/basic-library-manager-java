@@ -10,6 +10,8 @@ import java.util.stream.Stream;
 import app.data.Account;
 import app.data.DataHash;
 import app.data.Account.AccountType;
+import app.data.Book;
+import app.data.BookCollection;
 
 @SuppressWarnings("CallToPrintStackTrace")
 public class AccountsManager {
@@ -17,6 +19,8 @@ public class AccountsManager {
     private static final String ACCOUNTS_SAVE_DIR = "data/accounts.txt";
 
     private final List<Account> accountList;
+    
+    private Account currentAccount;
 
     public AccountsManager() {
         accountList = new ArrayList<>();
@@ -52,6 +56,8 @@ public class AccountsManager {
         try {
             Account account = findAccount(username);
             if (account.checkPassword(password)) {
+            	//set currentAccount to login account
+            	currentAccount = account;
                 return true;
             }
         } catch (Exception e) {
@@ -106,5 +112,16 @@ public class AccountsManager {
         }
         
         throw new Exception("Username not found");
+    }
+    
+    public void deleteAccount(Account account) {
+    	// change to AccountList
+    	currentAccount.deleteAccount(account);
+    	//change to accounts.txt
+    }
+    
+    public void addBookToCollection(Book book, BookCollection collection) {
+    	currentAccount.addBookToCollection(book, collection);
+    	//change to account.txt
     }
 }
