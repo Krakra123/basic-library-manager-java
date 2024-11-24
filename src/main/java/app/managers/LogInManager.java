@@ -6,6 +6,7 @@ import java.util.List;
 import app.controller.LoginPageController;
 import app.controller.RegisterController;
 import app.data.Account;
+import app.util.AccountsManager;
 
 @SuppressWarnings({"FieldMayBeFinal"})
 public class LogInManager extends BaseManager {

@@ -12,7 +12,6 @@ import app.controller.BookItemDisplayController;
 import app.controller.BookItemGroupDisplayController;
 import app.data.Book;
 import app.data.BookCollection;
-import app.managers.BookCollectionHandler.SortByType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 

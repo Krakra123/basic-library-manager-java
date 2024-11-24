@@ -3,8 +3,6 @@ package app.data;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.TreeMap;
-import java.util.regex.Pattern;
-import java.util.TreeMap;
 import java.util.List;
 
 import app.managers.BookCollectionHandler.GroupByType;

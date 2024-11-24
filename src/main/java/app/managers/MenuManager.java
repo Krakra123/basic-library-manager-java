@@ -4,6 +4,7 @@ import app.controller.MenuUIController;
 import app.data.BookCollection;
 import app.managers.BookCollectionHandler.GroupByType;
 import app.managers.BookCollectionHandler.SortByType;
+import app.util.BookAPI;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 
