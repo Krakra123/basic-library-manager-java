@@ -74,7 +74,7 @@ public class MenuManager extends BaseManager {
     }
 
     public void saveBookToAccount(Book book) {
-        manager.getDialogsManager().showSavingBookDialog(() -> { manager.getUserManager().borrowBook(book); });
+        manager.getDialogsManager().showConfirmDialog("Confirm", "Saving this book to your library", () -> { manager.getUserManager().borrowBook(book); });
     }
 
     private void updateBookCollectionDisplay(BookCollection collection, GroupByType groupBy, SortByType sortBy) {

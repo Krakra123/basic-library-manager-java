@@ -3,6 +3,7 @@ package app.util;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -120,30 +121,24 @@ public class AccountsManager {
         return null;
     }
 
-    public static BookCollection getBookCollection(Account account, String collection) {
-        return getBookCollection(account.usernameHash, collection);
+    public static BookCollection getBookCollection(Account account) {
+        return getBookCollection(account.usernameHash);
     }
-    public static BookCollection getBookCollection(String username, String collection) { 
-        return getBookCollection(new DataHash(username), collection);
+    public static BookCollection getBookCollection(String username) { 
+        return getBookCollection(new DataHash(username));
     }
-    public static BookCollection getBookCollection(DataHash hash, String collectionString) {
+    public static BookCollection getBookCollection(DataHash hash) {
         Path path = Paths.get(ACCOUNTS_DATA_DIR + hash + ".txt");
         BookCollection collection = new BookCollection();
         try (Stream<String> lines = Files.lines(path)) {
             List<String> data = lines
                 .filter(line -> !line.isBlank())
+                .flatMap(line -> Arrays.stream(line.split(" ")))
                 .filter(word -> !word.isEmpty())
                 .toList();
 
             for (String s : data) {
-                String[] ss = s.split("\\s+");
-                String cHash = ss[0];
-                if (collectionString.equals(cHash)) {
-                    int l = ss.length;
-                    for (int i = 1; i < l; i++) {
-                        collection.add(BookAPI.getBook(ss[i]));
-                    }
-                }
+                collection.add(BookAPI.getBook(s));
             }
 
             lines.close();
@@ -154,40 +149,17 @@ public class AccountsManager {
         return collection;
     }
 
-    public static void addBookToAccount(Account account, String collection, Book book) {
-        addBookToAccount(account.usernameHash, collection, book);
+    public static void addBookToAccount(Account account, Book book) {
+        addBookToAccount(account.usernameHash, book);
     }
-    public static void addBookToAccount(String username, String collection, Book book) { 
-        addBookToAccount(new DataHash(username), collection, book);
+    public static void addBookToAccount(String username, Book book) { 
+        addBookToAccount(new DataHash(username), book);
     }
-    public static void addBookToAccount(DataHash usernameHash, String collectionString, Book book) {
+    public static void addBookToAccount(DataHash usernameHash, Book book) {
         creatingSavingFiles();
         Path path = Paths.get(ACCOUNTS_DATA_DIR + usernameHash + ".txt");
-        try (Stream<String> lines = Files.lines(path)) {
-            List<String> data = lines
-                .filter(line -> !line.isBlank())
-                .filter(word -> !word.isEmpty())
-                .toList();
-            data = new ArrayList<>(data);
-
-            int l = data.size();
-            for (int i = 0; i <= l; i++) {
-                if (i >= l) {
-                    data.add(collectionString + " " + book.id);
-                    break;
-                }
-
-                String[] ss = data.get(i).split("\\s+");
-                String cHash = ss[0];
-                if (collectionString.equals(cHash)) {
-                    data.set(i, data.get(i) + " " + book.id);
-                    break;
-                }
-            }
-
-            Files.write(path, data);
-
-            lines.close();
+        try {
+            Files.writeString(path, " " + book.id, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }

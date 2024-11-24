@@ -13,7 +13,7 @@ public class DialogsManager extends BaseManager {
         super(manager);
     }
 
-    public void showConfirmDialog(ICallback confirmCallback, String title, String detail) {
+    public void showConfirmDialog(String title, String detail, ICallback confirmCallback) {
         DialogHandler dialog = new DialogHandler(manager, CONFIRM_DIALOG_FXML);
         dialog.show(confirmCallback);
         dialog.fxmlData.getController(ConfirmDialogController.class).setManager(dialog);
