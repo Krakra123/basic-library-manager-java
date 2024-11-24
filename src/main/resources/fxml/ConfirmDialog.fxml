@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ConfirmDialogController">
+   <children>
+      <VBox prefWidth="100.0" spacing="10.0" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS">
+         <children>
+            <Label fx:id="title" text="Save book">
+               <VBox.margin>
+                  <Insets left="40.0" right="30.0" top="25.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="detail" text="Select collection:" wrapText="true">
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: #f6f6f6;">
+         <children>
+            <MFXButton alignment="CENTER" buttonType="RAISED" onAction="#confirm" prefHeight="50.0" prefWidth="80.0" rippleColor="WHITE" style="-fx-background-color: #7a0ed9;" text="Confirm" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </MFXButton>
+            <MFXButton alignment="CENTER" buttonType="RAISED" onAction="#cancel" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="Cancel">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </MFXButton>
+         </children>
+         <VBox.margin>
+            <Insets right="15.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

@@ -22,6 +22,9 @@ public class LoginPageController {
 	@FXML
 	public TextField password;
 
+	public void login() {
+		manager.tryLogin(username.getText(), password.getText());
+	}
 	public void handleLogin(ActionEvent event) throws IOException {
 		manager.tryLogin(username.getText(), password.getText());
 	}

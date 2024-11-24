@@ -1,5 +1,6 @@
 module app {
 	requires java.base;
+	requires java.desktop;
     requires java.net.http;
     requires javafx.controls;
     requires javafx.fxml;

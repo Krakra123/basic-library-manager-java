@@ -38,6 +38,7 @@ public class MenuUIController {
     private GroupByType groupByType = GroupByType.NONE;
     private SortByType sortByType = SortByType.ASCENDING;
 
+    @SuppressWarnings("unused")
     @FXML
     public void initialize() {
         groupBy.getItems().addAll("None", "Title", "Category", "Author");
@@ -74,6 +75,9 @@ public class MenuUIController {
         searchButton.setDisable(false);
     }
 
+    public void search() {
+        manager.search(searchText.getText(), groupByType, sortByType);
+    }
     public void search(ActionEvent event) throws IOException {
         manager.search(searchText.getText(), groupByType, sortByType);
     }

@@ -1,5 +1,10 @@
 package app.managers;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import app.controller.MenuUIController;
 import app.data.Book;
 import app.data.BookCollection;
@@ -8,6 +13,8 @@ import app.managers.BookCollectionHandler.SortByType;
 import app.util.BookAPI;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.scene.input.KeyCode;
 
 @SuppressWarnings({"FieldMayBeFinal", "unused"})
 public class MenuManager extends BaseManager {
@@ -22,6 +29,7 @@ public class MenuManager extends BaseManager {
 
     private BookCollectionHandler bookCollectionDisplay;
 
+    @SuppressWarnings("CallToPrintStackTrace")
     public MenuManager(AppManager manager) {
         super(manager);
 
@@ -34,10 +42,28 @@ public class MenuManager extends BaseManager {
         mainMenuFXMLContent.setDisableCallback(() -> { onDisable(); });
 
         bookCollectionDisplay.setSaveCallback(() -> { saveBookToAccount(bookCollectionDisplay.getCurrentViewingBook()); });
+        bookCollectionDisplay.setUnSaveCallback(() -> { unsaveBook(bookCollectionDisplay.getCurrentViewingBook()); });
+        bookCollectionDisplay.setOpenCallback(() -> {
+            Book book = bookCollectionDisplay.getCurrentViewingBook();
+            manager.getDialogsManager().showConfirmDialog("Open", "Open this link: " + book.accessInfo.webReaderLink + "?", () -> { 
+                if (Desktop.isDesktopSupported()) {
+                    Desktop desktop = Desktop.getDesktop();
+                    try {
+                        URI uri = new URI(book.accessInfo.webReaderLink);
+                        desktop.browse(uri);
+                    } catch (IOException | URISyntaxException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        });
+
+        InputManager.handleKeyShortcut(KeyCode.ENTER, StateManager.State.MENU, () -> {
+            mainMenuUIController.search();
+        });
     }
 
     public void search(String search, GroupByType groupBy, SortByType sortBy) {
-
         Task<BookCollection> task = new Task<>() {
             @Override
             protected BookCollection call() throws Exception {
@@ -74,7 +100,17 @@ public class MenuManager extends BaseManager {
     }
 
     public void saveBookToAccount(Book book) {
-        manager.getUserManager().borrowBook(book);
+        manager.getDialogsManager().showConfirmDialog("Confirm", "Saving this book to your library", () -> { 
+            manager.getUserManager().borrowBook(book); 
+            bookCollectionDisplay.getDetailsController().update(book);
+        });
+    }
+
+    public void unsaveBook(Book book) {
+        manager.getDialogsManager().showConfirmDialog("Confirm", "Remove this book to your library", () -> { 
+            manager.getUserManager().returnBook(book);
+            bookCollectionDisplay.getDetailsController().update(book);
+        });
     }
 
     private void updateBookCollectionDisplay(BookCollection collection, GroupByType groupBy, SortByType sortBy) {
@@ -84,6 +120,7 @@ public class MenuManager extends BaseManager {
     private void onEnable() {
         bookCollectionDisplay.openOn(mainMenuUIController.contentPane);
         mainMenuUIController.setManager(this);
+        StateManager.setState(StateManager.State.MENU);
     }
 
     private void onDisable() {

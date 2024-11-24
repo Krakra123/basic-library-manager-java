@@ -40,6 +40,9 @@ public class RegisterController {
 		this.manager = manager;
 	}
 
+	public void register() {
+		manager.tryRegister(usernameTextField.getText(), passwordTextField.getText(), rePasswordTextField.getText(), type);
+	}
 	public void register(ActionEvent event) throws IOException {
 		manager.tryRegister(usernameTextField.getText(), passwordTextField.getText(), rePasswordTextField.getText(), type);
 	}

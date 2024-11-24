@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 
 import app.data.Book;
+import app.managers.AppManager;
 import app.managers.BookCollectionHandler;
+import app.util.AccountsManager;
 import app.util.BookAPI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +30,9 @@ public class BookDetailsDisplayController {
 
     @FXML
     public Button saveButton;
+
+    @FXML
+    public Button unsaveButton;
 
     @FXML
     public Button readButton;
@@ -57,6 +62,10 @@ public class BookDetailsDisplayController {
         manager.raiseSaveCallback();
     }
 
+    public void unsave(ActionEvent event) throws IOException {
+        manager.raiseUnSaveCallback();
+    }
+
     public void read(ActionEvent event) throws IOException {
         manager.raiseOpenCallback();
     }
@@ -68,6 +77,8 @@ public class BookDetailsDisplayController {
 
         saveButton.setVisible(false);
         saveButton.setDisable(true);
+        unsaveButton.setVisible(false);
+        unsaveButton.setDisable(true);
         readButton.setVisible(false);
         readButton.setDisable(true);
 
@@ -88,8 +99,22 @@ public class BookDetailsDisplayController {
 
         saveButton.setVisible(true);
         saveButton.setDisable(false);
+        // unsaveButton.setVisible(false);
+        // unsaveButton.setDisable(true);
         readButton.setVisible(true);
         readButton.setDisable(false);
+
+        if (AccountsManager.hasBook(AppManager.getInstance().getUserManager().getCurrentUser(), book)) {
+            unsaveButtonGogo();
+        }
+        else {
+            saveButtonGogo();
+        }
+
+        if (book.accessInfo.webReaderLink.isEmpty()) {
+            readButton.setVisible(false);
+            readButton.setDisable(true);
+        }
 
         title.setText(book.volumeInfo.title);
         authors.setText(book.volumeInfo.authors.toString().substring(1, book.volumeInfo.authors.toString().length() - 1));
@@ -100,6 +125,19 @@ public class BookDetailsDisplayController {
 
         image.setImage(null);
         updateImage(book.volumeInfo.imageLinks.thumbnail);
+    }
+
+    private void saveButtonGogo() {
+        saveButton.setVisible(true);
+        saveButton.setDisable(false);
+        unsaveButton.setVisible(false);
+        unsaveButton.setDisable(true);
+    }
+    private void unsaveButtonGogo() {
+        saveButton.setVisible(false);
+        saveButton.setDisable(true);
+        unsaveButton.setVisible(true);
+        unsaveButton.setDisable(false);
     }
 
     private void updateImage(String url) {

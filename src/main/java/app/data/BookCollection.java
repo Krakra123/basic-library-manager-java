@@ -17,17 +17,17 @@ public class BookCollection {
     }
 
     public void add(Book book) {
-        if (items.contains(book)) {
-            throw new RuntimeException("Cannot add book.");
-        }
+        // if (items.contains(book)) {
+        //     throw new RuntimeException("Cannot add book.");
+        // }
 
         items.add(book);
     }
 
     public void remove(Book book) {
-        if (!items.contains(book)) {
-            throw new RuntimeException("Cannot remove book.");
-        }
+        // if (!items.contains(book)) {
+        //     throw new RuntimeException("Cannot remove book.");
+        // }
 
         items.remove(book);
     }
@@ -37,7 +37,12 @@ public class BookCollection {
     }
 
     public boolean contains(Book book) {
-        return items.contains(book);
+        for (Book b : items) {
+            if (b.id.equals(book.id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public TreeMap<String, List<Book>> getBookGroups(GroupByType type) {
@@ -82,5 +87,9 @@ public class BookCollection {
         }
 
         return bookGroups;
+    }
+
+    public List<Book> getItems() {
+        return items;
     }
 }

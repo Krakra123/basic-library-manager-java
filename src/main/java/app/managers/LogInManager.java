@@ -3,7 +3,9 @@ package app.managers;
 import app.controller.LoginPageController;
 import app.controller.RegisterController;
 import app.data.Account;
+import app.managers.StateManager.State;
 import app.util.AccountsManager;
+import javafx.scene.input.KeyCode;
 
 @SuppressWarnings({"FieldMayBeFinal"})
 public class LogInManager extends BaseManager {
@@ -37,6 +39,13 @@ public class LogInManager extends BaseManager {
 
 		loginPageFXMLContent.setEnableCallback(() -> { onLoginPageEnable(); });
 		registerPageFXMLContent.setEnableCallback(() -> { onRegisterPageEnable(); });
+
+		InputManager.handleKeyShortcut(KeyCode.ENTER, StateManager.State.LOGIN, () -> {
+			loginPageController.login();
+		});
+		InputManager.handleKeyShortcut(KeyCode.ENTER, StateManager.State.REGISTER, () -> {
+			registerPageController.register();
+		});
 	}
 
 	public void tryLogin(String username, String password) {
@@ -75,16 +84,19 @@ public class LogInManager extends BaseManager {
 
 	public void openLoginPageOnWindow() {
 		manager.loadOnWindow(loginPageFXMLContent);
+		StateManager.setState(State.LOGIN);
 	}
 	public void openRigisterPageOnWindow() {
 		manager.loadOnWindow(registerPageFXMLContent);
 		registerPageController.clear();
+		StateManager.setState(State.REGISTER);
 	}
 
 	private void onLoginPageEnable() {
 		manager.getStage().setWidth(WINDOW_WIDTH);
         manager.getStage().setHeight(WINDOW_HEIGHT);
         manager.getStage().centerOnScreen();
+        manager.getStage().setResizable(false);
 
 		loginPageController.setManager(this);
 	}
