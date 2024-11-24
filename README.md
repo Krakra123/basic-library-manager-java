@@ -4,6 +4,15 @@
 - Members: Tuan-Nghia Le, Hai-Tien Trinh, Ba-Hoang-Long Nguyen
 
 ## Resources used
-- Prog Language: Java
-- Library: JavaFX
-- GoogleBooksAPI
+- Language: Java, CSS
+- Library: JavaFX, MaterialFX - for material design components
+- FontawesomeFX - icon library
+- GoogleBooksAPI - fetch books' information
+
+## Features (with screenshots)
+- Add book
+- Search book
+- Edit book
+- Delete book
+- Enter to operate some features (login, search, etc)
+- 
