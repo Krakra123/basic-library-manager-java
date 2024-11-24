@@ -1,6 +1,5 @@
 package app.managers;
 
-import app.data.Account;
 import app.util.Utilities;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
@@ -37,9 +36,9 @@ public class AppManager {
         return loginManager;
     }
 
-    private Account currenAccount;
-    public Account getCurrenAccount() {
-        return currenAccount;
+    private UserManager userManager;
+    public final UserManager getUserManager() {
+        return userManager;
     }
 
     public AppManager(Stage stage) {
@@ -47,6 +46,8 @@ public class AppManager {
 
         mainDisplayManager = new MainDisplayManager(this);
         loginManager = new LogInManager(this);
+
+        userManager = new UserManager(this);
 
         windowData = Utilities.loadFXMLWindow(WINDOW_FXML, TITLE, stage);
         windowRootPane = windowData.getRoot(AnchorPane.class);

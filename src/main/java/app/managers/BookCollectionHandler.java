@@ -12,6 +12,7 @@ import app.controller.BookItemDisplayController;
 import app.controller.BookItemGroupDisplayController;
 import app.data.Book;
 import app.data.BookCollection;
+import app.interfaces.ICallback;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
@@ -137,6 +138,30 @@ public class BookCollectionHandler {
         bookDetailsDisplayController.update(book);
     }
 
+    public Book getCurrentViewingBook() {
+        return bookDetailsDisplayController.data;
+    }
+
+    private ICallback saveCallback;
+    public void raiseSaveCallback() {
+        if (saveCallback != null) {
+            saveCallback.Call();
+        }
+    }
+    public void setSaveCallback(ICallback callback) {
+        saveCallback = callback;
+    }
+
+    private ICallback openCallback;
+    public void raiseOpenCallback() {
+        if (openCallback != null) {
+            openCallback.Call();
+        }
+    }
+    public void setOpenCallback(ICallback callback) {
+        openCallback = callback;
+    }
+
     public void lock() {
         bookCollectionListPaneFXMLContent.getData().root.setDisable(true);
         bookDetailsDisplayFXMLContent.getData().root.setDisable(true);
@@ -161,5 +186,6 @@ public class BookCollectionHandler {
 
     private void onEnable() {
         bookCollectionListPaneFXMLContent.stickToWholeAnchorPane();
+        bookDetailsDisplayController.setManager(this);
     }
 }

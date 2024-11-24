@@ -1,8 +1,5 @@
 package app.managers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import app.controller.LoginPageController;
 import app.controller.RegisterController;
 import app.data.Account;
@@ -29,12 +26,8 @@ public class LogInManager extends BaseManager {
     private LoginPageController loginPageController;
     private RegisterController registerPageController;
 
-	private List<Account> accountList;
-
 	public LogInManager(AppManager manager) {
 		super(manager);
-
-		accountList = new ArrayList<>();
 
 		loginPageFXMLContent = new LoadableFXMLContent(LOGIN_PAGE_FXML);
 		registerPageFXMLContent = new LoadableFXMLContent(REGISTER_PAGE_FXML);
@@ -46,10 +39,6 @@ public class LogInManager extends BaseManager {
 		registerPageFXMLContent.setEnableCallback(() -> { onRegisterPageEnable(); });
 	}
 
-	public void addAccount(Account account) {
-		accountList.add(account);
-	}
-
 	public void tryLogin(String username, String password) {
 		username = username.trim();
 		if (username.matches(".*\\s.*|^$")) {
@@ -59,6 +48,7 @@ public class LogInManager extends BaseManager {
 
 		if (AccountsManager.tryLogin(username, password)) {
 			manager.openMainDisplayWindow();
+			manager.getUserManager().setCurrentUser(AccountsManager.findAccount(username));
 		} else {
 			System.out.println("Username or password not true");
 		}

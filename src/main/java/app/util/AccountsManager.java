@@ -9,6 +9,8 @@ import java.util.stream.Stream;
 
 import app.data.Account;
 import app.data.Account.AccountType;
+import app.data.Book;
+import app.data.BookCollection;
 
 @SuppressWarnings("CallToPrintStackTrace")
 public class AccountsManager {
@@ -36,7 +38,7 @@ public class AccountsManager {
         List<Account> accountList = new ArrayList<>();
 
         Path path = Paths.get(ACCOUNTS_DIR);
-        try (Stream<String> lines = Files.lines(path);) {
+        try (Stream<String> lines = Files.lines(path)) {
             List<String> data = lines
                 .filter(line -> !line.isBlank())
                 .flatMap(line -> Arrays.stream(line.split(" ")))
@@ -93,6 +95,52 @@ public class AccountsManager {
         }
         
         return null;
+    }
+
+    public static BookCollection getBookCollection(Account account) {
+        DataHash hash = account.usernameHash;
+        return getBookCollection(hash);
+    }
+    public static BookCollection getBookCollection(String username) { 
+        DataHash hash = new DataHash(username);
+        return getBookCollection(hash);
+    }
+    public static BookCollection getBookCollection(DataHash hash) {
+        Path path = Paths.get(ACCOUNTS_DATA_DIR + hash + ".txt");
+        BookCollection collection = new BookCollection();
+        try (Stream<String> lines = Files.lines(path)) {
+            List<String> data = lines
+                .filter(line -> !line.isBlank())
+                .flatMap(line -> Arrays.stream(line.split(" ")))
+                .filter(word -> !word.isEmpty())
+                .toList();
+
+            int l = data.size(); // FIXME
+            for (int i = 0; i < l; i++) {
+                collection.add(BookAPI.getBook(data.get(i)));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return collection;
+    }
+
+    public static void addBookToAccount(Account account, Book book) {
+        DataHash hash = account.usernameHash;
+        addBookToAccount(hash, book);
+    }
+    public static void addBookToAccount(String username, Book book) { 
+        DataHash hash = new DataHash(username);
+        addBookToAccount(hash, book);
+    }
+    public static void addBookToAccount(DataHash hash, Book book) {
+        Path path = Paths.get(ACCOUNTS_DATA_DIR + hash + ".txt");
+        try {
+            Files.writeString(path, " " + book.id, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void removeSavedData(String username) {

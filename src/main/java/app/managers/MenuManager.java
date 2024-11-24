@@ -1,6 +1,7 @@
 package app.managers;
 
 import app.controller.MenuUIController;
+import app.data.Book;
 import app.data.BookCollection;
 import app.managers.BookCollectionHandler.GroupByType;
 import app.managers.BookCollectionHandler.SortByType;
@@ -31,6 +32,8 @@ public class MenuManager extends BaseManager {
 
         mainMenuFXMLContent.setEnableCallback(() -> { onEnable(); });
         mainMenuFXMLContent.setDisableCallback(() -> { onDisable(); });
+
+        bookCollectionDisplay.setSaveCallback(() -> { saveBookToAccount(bookCollectionDisplay.getCurrentViewingBook()); });
     }
 
     public void search(String search, GroupByType groupBy, SortByType sortBy) {
@@ -68,6 +71,10 @@ public class MenuManager extends BaseManager {
 
         Thread thread = new Thread(task);
         thread.start();
+    }
+
+    public void saveBookToAccount(Book book) {
+        manager.getUserManager().borrowBook(book);
     }
 
     private void updateBookCollectionDisplay(BookCollection collection, GroupByType groupBy, SortByType sortBy) {

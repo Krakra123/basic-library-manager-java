@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import app.data.Book;
+import app.managers.BookCollectionHandler;
 import app.util.BookAPI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,11 @@ import javafx.scene.image.ImageView;
 
 @SuppressWarnings("exports")
 public class BookDetailsDisplayController {
+
+    private BookCollectionHandler manager;
+    public void setManager(BookCollectionHandler manager) {
+        this.manager = manager;
+    }
     
     private static final String NO_COVER_DIR = "src/main/resources/pic/no-cover.png";
 
@@ -44,14 +50,15 @@ public class BookDetailsDisplayController {
     @FXML 
     public Label description;
 
-    private Book data;
+    public Book data;
 
     public void save(ActionEvent event) throws IOException {
         BookAPI.saveBook(data.id, data);
+        manager.raiseSaveCallback();
     }
 
     public void read(ActionEvent event) throws IOException {
-    
+        manager.raiseOpenCallback();
     }
 
     public void reset() {
