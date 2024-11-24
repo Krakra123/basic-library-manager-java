@@ -19,6 +19,7 @@ public class Utilities {
         
         public Parent root;
         public Object controller;
+        public Scene scene;
 
         public FXMLData() {
             this.root = null;
@@ -81,7 +82,8 @@ public class Utilities {
                 stage = new Stage(StageStyle.DECORATED);
             }
             stage.setTitle(title);
-            stage.setScene(new Scene(data.root));
+            data.scene = new Scene(data.root);
+            stage.setScene(data.scene);
             stage.show();
         } catch (IOException | RuntimeException e) {
             System.err.println("Failed to load FXML: /fxml/" + fxml + ".fxml.");

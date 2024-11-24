@@ -13,6 +13,8 @@ import app.managers.BookCollectionHandler.SortByType;
 import app.util.BookAPI;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.scene.input.KeyCode;
 
 @SuppressWarnings({"FieldMayBeFinal", "unused"})
 public class MenuManager extends BaseManager {
@@ -47,7 +49,6 @@ public class MenuManager extends BaseManager {
                 if (Desktop.isDesktopSupported()) {
                     Desktop desktop = Desktop.getDesktop();
                     try {
-                        // Create URI object and open the URL in the default browser
                         URI uri = new URI(book.accessInfo.webReaderLink);
                         desktop.browse(uri);
                     } catch (IOException | URISyntaxException e) {
@@ -56,10 +57,13 @@ public class MenuManager extends BaseManager {
                 }
             });
         });
+
+        InputManager.handleKeyShortcut(KeyCode.ENTER, StateManager.State.MENU, () -> {
+            mainMenuUIController.search();
+        });
     }
 
     public void search(String search, GroupByType groupBy, SortByType sortBy) {
-
         Task<BookCollection> task = new Task<>() {
             @Override
             protected BookCollection call() throws Exception {
@@ -116,6 +120,7 @@ public class MenuManager extends BaseManager {
     private void onEnable() {
         bookCollectionDisplay.openOn(mainMenuUIController.contentPane);
         mainMenuUIController.setManager(this);
+        StateManager.setState(StateManager.State.MENU);
     }
 
     private void onDisable() {

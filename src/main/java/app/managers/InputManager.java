@@ -1,45 +1,44 @@
 package app.managers;
 
-import java.util.HashMap;
-import java.util.Map;
-import javafx.scene.input.KeyCode;
 import app.interfaces.ICallback;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 
+@SuppressWarnings("exports")
 public class InputManager {
+    public static Scene scene;
 
-	public static enum KeyCode {
-		UP, DOWN, LEFT, RIGHT, ENTER, ESCAPE;
-	}
-	
-	public static enum State {
-        ACTIVE, INACTIVE;
+    public static void updateScene(Scene s) {
+        scene = s;
     }
-	
-	private static Map<KeyCode, ICallback> keyCallbacks = new HashMap<>();
-	
-	public InputManager() {
-		keyCallbacks.put(KeyCode.UP,  () -> System.out.println("press up"));
-		keyCallbacks.put(KeyCode.DOWN,  () -> System.out.println("press down"));
-		keyCallbacks.put(KeyCode.LEFT,  () -> System.out.println("press left"));
-		keyCallbacks.put(KeyCode.RIGHT,  () -> System.out.println("press right!"));
-		keyCallbacks.put(KeyCode.ENTER,  () -> System.out.println("press enter"));
-	}
-	
-	static void handleInput(KeyEvent keyEvent, ICallback icallback, State state) {
-		// Map the JavaFX KeyCode to the custom KeyCode enum
-        KeyCode mappedKey = null;
-        try {
-            mappedKey = KeyCode.valueOf(keyEvent.getCode().toString().toUpperCase());
-        } catch (IllegalArgumentException e) {
-            System.out.println("Unrecognized key: " + keyEvent.getCode());
-        }
-        
-     // If the key is mapped and has a callback, execute the callback
-        if (mappedKey != null && keyCallbacks.containsKey(mappedKey)) {
-            keyCallbacks.get(mappedKey).Call();
-        } else {
-            System.out.println("No action registered for key: " + keyEvent.getCode());
-        }
-	}
+
+    public static void handleKeyShortcut(KeyCode key, StateManager.State state, ICallback callback) {
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, (KeyEvent ke) -> {
+            if (ke.getCode() == key) {
+                if (StateManager.getState() == state) {
+                    callback.Call();
+                }
+                ke.consume();
+            }
+        });
+    }
+
+    public static void handleCombinationShortcut(KeyCombination.Modifier comb, KeyCode key, StateManager.State state, ICallback callback) {
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            final KeyCombination keyComb = new KeyCodeCombination(key, comb);
+            @Override
+            public void handle(KeyEvent ke) {
+                if (keyComb.match(ke)) {
+                    if (StateManager.getState() == state) {
+                        callback.Call();
+                    }
+                    ke.consume();
+                }
+            }
+        });
+    }
 }

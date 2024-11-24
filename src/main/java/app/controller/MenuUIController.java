@@ -75,6 +75,9 @@ public class MenuUIController {
         searchButton.setDisable(false);
     }
 
+    public void search() {
+        manager.search(searchText.getText(), groupByType, sortByType);
+    }
     public void search(ActionEvent event) throws IOException {
         manager.search(searchText.getText(), groupByType, sortByType);
     }

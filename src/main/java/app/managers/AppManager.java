@@ -1,7 +1,9 @@
 package app.managers;
 
+import app.managers.StateManager.State;
 import app.util.Utilities;
 import javafx.scene.Parent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -59,15 +61,16 @@ public class AppManager {
     public void setUp(Stage stage) {
         curStage = stage;
 
+        windowData = Utilities.loadFXMLWindow(WINDOW_FXML, TITLE, stage);
+        windowRootPane = windowData.getRoot(AnchorPane.class);
+        InputManager.updateScene(windowData.scene);
+
         mainDisplayManager = new MainDisplayManager(this);
         loginManager = new LogInManager(this);
 
         userManager = new UserManager(this);
 
         dialogsManager = new DialogsManager(this);
-
-        windowData = Utilities.loadFXMLWindow(WINDOW_FXML, TITLE, stage);
-        windowRootPane = windowData.getRoot(AnchorPane.class);
     }
 
     public final void loadOnWindow(LoadableFXMLContent content) {
@@ -84,6 +87,7 @@ public class AppManager {
     }
 
     public final void openLoginWindow() {
+		StateManager.setState(State.LOGIN);
         loadOnWindow(loginManager.getLoginPageContent());
     }
 

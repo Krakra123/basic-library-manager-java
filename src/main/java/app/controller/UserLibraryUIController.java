@@ -58,6 +58,9 @@ public class UserLibraryUIController {
         });
     }
     
+    public void apply() {
+        manager.apply(groupByType, sortByType);
+    }
     public void apply(ActionEvent event) throws IOException {
         manager.apply(groupByType, sortByType);
     }

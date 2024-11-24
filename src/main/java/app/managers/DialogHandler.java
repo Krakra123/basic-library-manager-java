@@ -1,7 +1,9 @@
 package app.managers;
 
 import app.interfaces.ICallback;
+import app.managers.StateManager.State;
 import app.util.Utilities;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 @SuppressWarnings("FieldMayBeFinal")
@@ -14,6 +16,8 @@ public class DialogHandler {
     public Utilities.FXMLData fxmlData;
     
     private ICallback confirmCallback;
+
+    private StateManager.State preState;
 
     public DialogHandler(AppManager appManager, String FXML) {
         this.appManager = appManager;
@@ -30,6 +34,10 @@ public class DialogHandler {
         this.confirmCallback = confirmCallback;
 
         onShow();
+
+        InputManager.handleKeyShortcut(KeyCode.ENTER, State.DIALOG, () -> {
+            confirm();
+        });
     }
 
     public void confirm() {
@@ -44,9 +52,12 @@ public class DialogHandler {
     
     public void onShow() {
         appManager.disable();
+        preState = StateManager.getState();
+        StateManager.setState(State.DIALOG);
     }
     public void onClose() {
         appManager.enable();
         confirmCallback = null;
+        StateManager.setState(preState);
     }
 }

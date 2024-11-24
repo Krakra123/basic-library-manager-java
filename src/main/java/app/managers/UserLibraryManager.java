@@ -10,6 +10,7 @@ import app.data.Book;
 import app.data.BookCollection;
 import app.managers.BookCollectionHandler.GroupByType;
 import app.managers.BookCollectionHandler.SortByType;
+import javafx.scene.input.KeyCode;
 
 @SuppressWarnings({"FieldMayBeFinal"})
 public class UserLibraryManager extends BaseManager {
@@ -56,6 +57,10 @@ public class UserLibraryManager extends BaseManager {
                 }
             });
         });
+
+        InputManager.handleKeyShortcut(KeyCode.ENTER, StateManager.State.LIBRARY, () -> {
+            userLibraryUIController.apply();
+        });
     }
 
     public void apply(GroupByType groupBy, SortByType sortBy) {
@@ -89,6 +94,7 @@ public class UserLibraryManager extends BaseManager {
 
         userLibraryUIController.setManager(this);
         updateBookCollectionDisplay(manager.getUserManager().getCollection(), groupBy, sortBy);
+        StateManager.setState(StateManager.State.LIBRARY);
     }
 
     private void onDisable() {
