@@ -41,6 +41,11 @@ public class AppManager {
         return userManager;
     }
 
+    private DialogsManager dialogsManager;
+    public final DialogsManager getDialogsManager() {
+        return dialogsManager;
+    }
+
     public AppManager(Stage stage) {
         curStage = stage;
 
@@ -48,6 +53,8 @@ public class AppManager {
         loginManager = new LogInManager(this);
 
         userManager = new UserManager(this);
+
+        dialogsManager = new DialogsManager(this);
 
         windowData = Utilities.loadFXMLWindow(WINDOW_FXML, TITLE, stage);
         windowRootPane = windowData.getRoot(AnchorPane.class);
@@ -76,5 +83,12 @@ public class AppManager {
 
     private void clearWindow() {
         windowRootPane.getChildren().clear();
+    }
+
+    public void disable() {
+        windowRootPane.setDisable(true);
+    }
+    public void enable() {
+        windowRootPane.setDisable(false);
     }
 }

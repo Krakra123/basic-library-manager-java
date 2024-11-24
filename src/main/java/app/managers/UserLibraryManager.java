@@ -18,6 +18,9 @@ public class UserLibraryManager extends BaseManager {
 
     private BookCollectionHandler bookCollectionDisplay;
 
+    private GroupByType groupBy = GroupByType.NONE;
+    private SortByType sortBy = SortByType.ASCENDING;
+
     public UserLibraryManager(AppManager manager) {
         super(manager);
 
@@ -30,6 +33,12 @@ public class UserLibraryManager extends BaseManager {
         userLibraryFXMLContent.setDisableCallback(() -> { onDisable(); });
     }
 
+    public void apply(GroupByType groupBy, SortByType sortBy) {
+        this.groupBy = groupBy;
+        this.sortBy = sortBy;
+        updateBookCollectionDisplay(manager.getUserManager().getCollection(), groupBy, sortBy);
+    }
+
     public void updateBookCollectionDisplay(BookCollection collection, GroupByType groupBy, SortByType sortBy) {
         bookCollectionDisplay.update(collection, groupBy, sortBy);
     }
@@ -37,7 +46,8 @@ public class UserLibraryManager extends BaseManager {
     private void onEnable() {
         bookCollectionDisplay.openOn(userLibraryUIController.bookListPane);
 
-        updateBookCollectionDisplay(manager.getUserManager().getCollection(), GroupByType.TITLE, SortByType.ASCENDING);
+        userLibraryUIController.setManager(this);
+        updateBookCollectionDisplay(manager.getUserManager().getCollection(), groupBy, sortBy);
     }
 
     private void onDisable() {

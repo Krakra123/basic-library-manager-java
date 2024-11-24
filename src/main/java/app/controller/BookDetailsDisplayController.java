@@ -30,6 +30,9 @@ public class BookDetailsDisplayController {
     public Button saveButton;
 
     @FXML
+    public Button unsaveButton;
+
+    @FXML
     public Button readButton;
 
     @FXML 
@@ -57,6 +60,9 @@ public class BookDetailsDisplayController {
         manager.raiseSaveCallback();
     }
 
+    public void unsave(ActionEvent event) throws IOException {
+    }
+
     public void read(ActionEvent event) throws IOException {
         manager.raiseOpenCallback();
     }
@@ -68,6 +74,8 @@ public class BookDetailsDisplayController {
 
         saveButton.setVisible(false);
         saveButton.setDisable(true);
+        unsaveButton.setVisible(false);
+        unsaveButton.setDisable(true);
         readButton.setVisible(false);
         readButton.setDisable(true);
 
@@ -88,6 +96,8 @@ public class BookDetailsDisplayController {
 
         saveButton.setVisible(true);
         saveButton.setDisable(false);
+        // unsaveButton.setVisible(false);
+        // unsaveButton.setDisable(true);
         readButton.setVisible(true);
         readButton.setDisable(false);
 

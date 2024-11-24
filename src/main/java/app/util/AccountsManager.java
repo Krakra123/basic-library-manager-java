@@ -3,6 +3,7 @@ package app.util;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -121,12 +122,10 @@ public class AccountsManager {
     }
 
     public static BookCollection getBookCollection(Account account) {
-        DataHash hash = account.usernameHash;
-        return getBookCollection(hash);
+        return getBookCollection(account.usernameHash);
     }
     public static BookCollection getBookCollection(String username) { 
-        DataHash hash = new DataHash(username);
-        return getBookCollection(hash);
+        return getBookCollection(new DataHash(username));
     }
     public static BookCollection getBookCollection(DataHash hash) {
         Path path = Paths.get(ACCOUNTS_DATA_DIR + hash + ".txt");
@@ -138,10 +137,11 @@ public class AccountsManager {
                 .filter(word -> !word.isEmpty())
                 .toList();
 
-            int l = data.size(); // FIXME
-            for (int i = 0; i < l; i++) {
-                collection.add(BookAPI.getBook(data.get(i)));
+            for (String s : data) {
+                collection.add(BookAPI.getBook(s));
             }
+
+            lines.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -150,16 +150,14 @@ public class AccountsManager {
     }
 
     public static void addBookToAccount(Account account, Book book) {
-        DataHash hash = account.usernameHash;
-        addBookToAccount(hash, book);
+        addBookToAccount(account.usernameHash, book);
     }
     public static void addBookToAccount(String username, Book book) { 
-        DataHash hash = new DataHash(username);
-        addBookToAccount(hash, book);
+        addBookToAccount(new DataHash(username), book);
     }
-    public static void addBookToAccount(DataHash hash, Book book) {
+    public static void addBookToAccount(DataHash usernameHash, Book book) {
         creatingSavingFiles();
-        Path path = Paths.get(ACCOUNTS_DATA_DIR + hash + ".txt");
+        Path path = Paths.get(ACCOUNTS_DATA_DIR + usernameHash + ".txt");
         try {
             Files.writeString(path, " " + book.id, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {

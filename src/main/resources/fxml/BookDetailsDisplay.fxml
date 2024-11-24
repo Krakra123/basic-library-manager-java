@@ -36,10 +36,15 @@
                            <children>
                               <MFXButton fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="11.0" onAction="#save" prefHeight="50.0" prefWidth="50.0" rippleColor="WHITE" style="-fx-background-color: #7a0ed9;" text="." textFill="TRANSPARENT" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="SAVE" selectionFill="#6b6b6b" size="40" />
+                                    <FontAwesomeIconView fill="WHITE" glyphName="SAVE" selectionFill="#6b6b6b" size="38" />
                                  </graphic>
                               </MFXButton>
-                              <MFXButton fx:id="readButton" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="25.0" onAction="#read" prefHeight="50.0" prefWidth="50.0" rippleColor="WHITE" style="-fx-background-color: #7a0ed9;" text="." textFill="TRANSPARENT" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
+                              <MFXButton fx:id="unsaveButton" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="21.0" onAction="#unsave" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #f6f6f6;" text="." textFill="TRANSPARENT" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="CLOSE" selectionFill="#6b6b6b" size="40" />
+                                 </graphic>
+                              </MFXButton>
+                              <MFXButton fx:id="readButton" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="25.0" onAction="#read" prefHeight="50.0" prefWidth="50.0" rippleColor="WHITE" style="-fx-background-color: #7a0ed9;" text="." textFill="TRANSPARENT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                                  <graphic>
                                     <FontAwesomeIconView fill="WHITE" glyphName="SHARE" selectionFill="#6b6b6b" size="35" />
                                  </graphic>
