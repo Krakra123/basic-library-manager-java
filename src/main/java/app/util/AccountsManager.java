@@ -1,6 +1,5 @@
 package app.util;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -17,27 +16,15 @@ public class AccountsManager {
     private static final String ACCOUNTS_DIR = "data/account/accounts.txt";
     private static final String ACCOUNTS_DATA_DIR = "data/account/user-data/";
 
-    private final List<Account> accountList;
+    public static boolean tryLogin(String username, String password) {
+        Account account = findAccount(username);
+        if (account == null) return false;
 
-    public AccountsManager() {
-        accountList = new ArrayList<>();
+        return account.checkPassword(password);
     }
 
-    public boolean tryLogin(String username, String password) {
-        try {
-            Account account = findAccount(username);
-            if (account.checkPassword(password)) {
-                return true;
-            }
-        } catch (Exception e) {
-            return false;
-        }
-
-        return false;
-    }
-
-    public boolean tryRegister(String username, String password, AccountType type) {
-        if (checkHasUsername(username)) {
+    public static boolean tryRegister(String username, String password, AccountType type) {
+        if (findAccount(username) != null) {
             return false;
         }
         
@@ -45,7 +32,9 @@ public class AccountsManager {
         return true;
     }
 
-    public void readAccountList() {
+    public static List<Account> readAccountList() {
+        List<Account> accountList = new ArrayList<>();
+
         Path path = Paths.get(ACCOUNTS_DIR);
         try (Stream<String> lines = Files.lines(path);) {
             List<String> data = lines
@@ -69,9 +58,11 @@ public class AccountsManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return accountList;
     }
 
-    public void registerNewAccount(String username, String password, AccountType type) {
+    public static void registerNewAccount(String username, String password, AccountType type) {
         DataHash usernameHash = new DataHash(username);
         DataHash passwordHash = new DataHash(password);
 
@@ -91,27 +82,17 @@ public class AccountsManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        accountList.add(new Account(usernameHash, passwordHash, type));
     }
 
-    public boolean checkHasUsername(String username) {
-        for (Account account : accountList) {
-            if (account.usernameHash.check(username)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public Account findAccount(String username) throws Exception {
+    public static Account findAccount(String username) {
+        List<Account> accountList = readAccountList();
         for (Account account : accountList) {
             if (account.usernameHash.check(username)) {
                 return account;
             }
         }
         
-        throw new Exception("Username not found");
+        return null;
     }
 
     public static void removeSavedData(String username) {

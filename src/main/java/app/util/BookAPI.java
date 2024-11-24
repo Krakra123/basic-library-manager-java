@@ -61,6 +61,8 @@ public class BookAPI {
             e.printStackTrace();
         }
 
+        saveBook(id, book);
+
         return book;
     }
 

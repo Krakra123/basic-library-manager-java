@@ -29,8 +29,6 @@ public class LogInManager extends BaseManager {
     private LoginPageController loginPageController;
     private RegisterController registerPageController;
 
-	private AccountsManager accountsManager;
-
 	private List<Account> accountList;
 
 	public LogInManager(AppManager manager) {
@@ -43,8 +41,6 @@ public class LogInManager extends BaseManager {
 
 		loginPageController = loginPageFXMLContent.getData().getController(LoginPageController.class);
 		registerPageController = registerPageFXMLContent.getData().getController(RegisterController.class);
-
-		accountsManager = manager.getAccountsManager();
 
 		loginPageFXMLContent.setEnableCallback(() -> { onLoginPageEnable(); });
 		registerPageFXMLContent.setEnableCallback(() -> { onRegisterPageEnable(); });
@@ -61,7 +57,7 @@ public class LogInManager extends BaseManager {
 			return;
 		}
 
-		if (accountsManager.tryLogin(username, password)) {
+		if (AccountsManager.tryLogin(username, password)) {
 			manager.openMainDisplayWindow();
 		} else {
 			System.out.println("Username or password not true");
@@ -80,7 +76,7 @@ public class LogInManager extends BaseManager {
 			return;
 		}
 
-		if (accountsManager.tryRegister(username, password, type)) {
+		if (AccountsManager.tryRegister(username, password, type)) {
 			openLoginPageOnWindow();
 		} else {
 			System.out.println("Username already existed");

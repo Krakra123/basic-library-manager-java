@@ -1,6 +1,6 @@
 package app.managers;
 
-import app.util.AccountsManager;
+import app.data.Account;
 import app.util.Utilities;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
@@ -37,16 +37,13 @@ public class AppManager {
         return loginManager;
     }
 
-    private AccountsManager accountsManager;
-    public final AccountsManager getAccountsManager() {
-        return accountsManager;
+    private Account currenAccount;
+    public Account getCurrenAccount() {
+        return currenAccount;
     }
 
     public AppManager(Stage stage) {
         curStage = stage;
-
-        accountsManager = new AccountsManager();
-        accountsManager.readAccountList();
 
         mainDisplayManager = new MainDisplayManager(this);
         loginManager = new LogInManager(this);
