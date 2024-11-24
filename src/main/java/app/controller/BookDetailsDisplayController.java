@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import app.data.Book;
-import javafx.concurrent.Task;
+import app.util.BookAPI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,10 +44,10 @@ public class BookDetailsDisplayController {
     @FXML 
     public Label description;
 
-    private Task<ImageView> changeImageTask;
+    private Book data;
 
     public void save(ActionEvent event) throws IOException {
-    
+        BookAPI.saveBook(data.id, data);
     }
 
     public void read(ActionEvent event) throws IOException {
@@ -55,10 +55,6 @@ public class BookDetailsDisplayController {
     }
 
     public void reset() {
-        if (changeImageTask != null) {
-            changeImageTask.cancel();
-        }
-
         image.setVisible(false);
         image.setDisable(true);
         image.setFitHeight(100);
@@ -77,9 +73,7 @@ public class BookDetailsDisplayController {
     }
 
     public void update(Book book) {
-        if (changeImageTask != null) {
-            changeImageTask.cancel();
-        }
+        data = book;
 
         image.setVisible(true);
         image.setDisable(false);
@@ -99,9 +93,6 @@ public class BookDetailsDisplayController {
 
         image.setImage(null);
         updateImage(book.volumeInfo.imageLinks.thumbnail);
-
-        Thread thread = new Thread(changeImageTask);
-        thread.start();
     }
 
     private void updateImage(String url) {

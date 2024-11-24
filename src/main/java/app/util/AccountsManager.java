@@ -8,13 +8,12 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import app.data.Account;
-import app.data.DataHash;
 import app.data.Account.AccountType;
 
 @SuppressWarnings("CallToPrintStackTrace")
 public class AccountsManager {
     
-    private static final String ACCOUNTS_SAVE_DIR = "data/accounts.txt";
+    private static final String ACCOUNTS_SAVE_DIR = "data/account/accounts.txt";
 
     private final List<Account> accountList;
 

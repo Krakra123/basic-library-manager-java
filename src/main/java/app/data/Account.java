@@ -1,5 +1,7 @@
 package app.data;
 
+import app.util.DataHash;
+
 public class Account {
 
 	public static enum AccountType {
