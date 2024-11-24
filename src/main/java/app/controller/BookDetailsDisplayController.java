@@ -4,17 +4,22 @@ import java.io.File;
 import java.io.IOException;
 
 import app.data.Book;
-import javafx.concurrent.Task;
+import app.managers.BookCollectionHandler;
+import app.util.BookAPI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 @SuppressWarnings("exports")
 public class BookDetailsDisplayController {
+
+    private BookCollectionHandler manager;
+    public void setManager(BookCollectionHandler manager) {
+        this.manager = manager;
+    }
     
     private static final String NO_COVER_DIR = "src/main/resources/pic/no-cover.png";
 
@@ -45,21 +50,18 @@ public class BookDetailsDisplayController {
     @FXML 
     public Label description;
 
-    private Task<ImageView> changeImageTask;
+    public Book data;
 
     public void save(ActionEvent event) throws IOException {
-    
+        BookAPI.saveBook(data.id, data);
+        manager.raiseSaveCallback();
     }
 
     public void read(ActionEvent event) throws IOException {
-    
+        manager.raiseOpenCallback();
     }
 
     public void reset() {
-        if (changeImageTask != null) {
-            changeImageTask.cancel();
-        }
-
         image.setVisible(false);
         image.setDisable(true);
         image.setFitHeight(100);
@@ -78,9 +80,7 @@ public class BookDetailsDisplayController {
     }
 
     public void update(Book book) {
-        if (changeImageTask != null) {
-            changeImageTask.cancel();
-        }
+        data = book;
 
         image.setVisible(true);
         image.setDisable(false);
@@ -100,9 +100,6 @@ public class BookDetailsDisplayController {
 
         image.setImage(null);
         updateImage(book.volumeInfo.imageLinks.thumbnail);
-
-        Thread thread = new Thread(changeImageTask);
-        thread.start();
     }
 
     private void updateImage(String url) {

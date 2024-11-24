@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 
 @SuppressWarnings("exports")
 public class LoadableFXMLContent {
-    
+
     private final Utilities.FXMLData fxmlData;
     public Utilities.FXMLData getData() {
         return fxmlData;

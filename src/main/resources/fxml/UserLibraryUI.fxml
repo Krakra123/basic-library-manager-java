@@ -2,65 +2,51 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.UserLibraryUIController">
+
+<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.UserLibraryUIController">
    <children>
-      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="MY LIBRARY" textFill="#7a0ed9">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </VBox.margin>
+      </Label>
+      <HBox spacing="10.0">
          <children>
-            <HBox spacing="20.0">
-               <children>
-                  <MFXComboBox floatingText="Collection" maxWidth="600.0" prefHeight="50.0" HBox.hgrow="ALWAYS">
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </MFXComboBox>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox spacing="10.0">
-               <VBox.margin>
-                  <Insets bottom="20.0" top="2.0" />
-               </VBox.margin>
-               <children>
-                  <MFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #7a0ed9;" text="." textFill="TRANSPARENT">
-                     <HBox.margin>
-                        <Insets left="30.0" top="5.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="25" text="" textAlignment="CENTER" />
-                     </graphic>
-                  </MFXButton>
-                  <AnchorPane HBox.hgrow="ALWAYS">
-                     <children>
-                        <MFXTextField fx:id="search" floatingText="Search" layoutX="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <MFXComboBox fx:id="groupBy" floatingText="GroupBy" prefHeight="50.0">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </MFXComboBox>
-                  <MFXComboBox fx:id="groupBy1" floatingText="SortBy" prefHeight="50.0">
-                     <HBox.margin>
-                        <Insets right="30.0" />
-                     </HBox.margin>
-                  </MFXComboBox>
-               </children>
-            </HBox>
-            <AnchorPane fx:id="bookListPane" VBox.vgrow="ALWAYS">
-               <padding>
-                  <Insets top="5.0" />
-               </padding>
-            </AnchorPane>
+            <MFXButton fx:id="search" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #7a0ed9;" text="." textFill="TRANSPARENT">
+               <HBox.margin>
+                  <Insets left="30.0" top="5.0" />
+               </HBox.margin>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CHECK" size="25" textAlignment="CENTER" />
+               </graphic>
+            </MFXButton>
+            <ComboBox fx:id="collection" maxWidth="1.7976931348623157E308" prefHeight="50.0" promptText="Collection" stylesheets="@../css/combo-box.css" HBox.hgrow="ALWAYS" />
+            <ComboBox fx:id="groupBy" prefHeight="50.0" prefWidth="150.0" promptText="GroupBy" stylesheets="@../css/combo-box.css" />
+            <ComboBox fx:id="sortBy" prefHeight="50.0" prefWidth="150.0" promptText="SortBy" stylesheets="@../css/combo-box.css">
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin>
+            </ComboBox>
          </children>
-      </VBox>
+         <padding>
+            <Insets bottom="20.0" />
+         </padding>
+      </HBox>
+      <AnchorPane fx:id="bookListPane" VBox.vgrow="ALWAYS">
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</VBox>

@@ -36,6 +36,8 @@ public class UserLibraryManager extends BaseManager {
 
     private void onEnable() {
         bookCollectionDisplay.openOn(userLibraryUIController.bookListPane);
+
+        updateBookCollectionDisplay(manager.getUserManager().getCollection(), GroupByType.TITLE, SortByType.ASCENDING);
     }
 
     private void onDisable() {

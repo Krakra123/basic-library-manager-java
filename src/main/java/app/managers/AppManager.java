@@ -36,19 +36,18 @@ public class AppManager {
         return loginManager;
     }
 
-    private AccountsManager accountsManager;
-    public final AccountsManager getAccountsManager() {
-        return accountsManager;
+    private UserManager userManager;
+    public final UserManager getUserManager() {
+        return userManager;
     }
 
     public AppManager(Stage stage) {
         curStage = stage;
 
-        accountsManager = new AccountsManager();
-        accountsManager.read();
-
         mainDisplayManager = new MainDisplayManager(this);
         loginManager = new LogInManager(this);
+
+        userManager = new UserManager(this);
 
         windowData = Utilities.loadFXMLWindow(WINDOW_FXML, TITLE, stage);
         windowRootPane = windowData.getRoot(AnchorPane.class);

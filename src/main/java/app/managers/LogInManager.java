@@ -1,11 +1,9 @@
 package app.managers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import app.controller.LoginPageController;
 import app.controller.RegisterController;
 import app.data.Account;
+import app.util.AccountsManager;
 
 @SuppressWarnings({"FieldMayBeFinal"})
 public class LogInManager extends BaseManager {
@@ -28,14 +26,8 @@ public class LogInManager extends BaseManager {
     private LoginPageController loginPageController;
     private RegisterController registerPageController;
 
-	private AccountsManager accountsManager;
-
-	private List<Account> accountList;
-
 	public LogInManager(AppManager manager) {
 		super(manager);
-
-		accountList = new ArrayList<>();
 
 		loginPageFXMLContent = new LoadableFXMLContent(LOGIN_PAGE_FXML);
 		registerPageFXMLContent = new LoadableFXMLContent(REGISTER_PAGE_FXML);
@@ -43,14 +35,8 @@ public class LogInManager extends BaseManager {
 		loginPageController = loginPageFXMLContent.getData().getController(LoginPageController.class);
 		registerPageController = registerPageFXMLContent.getData().getController(RegisterController.class);
 
-		accountsManager = manager.getAccountsManager();
-
 		loginPageFXMLContent.setEnableCallback(() -> { onLoginPageEnable(); });
 		registerPageFXMLContent.setEnableCallback(() -> { onRegisterPageEnable(); });
-	}
-
-	public void addAccount(Account account) {
-		accountList.add(account);
 	}
 
 	public void tryLogin(String username, String password) {
@@ -60,8 +46,9 @@ public class LogInManager extends BaseManager {
 			return;
 		}
 
-		if (accountsManager.tryLogin(username, password)) {
+		if (AccountsManager.tryLogin(username, password)) {
 			manager.openMainDisplayWindow();
+			manager.getUserManager().setCurrentUser(AccountsManager.findAccount(username));
 		} else {
 			System.out.println("Username or password not true");
 		}
@@ -79,7 +66,7 @@ public class LogInManager extends BaseManager {
 			return;
 		}
 
-		if (accountsManager.tryRegister(username, password, type)) {
+		if (AccountsManager.tryRegister(username, password, type)) {
 			openLoginPageOnWindow();
 		} else {
 			System.out.println("Username already existed");

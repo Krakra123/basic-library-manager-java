@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import app.data.Book;
 import app.managers.BookCollectionHandler;
-import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
