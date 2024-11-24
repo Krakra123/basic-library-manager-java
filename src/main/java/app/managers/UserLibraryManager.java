@@ -1,5 +1,10 @@
 package app.managers;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import app.controller.UserLibraryUIController;
 import app.data.Book;
 import app.data.BookCollection;
@@ -22,6 +27,7 @@ public class UserLibraryManager extends BaseManager {
     private GroupByType groupBy = GroupByType.NONE;
     private SortByType sortBy = SortByType.ASCENDING;
 
+    @SuppressWarnings("CallToPrintStackTrace")
     public UserLibraryManager(AppManager manager) {
         super(manager);
 
@@ -35,6 +41,21 @@ public class UserLibraryManager extends BaseManager {
 
         bookCollectionDisplay.setSaveCallback(() -> { saveBookToAccount(bookCollectionDisplay.getCurrentViewingBook()); });
         bookCollectionDisplay.setUnSaveCallback(() -> { unsaveBook(bookCollectionDisplay.getCurrentViewingBook()); });
+        bookCollectionDisplay.setOpenCallback(() -> {
+            Book book = bookCollectionDisplay.getCurrentViewingBook();
+            manager.getDialogsManager().showConfirmDialog("Open", "Open this link: " + book.accessInfo.webReaderLink + "?", () -> { 
+                if (Desktop.isDesktopSupported()) {
+                    Desktop desktop = Desktop.getDesktop();
+                    try {
+                        // Create URI object and open the URL in the default browser
+                        URI uri = new URI(book.accessInfo.webReaderLink);
+                        desktop.browse(uri);
+                    } catch (IOException | URISyntaxException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        });
     }
 
     public void apply(GroupByType groupBy, SortByType sortBy) {

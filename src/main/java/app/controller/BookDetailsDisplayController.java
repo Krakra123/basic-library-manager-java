@@ -93,13 +93,6 @@ public class BookDetailsDisplayController {
     public void update(Book book) {
         data = book;
 
-        if (AccountsManager.hasBook(AppManager.getInstance().getUserManager().getCurrentUser(), book)) {
-            unsaveButtonGogo();
-        }
-        else {
-            saveButtonGogo();
-        }
-
         image.setVisible(true);
         image.setDisable(false);
         image.setFitHeight(367.64);
@@ -110,6 +103,18 @@ public class BookDetailsDisplayController {
         // unsaveButton.setDisable(true);
         readButton.setVisible(true);
         readButton.setDisable(false);
+
+        if (AccountsManager.hasBook(AppManager.getInstance().getUserManager().getCurrentUser(), book)) {
+            unsaveButtonGogo();
+        }
+        else {
+            saveButtonGogo();
+        }
+
+        if (book.accessInfo.webReaderLink.isEmpty()) {
+            readButton.setVisible(false);
+            readButton.setDisable(true);
+        }
 
         title.setText(book.volumeInfo.title);
         authors.setText(book.volumeInfo.authors.toString().substring(1, book.volumeInfo.authors.toString().length() - 1));

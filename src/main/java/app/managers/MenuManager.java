@@ -1,12 +1,15 @@
 package app.managers;
 
-import app.controller.BookDetailsDisplayController;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import app.controller.MenuUIController;
 import app.data.Book;
 import app.data.BookCollection;
 import app.managers.BookCollectionHandler.GroupByType;
 import app.managers.BookCollectionHandler.SortByType;
-import app.util.AccountsManager;
 import app.util.BookAPI;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -24,6 +27,7 @@ public class MenuManager extends BaseManager {
 
     private BookCollectionHandler bookCollectionDisplay;
 
+    @SuppressWarnings("CallToPrintStackTrace")
     public MenuManager(AppManager manager) {
         super(manager);
 
@@ -37,6 +41,21 @@ public class MenuManager extends BaseManager {
 
         bookCollectionDisplay.setSaveCallback(() -> { saveBookToAccount(bookCollectionDisplay.getCurrentViewingBook()); });
         bookCollectionDisplay.setUnSaveCallback(() -> { unsaveBook(bookCollectionDisplay.getCurrentViewingBook()); });
+        bookCollectionDisplay.setOpenCallback(() -> {
+            Book book = bookCollectionDisplay.getCurrentViewingBook();
+            manager.getDialogsManager().showConfirmDialog("Open", "Open this link: " + book.accessInfo.webReaderLink + "?", () -> { 
+                if (Desktop.isDesktopSupported()) {
+                    Desktop desktop = Desktop.getDesktop();
+                    try {
+                        // Create URI object and open the URL in the default browser
+                        URI uri = new URI(book.accessInfo.webReaderLink);
+                        desktop.browse(uri);
+                    } catch (IOException | URISyntaxException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        });
     }
 
     public void search(String search, GroupByType groupBy, SortByType sortBy) {
