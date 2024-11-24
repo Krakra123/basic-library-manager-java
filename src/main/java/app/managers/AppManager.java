@@ -46,7 +46,7 @@ public class AppManager {
         curStage = stage;
 
         accountsManager = new AccountsManager();
-        accountsManager.read();
+        accountsManager.readAccountList();
 
         mainDisplayManager = new MainDisplayManager(this);
         loginManager = new LogInManager(this);

@@ -17,7 +17,8 @@ public class App extends Application {
         primaryStage = stage;
         appManager = new AppManager(primaryStage);
         
-        appManager.openMainDisplayWindow();
+        // appManager.openMainDisplayWindow();
+        appManager.openLoginWindow();
     }
     
     public static void main(String[] args) {

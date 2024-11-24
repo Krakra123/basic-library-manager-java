@@ -155,11 +155,11 @@ public class BookAPI {
         Path path = Paths.get(BOOK_DATA_SAVE_DIR);
         try {
             if (Files.exists(path) && Files.isDirectory(path)) {
-                DirectoryStream<Path> entries = Files.newDirectoryStream(path);
-                for (Path entry : entries) {
-                    Files.delete(entry);
+                try (DirectoryStream<Path> entries = Files.newDirectoryStream(path)) {
+                    for (Path entry : entries) {
+                        Files.delete(entry);
+                    }
                 }
-                entries.close();
             }
         } catch (IOException e) {
             e.printStackTrace();
