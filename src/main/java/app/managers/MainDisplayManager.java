@@ -75,6 +75,7 @@ public class MainDisplayManager extends BaseManager {
         manager.getStage().setWidth(WINDOW_WIDTH);
         manager.getStage().setHeight(WINDOW_HEIGHT);
         manager.getStage().centerOnScreen();
+        manager.getStage().setResizable(true);
 
         mainDisplayController.setManager(this); 
         toolbarController.setManager(this);

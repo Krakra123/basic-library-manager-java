@@ -85,6 +85,7 @@ public class LogInManager extends BaseManager {
 		manager.getStage().setWidth(WINDOW_WIDTH);
         manager.getStage().setHeight(WINDOW_HEIGHT);
         manager.getStage().centerOnScreen();
+        manager.getStage().setResizable(false);
 
 		loginPageController.setManager(this);
 	}
