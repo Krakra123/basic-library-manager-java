@@ -2,7 +2,6 @@ package app.controller;
 
 import java.io.IOException;
 
-import app.managers.BookCollectionHandler;
 import app.managers.BookCollectionHandler.GroupByType;
 import app.managers.BookCollectionHandler.SortByType;
 import app.managers.MenuManager;
