@@ -33,7 +33,6 @@ public class DialogHandler {
     }
 
     public void confirm() {
-        System.out.println("AAA");
         confirmCallback.Call();
         stage.close();
         onClose();

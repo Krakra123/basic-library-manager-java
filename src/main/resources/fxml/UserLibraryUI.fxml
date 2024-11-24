@@ -30,21 +30,24 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="CHECK" size="25" textAlignment="CENTER" />
                </graphic>
             </MFXButton>
-            <ComboBox fx:id="groupBy" prefHeight="50.0" prefWidth="150.0" promptText="GroupBy" stylesheets="@../css/combo-box.css" />
-            <ComboBox fx:id="sortBy" prefHeight="50.0" prefWidth="150.0" promptText="SortBy" stylesheets="@../css/combo-box.css">
+            <ComboBox fx:id="groupBy" minHeight="50.0" prefHeight="50.0" prefWidth="150.0" promptText="GroupBy" stylesheets="@../css/combo-box.css" />
+            <ComboBox fx:id="sortBy" minHeight="50.0" prefHeight="50.0" prefWidth="150.0" promptText="SortBy" stylesheets="@../css/combo-box.css">
                <HBox.margin>
                   <Insets right="30.0" />
                </HBox.margin>
             </ComboBox>
          </children>
-         <padding>
-            <Insets bottom="20.0" />
-         </padding>
+         <VBox.margin>
+            <Insets bottom="20.0" top="2.0" />
+         </VBox.margin>
       </HBox>
       <AnchorPane fx:id="bookListPane" VBox.vgrow="ALWAYS">
          <padding>
             <Insets top="5.0" />
          </padding>
+         <VBox.margin>
+            <Insets left="5.0" />
+         </VBox.margin>
       </AnchorPane>
    </children>
 </VBox>
