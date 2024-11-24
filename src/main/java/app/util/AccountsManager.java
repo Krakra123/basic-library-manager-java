@@ -1,7 +1,11 @@
 package app.util;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +21,22 @@ public class AccountsManager {
     
     private static final String ACCOUNTS_DIR = "data/account/accounts.txt";
     private static final String ACCOUNTS_DATA_DIR = "data/account/user-data/";
+
+    public static void creatingSavingFiles()
+    {
+        try {
+            Path savePath = Path.of(ACCOUNTS_DIR);
+            Files.createDirectories(savePath.getParent());
+            if (Files.notExists(savePath)) {
+                Files.createFile(savePath);
+            }
+    
+            Path dataPath = Path.of(ACCOUNTS_DATA_DIR);
+            Files.createDirectories(dataPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static boolean tryLogin(String username, String password) {
         Account account = findAccount(username);
@@ -35,6 +55,7 @@ public class AccountsManager {
     }
 
     public static List<Account> readAccountList() {
+        creatingSavingFiles();
         List<Account> accountList = new ArrayList<>();
 
         Path path = Paths.get(ACCOUNTS_DIR);
@@ -87,6 +108,8 @@ public class AccountsManager {
     }
 
     public static Account findAccount(String username) {
+        creatingSavingFiles();
+
         List<Account> accountList = readAccountList();
         for (Account account : accountList) {
             if (account.usernameHash.check(username)) {
@@ -135,6 +158,7 @@ public class AccountsManager {
         addBookToAccount(hash, book);
     }
     public static void addBookToAccount(DataHash hash, Book book) {
+        creatingSavingFiles();
         Path path = Paths.get(ACCOUNTS_DATA_DIR + hash + ".txt");
         try {
             Files.writeString(path, " " + book.id, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
@@ -144,6 +168,7 @@ public class AccountsManager {
     }
 
     public static void removeSavedData(String username) {
+        creatingSavingFiles();
         Path path = Paths.get(ACCOUNTS_DIR);
         if (Files.notExists(path)) {
             return;
@@ -166,6 +191,7 @@ public class AccountsManager {
     }
 
     public static void clearSavedData() {
+        creatingSavingFiles();
         Path path = Paths.get(ACCOUNTS_DATA_DIR);
         try {
             if (Files.exists(path) && Files.isDirectory(path)) {

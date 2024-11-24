@@ -26,7 +26,24 @@ public class BookAPI {
     private static final String BOOK_DATA_SAVE_DIR = "data/books/save/";
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
+    public static void creatingSavingFiles()
+    {
+        try {
+            Path savePath = Path.of(BOOK_ID_SAVE_DIR);
+            Files.createDirectories(savePath.getParent());
+            if (Files.notExists(savePath)) {
+                Files.createFile(savePath);
+            }
+    
+            Path dataPath = Path.of(BOOK_DATA_SAVE_DIR);
+            Files.createDirectories(dataPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static Book getBook(String id) {
+        creatingSavingFiles();
         Book book = new Book();
         
         Path path = Paths.get(BOOK_DATA_SAVE_DIR + id + ".txt");
@@ -67,6 +84,7 @@ public class BookAPI {
     }
 
     public static BookCollection getBookCollection(String search, int num) {
+        creatingSavingFiles();
         search = search.trim().replaceAll("\\s", "+");
 
         BookCollection collection = new BookCollection();
@@ -113,6 +131,7 @@ public class BookAPI {
     }
 
     public static boolean checkSavedBook(String id) {
+        creatingSavingFiles();
         Path path = Paths.get(BOOK_ID_SAVE_DIR);
         try (Stream<String> lines = Files.lines(path);) {
             List<String> data = lines
@@ -135,6 +154,7 @@ public class BookAPI {
     }
 
     public static void removeSavedData(String id) {
+        creatingSavingFiles();
         Path path = Paths.get(BOOK_ID_SAVE_DIR);
         if (Files.notExists(path)) {
             return;
@@ -154,6 +174,7 @@ public class BookAPI {
     }
 
     public static void clearSavedData() {
+        creatingSavingFiles();
         Path path = Paths.get(BOOK_DATA_SAVE_DIR);
         try {
             if (Files.exists(path) && Files.isDirectory(path)) {
