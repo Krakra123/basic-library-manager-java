@@ -16,7 +16,7 @@ public class InputManager {
         ACTIVE, INACTIVE;
     }
 	
-	private static final Map<KeyCode, ICallback> keyCallbacks = new HashMap<>();
+	private static Map<KeyCode, ICallback> keyCallbacks = new HashMap<>();
 	
 	public InputManager() {
 		keyCallbacks.put(KeyCode.UP,  () -> System.out.println("press up"));
