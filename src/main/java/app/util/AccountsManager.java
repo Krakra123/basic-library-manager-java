@@ -120,28 +120,33 @@ public class AccountsManager {
         return null;
     }
 
-    public static BookCollection getBookCollection(Account account) {
-        DataHash hash = account.usernameHash;
-        return getBookCollection(hash);
+    public static BookCollection getBookCollection(Account account, String collection) {
+        return getBookCollection(account.usernameHash, new DataHash(collection));
     }
-    public static BookCollection getBookCollection(String username) { 
-        DataHash hash = new DataHash(username);
-        return getBookCollection(hash);
+    public static BookCollection getBookCollection(String username, String collection) { 
+        return getBookCollection(new DataHash(username), new DataHash(collection));
     }
-    public static BookCollection getBookCollection(DataHash hash) {
+    public static BookCollection getBookCollection(DataHash hash, DataHash collectionHash) {
         Path path = Paths.get(ACCOUNTS_DATA_DIR + hash + ".txt");
         BookCollection collection = new BookCollection();
         try (Stream<String> lines = Files.lines(path)) {
             List<String> data = lines
                 .filter(line -> !line.isBlank())
-                .flatMap(line -> Arrays.stream(line.split(" ")))
                 .filter(word -> !word.isEmpty())
                 .toList();
 
-            int l = data.size(); // FIXME
-            for (int i = 0; i < l; i++) {
-                collection.add(BookAPI.getBook(data.get(i)));
+            for (String s : data) {
+                String[] ss = s.split("\\s+");
+                String cHash = ss[0];
+                if (collectionHash.toString().equals(cHash)) {
+                    int l = ss.length;
+                    for (int i = 1; i < l; i++) {
+                        collection.add(BookAPI.getBook(ss[i]));
+                    }
+                }
             }
+
+            lines.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -149,19 +154,40 @@ public class AccountsManager {
         return collection;
     }
 
-    public static void addBookToAccount(Account account, Book book) {
-        DataHash hash = account.usernameHash;
-        addBookToAccount(hash, book);
+    public static void addBookToAccount(Account account, String collection, Book book) {
+        addBookToAccount(account.usernameHash, new DataHash(collection), book);
     }
-    public static void addBookToAccount(String username, Book book) { 
-        DataHash hash = new DataHash(username);
-        addBookToAccount(hash, book);
+    public static void addBookToAccount(String username, String collection, Book book) { 
+        addBookToAccount(new DataHash(username), new DataHash(collection), book);
     }
-    public static void addBookToAccount(DataHash hash, Book book) {
+    public static void addBookToAccount(DataHash usernameHash, DataHash collectionHash, Book book) {
         creatingSavingFiles();
-        Path path = Paths.get(ACCOUNTS_DATA_DIR + hash + ".txt");
-        try {
-            Files.writeString(path, " " + book.id, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        Path path = Paths.get(ACCOUNTS_DATA_DIR + usernameHash + ".txt");
+        try (Stream<String> lines = Files.lines(path)) {
+            List<String> data = lines
+                .filter(line -> !line.isBlank())
+                .filter(word -> !word.isEmpty())
+                .toList();
+            data = new ArrayList<>(data);
+
+            int l = data.size();
+            for (int i = 0; i <= l; i++) {
+                if (i >= l) {
+                    data.add(collectionHash.toString() + " " + book.id);
+                    break;
+                }
+
+                String[] ss = data.get(i).split("\\s+");
+                String cHash = ss[0];
+                if (collectionHash.toString().equals(cHash)) {
+                    data.set(i, data.get(i) + " " + book.id);
+                    break;
+                }
+            }
+
+            Files.write(path, data);
+
+            lines.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

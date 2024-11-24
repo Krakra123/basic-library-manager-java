@@ -13,7 +13,7 @@ public class UserManager extends BaseManager {
     }
     public void setCurrentUser(Account currentUser) {
         this.currentUser = currentUser;
-        this.currentCollection = AccountsManager.getBookCollection(currentUser);
+        this.currentCollection = AccountsManager.getBookCollection(currentUser, "A"); // FIXME
     }
 
     private BookCollection currentCollection;
@@ -26,7 +26,7 @@ public class UserManager extends BaseManager {
     }
 
     public BookCollection getCollection() {
-        return AccountsManager.getBookCollection(currentUser);
+        return AccountsManager.getBookCollection(currentUser, "A"); // FIXME
     }
 
     public boolean checkBorrowedBook(Book book) {
@@ -35,7 +35,7 @@ public class UserManager extends BaseManager {
 
     public void borrowBook(Book book) {
         if (checkBorrowedBook(book)) return;
-        AccountsManager.addBookToAccount(currentUser, book);
+        AccountsManager.addBookToAccount(currentUser, "A", book); // FIXME
         currentCollection.add(book);
     }
 }
