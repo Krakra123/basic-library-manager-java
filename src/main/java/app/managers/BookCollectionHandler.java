@@ -152,6 +152,16 @@ public class BookCollectionHandler {
         saveCallback = callback;
     }
 
+    private ICallback unsaveCallback;
+    public void raiseUnSaveCallback() {
+        if (unsaveCallback != null) {
+            unsaveCallback.Call();
+        }
+    }
+    public void setUnSaveCallback(ICallback callback) {
+        unsaveCallback = callback;
+    }
+
     private ICallback openCallback;
     public void raiseOpenCallback() {
         if (openCallback != null) {

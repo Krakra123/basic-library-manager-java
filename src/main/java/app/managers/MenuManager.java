@@ -1,10 +1,12 @@
 package app.managers;
 
+import app.controller.BookDetailsDisplayController;
 import app.controller.MenuUIController;
 import app.data.Book;
 import app.data.BookCollection;
 import app.managers.BookCollectionHandler.GroupByType;
 import app.managers.BookCollectionHandler.SortByType;
+import app.util.AccountsManager;
 import app.util.BookAPI;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -34,6 +36,7 @@ public class MenuManager extends BaseManager {
         mainMenuFXMLContent.setDisableCallback(() -> { onDisable(); });
 
         bookCollectionDisplay.setSaveCallback(() -> { saveBookToAccount(bookCollectionDisplay.getCurrentViewingBook()); });
+        bookCollectionDisplay.setUnSaveCallback(() -> { unsaveBook(bookCollectionDisplay.getCurrentViewingBook()); });
     }
 
     public void search(String search, GroupByType groupBy, SortByType sortBy) {
@@ -74,7 +77,17 @@ public class MenuManager extends BaseManager {
     }
 
     public void saveBookToAccount(Book book) {
-        manager.getDialogsManager().showConfirmDialog("Confirm", "Saving this book to your library", () -> { manager.getUserManager().borrowBook(book); });
+        manager.getDialogsManager().showConfirmDialog("Confirm", "Saving this book to your library", () -> { 
+            manager.getUserManager().borrowBook(book); 
+            bookCollectionDisplay.getDetailsController().update(book);
+        });
+    }
+
+    public void unsaveBook(Book book) {
+        manager.getDialogsManager().showConfirmDialog("Confirm", "Remove this book to your library", () -> { 
+            manager.getUserManager().returnBook(book);
+            bookCollectionDisplay.getDetailsController().update(book);
+        });
     }
 
     private void updateBookCollectionDisplay(BookCollection collection, GroupByType groupBy, SortByType sortBy) {

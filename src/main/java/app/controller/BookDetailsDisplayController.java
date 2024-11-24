@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 
 import app.data.Book;
+import app.managers.AppManager;
 import app.managers.BookCollectionHandler;
+import app.util.AccountsManager;
 import app.util.BookAPI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,6 +63,7 @@ public class BookDetailsDisplayController {
     }
 
     public void unsave(ActionEvent event) throws IOException {
+        manager.raiseUnSaveCallback();
     }
 
     public void read(ActionEvent event) throws IOException {
@@ -90,6 +93,13 @@ public class BookDetailsDisplayController {
     public void update(Book book) {
         data = book;
 
+        if (AccountsManager.hasBook(AppManager.getInstance().getUserManager().getCurrentUser(), book)) {
+            unsaveButtonGogo();
+        }
+        else {
+            saveButtonGogo();
+        }
+
         image.setVisible(true);
         image.setDisable(false);
         image.setFitHeight(367.64);
@@ -110,6 +120,19 @@ public class BookDetailsDisplayController {
 
         image.setImage(null);
         updateImage(book.volumeInfo.imageLinks.thumbnail);
+    }
+
+    private void saveButtonGogo() {
+        saveButton.setVisible(true);
+        saveButton.setDisable(false);
+        unsaveButton.setVisible(false);
+        unsaveButton.setDisable(true);
+    }
+    private void unsaveButtonGogo() {
+        saveButton.setVisible(false);
+        saveButton.setDisable(true);
+        unsaveButton.setVisible(true);
+        unsaveButton.setDisable(false);
     }
 
     private void updateImage(String url) {

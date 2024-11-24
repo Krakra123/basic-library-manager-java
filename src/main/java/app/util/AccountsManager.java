@@ -165,6 +165,43 @@ public class AccountsManager {
         }
     }
 
+    public static boolean hasBook(Account account, Book book) {
+        return hasBook(account.usernameHash, book);
+    }
+    public static boolean hasBook(String username, Book book) {
+        return hasBook(new DataHash(username), book);
+    }
+    public static boolean hasBook(DataHash usernameHash, Book book) {
+        creatingSavingFiles();
+        Path path = Paths.get(ACCOUNTS_DATA_DIR + usernameHash + ".txt");
+        String s = "";
+        try {
+            s = Files.readString(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return s.contains(book.id);
+    }
+
+    public static void removeBook(Account account, Book book) {
+        removeBook(account.usernameHash, book);
+    }
+    public static void removeBook(String username, Book book) {
+        removeBook(new DataHash(username), book);
+    }
+    public static void removeBook(DataHash usernameHash, Book book) {
+        creatingSavingFiles();
+        Path path = Paths.get(ACCOUNTS_DATA_DIR + usernameHash + ".txt");
+        try {
+            String content = Files.readString(path);
+            content = content.replaceAll(book.id, "");
+            content = content.replaceAll("(?m)^[ \\t]*\\r?\\n", "");
+            Files.writeString(path, content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void removeSavedData(String username) {
         creatingSavingFiles();
         Path path = Paths.get(ACCOUNTS_DIR);

@@ -1,6 +1,7 @@
 package app;
 
 import java.io.IOException;
+
 import app.managers.AppManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -15,9 +16,10 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
 
         primaryStage = stage;
-        appManager = new AppManager(primaryStage);
+        appManager = AppManager.getInstance();
+
+        appManager.setUp(primaryStage);
         
-        // appManager.openMainDisplayWindow();
         appManager.openLoginWindow();
     }
     

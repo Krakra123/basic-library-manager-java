@@ -7,6 +7,14 @@ import javafx.stage.Stage;
 
 @SuppressWarnings({"FieldMayBeFinal", "exports"})
 public class AppManager {
+
+    private static AppManager instance;
+    public static AppManager getInstance() {
+        if (instance == null) {
+            instance = new AppManager();
+        }
+        return instance;
+    }
     
     private static final String WINDOW_FXML = "Blank";
     private static final String TITLE = "Library Manager";
@@ -46,7 +54,9 @@ public class AppManager {
         return dialogsManager;
     }
 
-    public AppManager(Stage stage) {
+    private AppManager() {}
+
+    public void setUp(Stage stage) {
         curStage = stage;
 
         mainDisplayManager = new MainDisplayManager(this);
