@@ -36,6 +36,11 @@ public class MainDisplayManager extends BaseManager {
         return userLibraryManager;
     }
 
+    private AccountTabManager accountTabManager;
+    public AccountTabManager getAccountTabManager() {
+        return accountTabManager;
+    }
+    
     public MainDisplayManager(AppManager manager) {
         super(manager);
 
@@ -47,6 +52,7 @@ public class MainDisplayManager extends BaseManager {
 
         menuManager = new MenuManager(manager);
         userLibraryManager = new UserLibraryManager(manager);
+        accountTabManager = new AccountTabManager(manager);
 
 		mainDisplayFXMLContent.setEnableCallback(() -> { onMainDisplayEnable(); });
     }
@@ -59,6 +65,11 @@ public class MainDisplayManager extends BaseManager {
         loadOnMainDisplay(userLibraryManager.getUserLibraryFXMLContent());
     }
 
+    public void loadAccountTab() {
+    	loadOnMainDisplay(accountTabManager.getAccountTabFXMLContent());
+    	System.out.println("pressed account");
+    }
+    
     private void loadOnMainDisplay(LoadableFXMLContent content) {
         if (currentFXMLContent != content) {
             if (currentFXMLContent != null) {

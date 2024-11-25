@@ -31,6 +31,6 @@ public class ToolbarController {
     }
 
     public void openAccount(ActionEvent event) throws IOException {
-
+    	manager.loadAccountTab();
     }
 }
