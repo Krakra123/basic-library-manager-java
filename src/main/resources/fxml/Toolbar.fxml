@@ -26,29 +26,10 @@
                   <Font size="14.0" />
                </font>
             </MFXButton>
-            <MFXButton contentDisplay="TOP" onAction="#openDashboards" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #f6f6f6;" text="DASHBOARDS">
-               <graphic>
-                  <FontAwesomeIconView glyphName="TABLE" size="25" />
-               </graphic>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </MFXButton>
          </children>
       </VBox>
       <VBox>
          <children>
-            <MFXButton contentDisplay="TOP" onAction="#openSettings" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #f6f6f6;" text="SETTINGS">
-               <graphic>
-                  <FontAwesomeIconView glyphName="COG" size="25" />
-               </graphic>
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </MFXButton>
             <MFXButton contentDisplay="TOP" onAction="#openAccount" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #f6f6f6;" text="ACCOUNT">
                <graphic>
                   <FontAwesomeIconView glyphName="USER" size="25" />

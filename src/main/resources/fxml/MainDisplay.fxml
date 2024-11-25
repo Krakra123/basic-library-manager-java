@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -11,27 +8,6 @@
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <MenuBar style="-fx-background-color: #f6f6f6;">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" onAction="#handleMenuSettings" text="Settings" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleMenuClose" text="Exit" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" onAction="#handleMenuAddBook" text="Add Book" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleMenuAddMember" text="Add Member" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" onAction="#handleAboutMenu" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
             <HBox VBox.vgrow="ALWAYS">
                <children>
                   <AnchorPane fx:id="toolbarPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
