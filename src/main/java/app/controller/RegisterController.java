@@ -7,7 +7,6 @@ import app.data.Account.AccountType;
 import app.managers.LogInManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
 @SuppressWarnings("exports")
@@ -24,16 +23,12 @@ public class RegisterController {
 	@FXML
 	public TextField rePasswordTextField;
 
-	@FXML
-	public CheckBox adminCheck;
-
 	private Account.AccountType type = AccountType.USER;
 
 	public void clear() {
 		usernameTextField.clear();
 		passwordTextField.clear();
 		rePasswordTextField.clear();
-		adminCheck.setSelected(false);
 	}
 
 	public void setManager(LogInManager manager) {
