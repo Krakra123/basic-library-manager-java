@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -21,7 +19,7 @@
       </Label>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-border-color: #7a0ed9; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
+            <VBox minHeight="100.0" prefHeight="100.0" prefWidth="100.0" spacing="10.0" style="-fx-border-color: #7a0ed9; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="TOTAL BOOKS" textAlignment="CENTER" textFill="#7a0ed9">
                      <font>
@@ -38,7 +36,7 @@
                   <Insets top="15.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-border-color: #7a0ed9; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
+            <VBox minHeight="100.0" prefHeight="100.0" prefWidth="100.0" spacing="10.0" style="-fx-border-color: #7a0ed9; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="MOST CATEGORIES" textAlignment="CENTER" textFill="#7a0ed9">
                      <font>
@@ -60,7 +58,7 @@
             <Insets left="20.0" right="20.0" />
          </VBox.margin>
       </HBox>
-      <Label contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Borrowed books charts:" textAlignment="CENTER" textFill="#7a0ed9">
+      <Label contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Recommend books:" textAlignment="CENTER" textFill="#7a0ed9">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
@@ -68,16 +66,9 @@
             <Insets left="35.0" top="30.0" />
          </VBox.margin>
       </Label>
-      <LineChart fx:id="chart">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis minorTickCount="0" side="LEFT" tickLabelGap="1.0" upperBound="9.0" />
-        </yAxis>
+      <AnchorPane fx:id="bookListPane" VBox.vgrow="ALWAYS">
          <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </LineChart>
+            <Insets left="10.0" />
+         </VBox.margin></AnchorPane>
    </children>
 </VBox>

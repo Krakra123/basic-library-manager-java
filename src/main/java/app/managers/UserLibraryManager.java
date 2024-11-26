@@ -96,7 +96,7 @@ public class UserLibraryManager extends BaseManager {
         bookCollectionDisplay.openOn(userLibraryUIController.bookListPane);
 
         userLibraryUIController.setManager(this);
-        updateBookCollectionDisplay(manager.getUserManager().getCollection(), groupBy, sortBy);
+        apply(groupBy, sortBy);
         StateManager.setState(StateManager.State.LIBRARY);
     }
 
