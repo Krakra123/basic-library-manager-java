@@ -3,13 +3,11 @@
 - School: VNU-UET
 - Class: INT2204 11
 - Members: Tuan-Nghia Le, Hai-Tien Trinh, Ba-Hoang-Long Nguyen
-
 ## Resources used
-- Language: Java, CSS
+- Language: Java, a little CSS
 - Library: JavaFX, MaterialFX - for material design components
-- FontawesomeFX - icon library
-- GoogleBooksAPI - fetch books' information
-
+- FontAwesomeFX - icon library
+- GoogleBooksAPI - fetch books' information from Google API
 ## Features (with screenshots)
 - Login Page
   
