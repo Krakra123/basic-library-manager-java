@@ -24,16 +24,12 @@ public class RegisterController {
 	@FXML
 	public TextField rePasswordTextField;
 
-	@FXML
-	public CheckBox adminCheck;
-
 	private Account.AccountType type = AccountType.USER;
 
 	public void clear() {
 		usernameTextField.clear();
 		passwordTextField.clear();
 		rePasswordTextField.clear();
-		adminCheck.setSelected(false);
 	}
 
 	public void setManager(LogInManager manager) {
