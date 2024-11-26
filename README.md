@@ -2,7 +2,7 @@
 ## Big Project - Object-Oriented Programming (24-25 AY)
 - School: VNU-UET
 - Class: INT2204 11
-- Members: Tuan-Nghia Le, Hai-Tien Trinh, Ba-Hoang-Long Nguyen
+- Members: Tuan-Nghia Le (23020124), Hai-Tien Trinh (23021697), Ba-Hoang-Long Nguyen (23020680)
 ## Resources used
 - Language: Java, a little CSS
 - Library: JavaFX, MaterialFX - for material design components
@@ -34,3 +34,24 @@
 ![image](https://github.com/user-attachments/assets/ab7536a3-4a21-4ebd-9d3c-4c5f6dff079e)
 
 ## Structure (UML):
+
+## Usage
+1. Register for a totally new account, registered accounts will be stored in test-database.txt (via hash for security reasons)
+2. After logging in, hover through search bar in Home to search for any book you want!
+3. Click the icon "Save" to add the books onto your library
+4. Tapping on "Library" section on the left sidebar to see your library
+5. In both Home and Library section, you can use the filter to sort by your favorite categories
+6. To exit the application, click the X button on the upper-right window.
+## Installation
+1. Clone the project from the repository
+2. Open the project in any IDE (VSCode, IntelliJ, etc)
+3. Run the project from file "App.java"
+
+## Future improvements
+1. Decorate the UI
+2. Adding some games or sounds inside the app
+3. Logging out
+## Project status
+The project is done.
+## Notes
+This application is for educational purposes.
