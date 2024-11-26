@@ -23,7 +23,7 @@ public class ToolbarController {
     }
 
     public void openDashboards(ActionEvent event) throws IOException {
-
+        manager.loadDashboard();
     }
 
     public void openSettings(ActionEvent event) throws IOException {

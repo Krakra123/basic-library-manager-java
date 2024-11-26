@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefWidth="500.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.DashboardsController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="DASHBOARD" textFill="#7a0ed9">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </VBox.margin>
+      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-border-color: #7a0ed9; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="TOTAL BOOKS" textAlignment="CENTER" textFill="#7a0ed9">
+                     <font>
+                        <Font name="System Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="book" alignment="CENTER" maxWidth="1.7976931348623157E308" text="000" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-border-color: #7a0ed9; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="MOST CATEGORIES" textAlignment="CENTER" textFill="#7a0ed9">
+                     <font>
+                        <Font name="System Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cat" alignment="CENTER" maxWidth="1.7976931348623157E308" text="000" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" />
+         </VBox.margin>
+      </HBox>
+      <Label contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Borrowed books charts:" textAlignment="CENTER" textFill="#7a0ed9">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="35.0" top="30.0" />
+         </VBox.margin>
+      </Label>
+      <LineChart fx:id="chart">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis minorTickCount="0" side="LEFT" tickLabelGap="1.0" upperBound="9.0" />
+        </yAxis>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </LineChart>
+   </children>
+</VBox>

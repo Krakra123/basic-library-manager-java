@@ -26,6 +26,14 @@
                   <Font size="14.0" />
                </font>
             </MFXButton>
+            <MFXButton contentDisplay="TOP" onAction="#openDashboards" prefHeight="75.0" prefWidth="160.0" style="-fx-background-color: #f6f6f6;" text="DASHBOARD">
+               <graphic>
+                  <FontAwesomeIconView glyphName="TABLE" size="25" />
+               </graphic>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </MFXButton>
          </children>
       </VBox>
       <VBox>
