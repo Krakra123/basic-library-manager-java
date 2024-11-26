@@ -3,8 +3,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AccountTabController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="96.0" prefWidth="111.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AccountTabController">
    <children>
-      <MFXButton buttonType="RAISED" onAction="#logOut" prefHeight="100.0" prefWidth="100.0" text="LOG OUT" />
+      <MFXButton onAction="#logOut" prefHeight="105.0" prefWidth="111.0" text="LOG OUT" />
    </children>
 </VBox>
