@@ -35,13 +35,16 @@ public class UserLibraryManager extends BaseManager {
         userLibraryFXMLContent = new LoadableFXMLContent(USER_LIBRARY_UI);
         userLibraryUIController = userLibraryFXMLContent.getData().getController(UserLibraryUIController.class);
         
-        bookCollectionDisplay = new BookCollectionHandler();
+        bookCollectionDisplay = new BookCollectionHandler(true);
 
         userLibraryFXMLContent.setEnableCallback(() -> { onEnable(); });
         userLibraryFXMLContent.setDisableCallback(() -> { onDisable(); });
 
         bookCollectionDisplay.setSaveCallback(() -> { saveBookToAccount(bookCollectionDisplay.getCurrentViewingBook()); });
         bookCollectionDisplay.setUnSaveCallback(() -> { unsaveBook(bookCollectionDisplay.getCurrentViewingBook()); });
+        bookCollectionDisplay.setEditCallback(() -> { 
+            manager.getDialogsManager().showEditBookDialog(bookCollectionDisplay.getCurrentViewingBook(), ()->{ apply(groupBy, sortBy); });
+        });
         bookCollectionDisplay.setOpenCallback(() -> {
             Book book = bookCollectionDisplay.getCurrentViewingBook();
             manager.getDialogsManager().showConfirmDialog("Open", "Open this link: " + book.accessInfo.webReaderLink + "?", () -> { 
@@ -93,7 +96,7 @@ public class UserLibraryManager extends BaseManager {
         bookCollectionDisplay.openOn(userLibraryUIController.bookListPane);
 
         userLibraryUIController.setManager(this);
-        updateBookCollectionDisplay(manager.getUserManager().getCollection(), groupBy, sortBy);
+        apply(groupBy, sortBy);
         StateManager.setState(StateManager.State.LIBRARY);
     }
 

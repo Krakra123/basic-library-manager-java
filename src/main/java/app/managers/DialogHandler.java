@@ -9,15 +9,15 @@ import javafx.stage.Stage;
 @SuppressWarnings("FieldMayBeFinal")
 public class DialogHandler {
 
-    private final AppManager appManager;
+    protected final AppManager appManager;
 
-    private String FXML;
-    private Stage stage;
+    protected String FXML;
+    protected Stage stage;
     public Utilities.FXMLData fxmlData;
     
-    private ICallback confirmCallback;
+    protected ICallback confirmCallback;
 
-    private StateManager.State preState;
+    protected StateManager.State preState;
 
     public DialogHandler(AppManager appManager, String FXML) {
         this.appManager = appManager;

@@ -9,25 +9,27 @@ public class Account {
 		ADMIN
 	}
 
-	public DataHash usernameHash;
+	public String username;
 	public DataHash passwordHash;
 	public AccountType type;
 
 	public Account(String username, String password, AccountType type) {
-        this.usernameHash = new DataHash(username);
+		username = username.trim();
+        this.username = username;
         this.passwordHash = new DataHash(password);
         this.type = type;
     }
 
-	public Account(DataHash usernameHash, DataHash passwordHash, AccountType type) {
-        this.usernameHash = usernameHash;
+	public Account(String username, DataHash passwordHash, AccountType type) {
+		username = username.trim();
+        this.username = username;
         this.passwordHash = passwordHash;
         this.type = type;
     }
 
 	public boolean checkUsername(String username) {
 		username = username.trim();
-		return usernameHash.check(username);
+		return this.username.equals(username);
 	}
 
     public boolean checkPassword(String password) {
