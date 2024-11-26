@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="96.0" prefWidth="111.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AccountTabController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AccountTabController">
    <children>
-      <MFXButton onAction="#logOut" prefHeight="105.0" prefWidth="111.0" text="LOG OUT" />
+      <MFXButton buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#logOut" prefHeight="150.0" prefWidth="103.0" text="LOG OUT" textFill="#7a0ed9">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="60.0" />
+         </VBox.margin></MFXButton>
    </children>
+   <padding>
+      <Insets left="10.0" right="10.0" top="60.0" />
+   </padding>
 </VBox>
