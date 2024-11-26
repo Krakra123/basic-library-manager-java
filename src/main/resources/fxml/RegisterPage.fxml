@@ -2,6 +2,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.Label?>
@@ -19,7 +20,7 @@
       <MFXTextField fx:id="usernameTextField" floatingText="Username" layoutX="95.0" layoutY="125.0" prefHeight="30.0" prefWidth="260.0" />
       <MFXPasswordField fx:id="passwordTextField" floatingText="Password" layoutX="95.0" layoutY="180.0" prefHeight="30.0" prefWidth="260.0" />
       <MFXPasswordField fx:id="rePasswordTextField" floatingText="Comfirm password" layoutX="95.0" layoutY="235.0" prefHeight="30.0" prefWidth="260.0" />
-      <VBox alignment="TOP_CENTER" layoutX="129.0" layoutY="302.0" prefHeight="50.0" prefWidth="143.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="310.0">
+      <VBox alignment="TOP_CENTER" layoutX="129.0" layoutY="302.0" prefHeight="50.0" prefWidth="143.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="335.0">
          <children>
             <MFXButton buttonType="RAISED" onAction="#register" prefHeight="49.0" prefWidth="90.0" text="Register">
                <font>
@@ -28,6 +29,7 @@
             <MFXButton onAction="#backToLogin" text="Back to Login" />
          </children>
       </VBox>
+      <MFXCheckbox fx:id="adminCheck" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="300.0" onAction="#registerAsAdmin" text="Register as Admin" />
       <FontAwesomeIconView glyphName="USER" layoutX="51.0" layoutY="160.0" size="30" />
       <FontAwesomeIconView glyphName="LOCK" layoutX="51.0" layoutY="270.0" size="30" />
       <FontAwesomeIconView glyphName="LOCK" layoutX="51.0" layoutY="215.0" size="30" />

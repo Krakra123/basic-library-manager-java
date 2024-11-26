@@ -10,16 +10,16 @@ import javafx.scene.control.Label;
 @SuppressWarnings("exports")
 public class ConfirmDialogController {
 
-    private DialogHandler manager;
+    protected DialogHandler manager;
     public void setManager(DialogHandler manager) {
         this.manager = manager;
     }
     
     @FXML
-    private Label title;
+    protected Label title;
 
     @FXML
-    private Label detail;
+    protected Label detail;
 
     public void setText(String t, String d) {
         title.setText(t);

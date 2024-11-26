@@ -59,13 +59,13 @@ public class BookCollectionHandler {
 
     private List<LoadableFXMLContent> preBookGroupsContent = new ArrayList<>();
 
-    public BookCollectionHandler() {
+    public BookCollectionHandler(boolean editable) {
         bookCollectionListPaneFXMLContent = new LoadableFXMLContent(BOOK_COLLECTION_LIST_FXML);
         bookCollectionListController = bookCollectionListPaneFXMLContent.getData().getController(BookCollectionListController.class);
 
         bookDetailsDisplayFXMLContent = new LoadableFXMLContent(BOOK_DETAILS_DISPLAY_FXML);
         bookDetailsDisplayController = bookDetailsDisplayFXMLContent.getData().getController(BookDetailsDisplayController.class);
-        bookDetailsDisplayController.reset();
+        bookDetailsDisplayController.reset(editable);
 
         bookDetailsDisplayFXMLContent.openOn(bookCollectionListController.detailsPane);
         bookDetailsDisplayFXMLContent.stickToWholeAnchorPane();
@@ -160,6 +160,16 @@ public class BookCollectionHandler {
     }
     public void setUnSaveCallback(ICallback callback) {
         unsaveCallback = callback;
+    }
+
+    private ICallback editCallback;
+    public void raiseEditCallback() {
+        if (editCallback != null) {
+            editCallback.Call();
+        }
+    }
+    public void setEditCallback(ICallback callback) {
+        editCallback = callback;
     }
 
     private ICallback openCallback;

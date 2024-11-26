@@ -130,6 +130,18 @@ public class BookAPI {
         }
     }
 
+    public static void editBook(String id, Book book) {
+        try {
+            String json = objectMapper.writeValueAsString(book);
+            Path savePath = Path.of(BOOK_DATA_SAVE_DIR + id + ".txt");
+            if (Files.exists(savePath)) {
+                Files.writeString(savePath, json, StandardOpenOption.WRITE);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static boolean checkSavedBook(String id) {
         creatingSavingFiles();
         Path path = Paths.get(BOOK_ID_SAVE_DIR);
