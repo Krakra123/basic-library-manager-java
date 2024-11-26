@@ -2,7 +2,10 @@
 ## Big Project - Object-Oriented Programming (24-25 AY)
 - School: VNU-UET
 - Class: INT2204 11
-- Members: Tuan-Nghia Le (23020124), Hai-Tien Trinh (23021697), Ba-Hoang-Long Nguyen (23020680)
+- Members:
+  + Tuan-Nghia Le (23020124)
+  + Hai-Tien Trinh (23021697)
+  + Ba-Hoang-Long Nguyen (23020680)
 ## Resources used
 - Language: Java, a little CSS
 - Library: JavaFX, MaterialFX - for material design components
