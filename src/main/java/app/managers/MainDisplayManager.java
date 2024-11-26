@@ -10,7 +10,7 @@ public class MainDisplayManager extends BaseManager {
     private static final String MAIN_DISPLAY_FXML = "MainDisplay";
     private static final String TOOLBAR_FXML = "Toolbar";
     private static final int WINDOW_WIDTH = 1150;
-    private static final int WINDOW_HEIGHT = 700;
+    private static final int WINDOW_HEIGHT = 725;
 
     private LoadableFXMLContent mainDisplayFXMLContent;
     public LoadableFXMLContent getMainDisplayFXMLContent() {

@@ -59,6 +59,8 @@ public class BookCollectionHandler {
 
     private List<LoadableFXMLContent> preBookGroupsContent = new ArrayList<>();
 
+    private List<BookItemGroupDisplayController> curGrControllers;
+    @SuppressWarnings("unused")
     public BookCollectionHandler(boolean editable) {
         bookCollectionListPaneFXMLContent = new LoadableFXMLContent(BOOK_COLLECTION_LIST_FXML);
         bookCollectionListController = bookCollectionListPaneFXMLContent.getData().getController(BookCollectionListController.class);
@@ -71,6 +73,24 @@ public class BookCollectionHandler {
         bookDetailsDisplayFXMLContent.stickToWholeAnchorPane();
 
         bookCollectionListPaneFXMLContent.setEnableCallback(() -> { onEnable(); });
+        
+        curGrControllers = new ArrayList<>();
+        AppManager.getInstance().getStage().widthProperty().addListener((observable, oldValue, newValue) -> {
+            adjustWidth();
+        });
+        AppManager.getInstance().getStage().iconifiedProperty().addListener((observable, oldValue, newValue) -> {
+            adjustWidth();
+        });
+        AppManager.getInstance().getStage().maximizedProperty().addListener((observable, oldValue, newValue) -> {
+            adjustWidth();
+        });
+    }
+
+    private void adjustWidth() {
+        for (BookItemGroupDisplayController controller : curGrControllers) {
+            controller.contentPane.setPrefWrapLength(AppManager.getInstance().getRootPane().getWidth() - 570);
+            controller.contentPane.setPrefWidth(AppManager.getInstance().getRootPane().getWidth() - 570);
+        }
     }
 
     public void update(BookCollection collection, GroupByType groupBy, SortByType sortBy) {
@@ -80,6 +100,8 @@ public class BookCollectionHandler {
     }
 
     private void updateCollectionDisplaying(TreeMap<String, List<Book>> bookGroups, SortByType sort) {
+        curGrControllers.clear();
+
         NavigableMap<String, List<Book>> neviMap;
         if (sort == SortByType.DESCENDING) neviMap = bookGroups.descendingMap();
         else neviMap = bookGroups;
@@ -97,12 +119,15 @@ public class BookCollectionHandler {
             try {
                 LoadableFXMLContent content = preBookGroupsContent.get(index);
                 BookItemGroupDisplayController controller = content.getData().getController(BookItemGroupDisplayController.class);
-                
+
+                curGrControllers.add(controller);
+
                 bookCollectionListController.listPane.getChildren().add(content.getData().root);
                 content.setPane(bookCollectionListController.listPane);
                 content.setPane(bookCollectionListController.listPane);
                 controller.groupLabel.setText(bookGroup.getKey().toUpperCase());
                 
+                adjustWidth();
                 placeBookListItemOnGrid(bookGroup.getValue(), controller.contentPane);
 
             } catch (Exception e) {
