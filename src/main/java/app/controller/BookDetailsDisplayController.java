@@ -32,6 +32,9 @@ public class BookDetailsDisplayController {
     public Button saveButton;
 
     @FXML
+    public Button editButton;
+
+    @FXML
     public Button unsaveButton;
 
     @FXML
@@ -55,6 +58,8 @@ public class BookDetailsDisplayController {
     @FXML 
     public Label description;
 
+    private boolean editable;
+
     public Book data;
 
     public void save(ActionEvent event) throws IOException {
@@ -66,11 +71,18 @@ public class BookDetailsDisplayController {
         manager.raiseUnSaveCallback();
     }
 
+    public void edit(ActionEvent event) throws IOException {
+        BookAPI.saveBook(data.id, data);
+        manager.raiseEditCallback();
+    }
+
     public void read(ActionEvent event) throws IOException {
         manager.raiseOpenCallback();
     }
 
-    public void reset() {
+    public void reset(boolean editable) {
+        this.editable = editable;
+
         image.setVisible(false);
         image.setDisable(true);
         image.setFitHeight(100);
@@ -79,6 +91,8 @@ public class BookDetailsDisplayController {
         saveButton.setDisable(true);
         unsaveButton.setVisible(false);
         unsaveButton.setDisable(true);
+        editButton.setVisible(false);
+        editButton.setDisable(true);
         readButton.setVisible(false);
         readButton.setDisable(true);
 
@@ -101,6 +115,14 @@ public class BookDetailsDisplayController {
         saveButton.setDisable(false);
         // unsaveButton.setVisible(false);
         // unsaveButton.setDisable(true);
+        if (editable) {
+            editButton.setVisible(true);
+            editButton.setDisable(false);
+        }
+        else {
+            editButton.setVisible(false);
+            editButton.setDisable(true);
+        }
         readButton.setVisible(true);
         readButton.setDisable(false);
 

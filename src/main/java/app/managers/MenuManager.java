@@ -13,7 +13,6 @@ import app.managers.BookCollectionHandler.SortByType;
 import app.util.BookAPI;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.scene.input.KeyCode;
 
 @SuppressWarnings({"FieldMayBeFinal", "unused"})
@@ -36,7 +35,7 @@ public class MenuManager extends BaseManager {
         mainMenuFXMLContent = new LoadableFXMLContent(MAIN_MENU_FXML);
         mainMenuUIController = mainMenuFXMLContent.getData().getController(MenuUIController.class);
 
-        bookCollectionDisplay = new BookCollectionHandler();
+        bookCollectionDisplay = new BookCollectionHandler(false);
 
         mainMenuFXMLContent.setEnableCallback(() -> { onEnable(); });
         mainMenuFXMLContent.setDisableCallback(() -> { onDisable(); });

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #f6f6f6;" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ToolbarController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" style="-fx-background-color: #f6f6f6;" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ToolbarController">
    <children>
       <VBox VBox.vgrow="ALWAYS">
          <children>
