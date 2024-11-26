@@ -23,8 +23,16 @@
 ![image](https://github.com/user-attachments/assets/12ba0f89-d374-480b-86c6-6c85fa422271)
 
 - Search book
+
+![image](https://github.com/user-attachments/assets/a3a2293b-3398-42c1-98b8-6c85b1b14b96)
 - Edit book
-- Delete book
-- Enter to operate some features (login, search, etc)
+- Remove book from your library
+
+![image](https://github.com/user-attachments/assets/7b61be2c-303e-4e7d-94a5-d7cb88488069)
+
+- Press "Enter" to operate some features (login, search, etc)
+- Sorting your searching/library based on categories
+
+![image](https://github.com/user-attachments/assets/ab7536a3-4a21-4ebd-9d3c-4c5f6dff079e)
 
 ## Structure (UML):
