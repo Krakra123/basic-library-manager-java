@@ -1,5 +1,6 @@
 package app.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -93,7 +94,8 @@ public class Utilities {
     }
 
     public static void setStageIcon(Stage stage, String iconDir) {
-        stage.getIcons().add(new Image(iconDir));
+        File iconFile = new File(iconDir);
+        stage.getIcons().add(new Image(iconFile.toURI().toString()));
     }
 
     // public static void logParentHierarchy(Parent parent) {

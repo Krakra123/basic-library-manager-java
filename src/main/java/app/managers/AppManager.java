@@ -58,8 +58,10 @@ public class AppManager {
     private AppManager() {}
 
     public void setUp(Stage stage) {
+        
         curStage = stage;
-
+        Utilities.setStageIcon(stage, "src/main/resources/pic/icon.png");
+        
         windowData = Utilities.loadFXMLWindow(WINDOW_FXML, TITLE, stage);
         windowRootPane = windowData.getRoot(AnchorPane.class);
         InputManager.updateScene(windowData.scene);
