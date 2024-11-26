@@ -68,12 +68,12 @@ public class AccountsManager {
 
             int l = data.size();
             for (int i = 0; i < l; i+=3) {
-                DataHash usernameHash = new DataHash(Long.parseLong(data.get(i), 10));
+                String username = data.get(i);
                 DataHash passwordHash = new DataHash(Long.parseLong(data.get(i + 1), 10));
                 AccountType type = AccountType.USER;
                 if (data.get(i + 2).charAt(0) != '0') type = AccountType.ADMIN;
             
-                accountList.add(new Account(usernameHash, passwordHash, type));
+                accountList.add(new Account(username, passwordHash, type));
             }
 
             lines.close();
@@ -86,11 +86,10 @@ public class AccountsManager {
     }
 
     public static void registerNewAccount(String username, String password, AccountType type) {
-        DataHash usernameHash = new DataHash(username);
         DataHash passwordHash = new DataHash(password);
 
         String line = 
-            usernameHash + " " + 
+            username + " " + 
             passwordHash + " " + 
             (type == AccountType.USER ? '0' : '1');
 
@@ -98,7 +97,7 @@ public class AccountsManager {
         try {
             Files.writeString(path, "\n" + line, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
 
-            Path savePath = Paths.get(ACCOUNTS_DATA_DIR + usernameHash + ".txt");
+            Path savePath = Paths.get(ACCOUNTS_DATA_DIR + username + ".txt");
             if (Files.notExists(savePath)) {
                 Files.writeString(savePath, "", StandardOpenOption.CREATE_NEW);
             }
@@ -112,7 +111,7 @@ public class AccountsManager {
 
         List<Account> accountList = readAccountList();
         for (Account account : accountList) {
-            if (account.usernameHash.check(username)) {
+            if (account.checkUsername(username)) {
                 return account;
             }
         }
@@ -121,13 +120,10 @@ public class AccountsManager {
     }
 
     public static BookCollection getBookCollection(Account account) {
-        return getBookCollection(account.usernameHash);
+        return getBookCollection(account.username);
     }
-    public static BookCollection getBookCollection(String username) { 
-        return getBookCollection(new DataHash(username));
-    }
-    public static BookCollection getBookCollection(DataHash hash) {
-        Path path = Paths.get(ACCOUNTS_DATA_DIR + hash + ".txt");
+    public static BookCollection getBookCollection(String username) {
+        Path path = Paths.get(ACCOUNTS_DATA_DIR + username + ".txt");
         BookCollection collection = new BookCollection();
         try (Stream<String> lines = Files.lines(path)) {
             List<String> data = lines
@@ -149,14 +145,11 @@ public class AccountsManager {
     }
 
     public static void addBookToAccount(Account account, Book book) {
-        addBookToAccount(account.usernameHash, book);
+        addBookToAccount(account.username, book);
     }
-    public static void addBookToAccount(String username, Book book) { 
-        addBookToAccount(new DataHash(username), book);
-    }
-    public static void addBookToAccount(DataHash usernameHash, Book book) {
+    public static void addBookToAccount(String username, Book book) {
         creatingSavingFiles();
-        Path path = Paths.get(ACCOUNTS_DATA_DIR + usernameHash + ".txt");
+        Path path = Paths.get(ACCOUNTS_DATA_DIR + username + ".txt");
         try {
             Files.writeString(path, " " + book.id, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {
@@ -165,14 +158,11 @@ public class AccountsManager {
     }
 
     public static boolean hasBook(Account account, Book book) {
-        return hasBook(account.usernameHash, book);
+        return hasBook(account.username, book);
     }
     public static boolean hasBook(String username, Book book) {
-        return hasBook(new DataHash(username), book);
-    }
-    public static boolean hasBook(DataHash usernameHash, Book book) {
         creatingSavingFiles();
-        Path path = Paths.get(ACCOUNTS_DATA_DIR + usernameHash + ".txt");
+        Path path = Paths.get(ACCOUNTS_DATA_DIR + username + ".txt");
         String s = "";
         try {
             s = Files.readString(path);
@@ -183,14 +173,11 @@ public class AccountsManager {
     }
 
     public static void removeBook(Account account, Book book) {
-        removeBook(account.usernameHash, book);
+        removeBook(account.username, book);
     }
     public static void removeBook(String username, Book book) {
-        removeBook(new DataHash(username), book);
-    }
-    public static void removeBook(DataHash usernameHash, Book book) {
         creatingSavingFiles();
-        Path path = Paths.get(ACCOUNTS_DATA_DIR + usernameHash + ".txt");
+        Path path = Paths.get(ACCOUNTS_DATA_DIR + username + ".txt");
         try {
             String content = Files.readString(path);
             content = content.replaceAll(book.id, "");
