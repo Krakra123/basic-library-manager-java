@@ -51,7 +51,7 @@ public class LogInManager extends BaseManager {
 	public void tryLogin(String username, String password) {
 		username = username.trim();
 		if (username.matches(".*\\s.*|^$")) {
-			System.out.println("Username invalid");
+			manager.getDialogsManager().showConfirmDialog("Try again.", "Username invalid", () -> {});
 			return;
 		}
 
@@ -59,26 +59,26 @@ public class LogInManager extends BaseManager {
 			manager.openMainDisplayWindow();
 			manager.getUserManager().setCurrentUser(AccountsManager.findAccount(username));
 		} else {
-			System.out.println("Username or password not true");
+			manager.getDialogsManager().showConfirmDialog("Try again.", "Wrong username or password", () -> {});
 		}
 	}
 
 	public void tryRegister(String username, String password, String rePassword, Account.AccountType type) {
 		if (!password.equals(rePassword)) {
-			System.out.println("Password mismatched");
+			manager.getDialogsManager().showConfirmDialog("Try again.", "Password mismatched", () -> {});
 			return;
 		}
 
 		username = username.trim();
 		if (username.matches(".*\\s.*|^$")) {
-			System.out.println("Username invalid");
+			manager.getDialogsManager().showConfirmDialog("Try again.", "Username invalid", () -> {});
 			return;
 		}
 
 		if (AccountsManager.tryRegister(username, password, type)) {
 			openLoginPageOnWindow();
 		} else {
-			System.out.println("Username already existed");
+			manager.getDialogsManager().showConfirmDialog("Try again.", "Username already existed", () -> {});
 		}
 	}
 
