@@ -3,14 +3,15 @@
 - School: VNU-UET
 - Class: INT2204 11
 - Members:
-  + Tuan-Nghia Le (23020124)
-  + Hai-Tien Trinh (23021697)
-  + Ba-Hoang-Long Nguyen (23020680)
+  - Tuan-Nghia Le (23020124)
+  - Hai-Tien Trinh (23021697)
+  - Ba-Hoang-Long Nguyen (23020680)
 ## Resources used
 - Language: Java, a little CSS
 - Library: JavaFX, MaterialFX - for material design components
 - FontAwesomeFX - icon library
 - GoogleBooksAPI - fetch books' information from Google API
+- Self-designed icon for app (from Tuan-Nghia Le)
 ## Features (with screenshots)
 - Login Page
   
@@ -26,17 +27,25 @@
 - Search book
 
 ![image](https://github.com/user-attachments/assets/a3a2293b-3398-42c1-98b8-6c85b1b14b96)
-- Edit book
+- Delete book
+
+![image](https://github.com/user-attachments/assets/d5619131-85c5-492d-8480-e620b5dcf98f)
+
 - Remove book from your library
 
 ![image](https://github.com/user-attachments/assets/7b61be2c-303e-4e7d-94a5-d7cb88488069)
 
 - Press "Enter" to operate some features (login, search, etc)
-- Sorting your searching/library based on categories
+- Sorting your searching/library based on categories  
 
 ![image](https://github.com/user-attachments/assets/ab7536a3-4a21-4ebd-9d3c-4c5f6dff079e)
+- Dashboard (with total books & most-chosen category)
 
-## Structure (UML):
+![image](https://github.com/user-attachments/assets/767b5abf-1816-43e8-ad0d-706fc077471c)
+- Simple logout button
+
+![image](https://github.com/user-attachments/assets/80862b4b-4591-4f0c-be10-b966f39be988)
+
 
 ## Usage
 1. Register for a totally new account, registered accounts will be stored in test-database.txt (via hash for security reasons)
@@ -44,7 +53,8 @@
 3. Click the icon "Save" to add the books onto your library
 4. Tapping on "Library" section on the left sidebar to see your library
 5. In both Home and Library section, you can use the filter to sort by your favorite categories
-6. To exit the application, click the X button on the upper-right window.
+6. To logout, use the Logout button in the Account section
+7. To exit the application, click the X button on the upper-right window.
 ## Installation
 1. Clone the project from the repository
 2. Open the project in any IDE (VSCode, IntelliJ, etc)
