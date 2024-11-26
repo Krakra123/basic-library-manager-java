@@ -4,6 +4,8 @@ import app.data.Account;
 import app.data.Book;
 import app.data.BookCollection;
 import app.util.AccountsManager;
+import app.data.BorrowHis;
+import app.data.BorrowStat;
 
 public class UserManager extends BaseManager {
 
@@ -38,11 +40,13 @@ public class UserManager extends BaseManager {
         if (checkBorrowedBook(book)) return;
         AccountsManager.addBookToAccount(currentUser, book);
         currentCollection.add(book);
+        BorrowHis.addToBorrowHis(new BorrowStat(currentUser, book));
     }
 
     public void returnBook(Book book) {
         if (!checkBorrowedBook(book)) return;
         AccountsManager.removeBook(currentUser, book);
         currentCollection.remove(book);
+        BorrowHis.removeFromBorrowHis(new BorrowStat(currentUser, book));
     }
 }
