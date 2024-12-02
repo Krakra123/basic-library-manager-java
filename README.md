@@ -46,6 +46,8 @@
 
 ![image](https://github.com/user-attachments/assets/80862b4b-4591-4f0c-be10-b966f39be988)
 
+## UML
+![image](https://cdn.discordapp.com/attachments/1291230947081191489/1313207647863967825/btl.png?ex=674f4b6d&is=674df9ed&hm=c3732b3563b16ec33231fe40cec1a31e9dee7e48e4c1e9f3d9478f61ea56bda9&)
 
 ## Usage
 1. Register for a totally new account, registered accounts will be stored in test-database.txt (via hash for security reasons)
