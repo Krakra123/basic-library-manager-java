@@ -7,7 +7,6 @@ module app {
     requires javafx.graphics;
     requires de.jensd.fx.glyphs.fontawesome;
     requires com.fasterxml.jackson.databind;
-    requires java.sql;
 
     opens app to javafx.fxml;
     opens app.controller to javafx.fxml;
